@@ -10,7 +10,7 @@ client_secret*.json
 instagram_session.json
 auto_set_github_secrets.py
 
-# Media files
+# Raw 400MB full source videos (Clips in assets/clips/ ARE committed)
 assets/source_videos/*.mp4
 assets/source_videos/*.m4a
 assets/output/*.mp4
@@ -19,3 +19,4 @@ assets/output/*.jpg
 # Logs
 logs/*.log
 logs/upload_history.json
+cloud_run.log

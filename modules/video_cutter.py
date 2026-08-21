@@ -14,6 +14,7 @@ if str(BASE_DIR) not in sys.path:
 from config import SOURCE_VIDEOS_DIR, LOGS_DIR
 
 SEGMENT_LOG = LOGS_DIR / "extracted_segments.json"
+CLIPS_DIR = BASE_DIR / "assets" / "clips"
 
 CURATED_MOMENTS = [
     {
@@ -64,6 +65,7 @@ CURATED_MOMENTS = [
 class VideoCutter:
     def __init__(self):
         SOURCE_VIDEOS_DIR.mkdir(parents=True, exist_ok=True)
+        CLIPS_DIR.mkdir(parents=True, exist_ok=True)
         LOGS_DIR.mkdir(parents=True, exist_ok=True)
         self.used_moments = self._load_used_moments()
         self.ffmpeg_exe = imageio_ffmpeg.get_ffmpeg_exe()
@@ -82,32 +84,6 @@ class VideoCutter:
         with open(SEGMENT_LOG, "w", encoding="utf-8") as f:
             json.dump(list(self.used_moments), f, indent=2)
 
-    def ensure_source_downloaded(self, vid_id: str) -> Path:
-        target_file = SOURCE_VIDEOS_DIR / f"{vid_id}.mp4"
-        if target_file.exists() and target_file.stat().st_size > 5_000_000:
-            return target_file
-
-        url = f"https://youtu.be/{vid_id}"
-        print(f"[*] Downloading master source video {vid_id} from YouTube...")
-
-        # Robust Cloud-Compatible Android / MWeb Player Client bypass
-        ydl_opts = {
-            'format': 'bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio/best',
-            'outtmpl': str(SOURCE_VIDEOS_DIR / f"{vid_id}.%(ext)s"),
-            'merge_output_format': 'mp4',
-            'quiet': True,
-            'no_warnings': True,
-            'extractor_args': {
-                'youtube': {
-                    'player_client': ['android', 'ios', 'mweb']
-                }
-            }
-        }
-        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            ydl.download([url])
-
-        return target_file
-
     def extract_next_clip(self) -> dict:
         available = [m for m in CURATED_MOMENTS if f"{m['vid_id']}_{m['start']}" not in self.used_moments]
         if not available:
@@ -116,9 +92,33 @@ class VideoCutter:
 
         moment = random.choice(available)
         moment_key = f"{moment['vid_id']}_{moment['start']}"
-        source_path = self.ensure_source_downloaded(moment["vid_id"])
+        pre_clipped = CLIPS_DIR / f"clip_{moment_key}.mp4"
 
-        clip_output = SOURCE_VIDEOS_DIR / f"clip_{moment_key}.mp4"
+        if pre_clipped.exists() and pre_clipped.stat().st_size > 1_000_000:
+            print(f"[*] Using pre-cached HD clip: {pre_clipped.name}")
+            self._save_used_moment(moment_key)
+            return {
+                "clip_path": pre_clipped,
+                "hook": moment["hook"],
+                "topic": moment["topic"],
+                "vid_id": moment["vid_id"],
+                "duration": moment["duration"]
+            }
+
+        # Fallback dynamic download & slice
+        source_path = SOURCE_VIDEOS_DIR / f"{moment['vid_id']}.mp4"
+        if not source_path.exists():
+            url = f"https://youtu.be/{moment['vid_id']}"
+            print(f"[*] Downloading source video {moment['vid_id']}...")
+            ydl_opts = {
+                'format': 'bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/best',
+                'outtmpl': str(source_path),
+                'merge_output_format': 'mp4',
+                'quiet': True,
+                'extractor_args': {'youtube': {'player_client': ['android', 'ios', 'mweb']}}
+            }
+            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                ydl.download([url])
 
         cmd_slice = [
             self.ffmpeg_exe, "-y",
@@ -127,13 +127,13 @@ class VideoCutter:
             "-t", str(moment["duration"]),
             "-c:v", "libx264",
             "-c:a", "aac",
-            str(clip_output)
+            str(pre_clipped)
         ]
         subprocess.run(cmd_slice, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True)
         self._save_used_moment(moment_key)
 
         return {
-            "clip_path": clip_output,
+            "clip_path": pre_clipped,
             "hook": moment["hook"],
             "topic": moment["topic"],
             "vid_id": moment["vid_id"],
