@@ -1,0 +1,20 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Local secrets (Supplied via GitHub Actions Secrets)
+.env
+token.pickle
+client_secret*.json
+instagram_session.json
+
+# Media files
+assets/source_videos/*.mp4
+assets/source_videos/*.m4a
+assets/output/*.mp4
+assets/output/*.jpg
+
+# Logs
+logs/*.log
+logs/upload_history.json

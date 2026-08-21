@@ -1,0 +1,72 @@
+name: 🌌 24/7 Cosmic Matrix Multi-Platform Autopilot (YouTube + Insta + X)
+
+on:
+  schedule:
+    # 09:00 AM IST (03:30 UTC)
+    - cron: '30 3 * * *'
+    # 06:00 PM IST (12:30 UTC)
+    - cron: '30 12 * * *'
+  workflow_dispatch:
+
+jobs:
+  run-cosmic-autopilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: 🎥 Install FFmpeg
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+
+      - name: 📦 Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install yt-dlp imageio-ffmpeg instagrapi schedule requests requests-oauthlib google-api-python-client google-auth-oauthlib python-dotenv
+
+      - name: 🔐 Restore Authentication Credentials
+        env:
+          TOKEN_PICKLE_BASE64: ${{ secrets.TOKEN_PICKLE_BASE64 }}
+          CLIENT_SECRET_JSON: ${{ secrets.CLIENT_SECRET_JSON }}
+          INSTAGRAM_SESSION: ${{ secrets.INSTAGRAM_SESSION }}
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+        run: |
+          mkdir -p logs assets/output assets/source_videos
+          if [ -n "$TOKEN_PICKLE_BASE64" ]; then
+            echo "$TOKEN_PICKLE_BASE64" | base64 -d > token.pickle
+          fi
+          if [ -n "$CLIENT_SECRET_JSON" ]; then
+            echo "$CLIENT_SECRET_JSON" > client_secret.json
+          fi
+          if [ -n "$INSTAGRAM_SESSION" ]; then
+            echo "$INSTAGRAM_SESSION" > instagram_session.json
+          fi
+          echo "X_API_KEY=$X_API_KEY" >> .env
+          echo "X_API_SECRET=$X_API_SECRET" >> .env
+          echo "X_ACCESS_TOKEN=$X_ACCESS_TOKEN" >> .env
+          echo "X_ACCESS_TOKEN_SECRET=$X_ACCESS_TOKEN_SECRET" >> .env
+
+      - name: 🚀 Run Cosmic Matrix 5-in-1 Autopilot
+        run: |
+          python autopilot.py --privacy public
+
+      - name: 💾 Commit & Push Extracted History & Logs
+        if: always()
+        run: |
+          git config --global user.name "CosmicBot-Autopilot"
+          git config --global user.email "bot@cosmicmatrix.local"
+          git add logs/ extracted_segments.json || true
+          git commit -m "Auto-update extracted moments and history [skip ci]" || echo "No changes to commit"
+          git push || echo "Push skipped"
