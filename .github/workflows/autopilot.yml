@@ -8,6 +8,9 @@ on:
     - cron: '30 12 * * *'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   run-cosmic-autopilot:
     runs-on: ubuntu-latest
@@ -31,7 +34,7 @@ jobs:
       - name: 📦 Install Python Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install yt-dlp imageio-ffmpeg instagrapi schedule requests requests-oauthlib google-api-python-client google-auth-oauthlib python-dotenv
+          pip install -r requirements.txt
 
       - name: 🔐 Restore Authentication Credentials
         env:
@@ -67,6 +70,6 @@ jobs:
         run: |
           git config --global user.name "CosmicBot-Autopilot"
           git config --global user.email "bot@cosmicmatrix.local"
-          git add logs/ extracted_segments.json || true
+          git add logs/ || true
           git commit -m "Auto-update extracted moments and history [skip ci]" || echo "No changes to commit"
           git push || echo "Push skipped"

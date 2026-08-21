@@ -1,0 +1,9 @@
+yt-dlp
+imageio-ffmpeg
+instagrapi
+schedule
+requests
+requests-oauthlib
+google-api-python-client
+google-auth-oauthlib
+python-dotenv

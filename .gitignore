@@ -3,11 +3,12 @@
 __pycache__/
 *.pyc
 
-# Local secrets (Supplied via GitHub Actions Secrets)
+# Local secrets & scripts with keys
 .env
 token.pickle
 client_secret*.json
 instagram_session.json
+auto_set_github_secrets.py
 
 # Media files
 assets/source_videos/*.mp4
