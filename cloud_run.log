@@ -1,0 +1,388 @@
+ï»¿2026-08-21T14:36:59.0534894Z Current runner version: '2.336.0'
+2026-08-21T14:36:59.0578499Z ##[group]Runner Image Provisioner
+2026-08-21T14:36:59.0581455Z Hosted Compute Agent
+2026-08-21T14:36:59.0583953Z Version: 20260729.566
+2026-08-21T14:36:59.0586815Z Commit: cf7153fe6e25b664e8693c24944bf2b00355d109
+2026-08-21T14:36:59.0589605Z Build Date: 2026-07-29T19:17:02Z
+2026-08-21T14:36:59.0592509Z Worker ID: ***0b3a2f2e-6f4e-4a5e-b4a7-10bcd09fe6f5***
+2026-08-21T14:36:59.0595321Z Azure Region: eastus
+2026-08-21T14:36:59.0597989Z ##[endgroup]
+2026-08-21T14:36:59.0602159Z ##[group]Operating System
+2026-08-21T14:36:59.0604854Z Ubuntu
+2026-08-21T14:36:59.0607354Z 24.04.4
+2026-08-21T14:36:59.0609534Z LTS
+2026-08-21T14:36:59.0611778Z ##[endgroup]
+2026-08-21T14:36:59.0614121Z ##[group]Runner Image
+2026-08-21T14:36:59.0616889Z Image: ubuntu-24.04
+2026-08-21T14:36:59.0619311Z Version: 20260816.277.1
+2026-08-21T14:36:59.0623153Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260816.277/images/ubuntu/Ubuntu2404-Readme.md
+2026-08-21T14:36:59.0628788Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260816.277
+2026-08-21T14:36:59.0631964Z ##[endgroup]
+2026-08-21T14:36:59.0636802Z ##[group]GITHUB_TOKEN Permissions
+2026-08-21T14:36:59.0641388Z Contents: write
+2026-08-21T14:36:59.0643767Z Metadata: read
+2026-08-21T14:36:59.0646197Z ##[endgroup]
+2026-08-21T14:36:59.0650993Z Secret source: Actions
+2026-08-21T14:36:59.0655375Z Prepare workflow directory
+2026-08-21T14:36:59.1150083Z Prepare all required actions
+2026-08-21T14:36:59.1222762Z Getting action download info
+2026-08-21T14:36:59.2919912Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-08-21T14:36:59.4419145Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-08-21T14:36:59.6516604Z Complete job name: run-cosmic-autopilot
+2026-08-21T14:36:59.7472556Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-08-21T14:36:59.7482562Z ##[group]Run actions/checkout@v4
+2026-08-21T14:36:59.7483944Z with:
+2026-08-21T14:36:59.7485208Z   repository: kuchhbhi85198-del/cosmic-matrix-autopilot
+2026-08-21T14:36:59.7490486Z   token: ***
+2026-08-21T14:36:59.7491602Z   ssh-strict: true
+2026-08-21T14:36:59.7492701Z   ssh-user: git
+2026-08-21T14:36:59.7493853Z   persist-credentials: true
+2026-08-21T14:36:59.7495015Z   clean: true
+2026-08-21T14:36:59.7496166Z   sparse-checkout-cone-mode: true
+2026-08-21T14:36:59.7497484Z   fetch-depth: 1
+2026-08-21T14:36:59.7498594Z   fetch-tags: false
+2026-08-21T14:36:59.7499721Z   show-progress: true
+2026-08-21T14:36:59.7500824Z   lfs: false
+2026-08-21T14:36:59.7501953Z   submodules: false
+2026-08-21T14:36:59.7503087Z   set-safe-directory: true
+2026-08-21T14:36:59.7504298Z   allow-unsafe-pr-checkout: false
+2026-08-21T14:36:59.7505701Z ##[endgroup]
+2026-08-21T14:36:59.8572690Z Syncing repository: kuchhbhi85198-del/cosmic-matrix-autopilot
+2026-08-21T14:36:59.8577341Z ##[group]Getting Git version info
+2026-08-21T14:36:59.8579933Z Working directory is '/home/runner/work/cosmic-matrix-autopilot/cosmic-matrix-autopilot'
+2026-08-21T14:36:59.8583593Z [command]/usr/bin/git version
+2026-08-21T14:36:59.8590264Z git version 2.55.0
+2026-08-21T14:36:59.8645332Z ##[endgroup]
+2026-08-21T14:36:59.8663891Z Temporarily overriding HOME='/home/runner/work/_temp/b22a7b8e-103b-49f6-97b0-5e36f6f27308' before making global git config changes
+2026-08-21T14:36:59.8666137Z Adding repository directory to the temporary git global config as a safe directory
+2026-08-21T14:36:59.8669582Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/cosmic-matrix-autopilot/cosmic-matrix-autopilot
+2026-08-21T14:36:59.8719331Z Deleting the contents of '/home/runner/work/cosmic-matrix-autopilot/cosmic-matrix-autopilot'
+2026-08-21T14:36:59.8723625Z ##[group]Initializing the repository
+2026-08-21T14:36:59.8728487Z [command]/usr/bin/git init /home/runner/work/cosmic-matrix-autopilot/cosmic-matrix-autopilot
+2026-08-21T14:36:59.8808687Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-08-21T14:36:59.8811493Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-08-21T14:36:59.8814182Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-08-21T14:36:59.8817662Z hint: call:
+2026-08-21T14:36:59.8819313Z hint:
+2026-08-21T14:36:59.8821192Z hint: 	git config --global init.defaultBranch <name>
+2026-08-21T14:36:59.8823219Z hint:
+2026-08-21T14:36:59.8825255Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-08-21T14:36:59.8828156Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-08-21T14:36:59.8830707Z hint:
+2026-08-21T14:36:59.8832410Z hint: 	git branch -m <name>
+2026-08-21T14:36:59.8834211Z hint:
+2026-08-21T14:36:59.8836326Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-08-21T14:36:59.8841093Z Initialized empty Git repository in /home/runner/work/cosmic-matrix-autopilot/cosmic-matrix-autopilot/.git/
+2026-08-21T14:36:59.8846773Z [command]/usr/bin/git remote add origin https://github.com/kuchhbhi85198-del/cosmic-matrix-autopilot
+2026-08-21T14:36:59.8869081Z ##[endgroup]
+2026-08-21T14:36:59.8871940Z ##[group]Disabling automatic garbage collection
+2026-08-21T14:36:59.8874153Z [command]/usr/bin/git config --local gc.auto 0
+2026-08-21T14:36:59.8907025Z ##[endgroup]
+2026-08-21T14:36:59.8909095Z ##[group]Setting up auth
+2026-08-21T14:36:59.8912598Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-08-21T14:36:59.8948984Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-08-21T14:36:59.9308548Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-08-21T14:36:59.9348269Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-08-21T14:36:59.9610295Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-08-21T14:36:59.9651272Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-08-21T14:36:59.9896671Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-08-21T14:36:59.9938144Z ##[endgroup]
+2026-08-21T14:36:59.9941208Z ##[group]Fetching the repository
+2026-08-21T14:36:59.9949920Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +2c35378d8355c53ea6513436c22dc7d9305a5897:refs/remotes/origin/main
+2026-08-21T14:37:00.2295178Z From https://github.com/kuchhbhi85198-del/cosmic-matrix-autopilot
+2026-08-21T14:37:00.2298725Z  * [new ref]         2c35378d8355c53ea6513436c22dc7d9305a5897 -> origin/main
+2026-08-21T14:37:00.2305680Z ##[endgroup]
+2026-08-21T14:37:00.2309520Z ##[group]Determining the checkout info
+2026-08-21T14:37:00.2313483Z ##[endgroup]
+2026-08-21T14:37:00.2315629Z [command]/usr/bin/git sparse-checkout disable
+2026-08-21T14:37:00.2365531Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-08-21T14:37:00.2402217Z ##[group]Checking out the ref
+2026-08-21T14:37:00.2405617Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-08-21T14:37:00.2478923Z Switched to a new branch 'main'
+2026-08-21T14:37:00.2483906Z branch 'main' set up to track 'origin/main'.
+2026-08-21T14:37:00.2492074Z ##[endgroup]
+2026-08-21T14:37:00.2535409Z [command]/usr/bin/git log -1 --format=%H
+2026-08-21T14:37:00.2566801Z 2c35378d8355c53ea6513436c22dc7d9305a5897
+2026-08-21T14:37:00.2926380Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-08-21T14:37:00.2930314Z ##[group]Run actions/setup-python@v5
+2026-08-21T14:37:00.2931649Z with:
+2026-08-21T14:37:00.2932854Z   python-version: 3.11
+2026-08-21T14:37:00.2934093Z   cache: pip
+2026-08-21T14:37:00.2935286Z   check-latest: false
+2026-08-21T14:37:00.2940641Z   token: ***
+2026-08-21T14:37:00.2941878Z   update-environment: true
+2026-08-21T14:37:00.2943187Z   allow-prereleases: false
+2026-08-21T14:37:00.2944453Z   freethreaded: false
+2026-08-21T14:37:00.2945676Z ##[endgroup]
+2026-08-21T14:37:00.4327571Z ##[group]Installed versions
+2026-08-21T14:37:00.4408803Z (node:2298) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-08-21T14:37:00.4411334Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-21T14:37:00.4413069Z Successfully set up CPython (3.11.16)
+2026-08-21T14:37:00.4415861Z ##[endgroup]
+2026-08-21T14:37:00.4922290Z [command]/opt/hostedtoolcache/Python/3.11.16/x64/bin/pip cache dir
+2026-08-21T14:37:00.7305807Z /home/runner/.cache/pip
+2026-08-21T14:37:00.8135801Z pip cache is not found
+2026-08-21T14:37:00.8392245Z ##[group]Run python -m pip install --upgrade pip
+2026-08-21T14:37:00.8395351Z [36;1mpython -m pip install --upgrade pip[0m
+2026-08-21T14:37:00.8398656Z [36;1mpip install -r requirements.txt[0m
+2026-08-21T14:37:00.8451206Z shell: /usr/bin/bash -e ***0***
+2026-08-21T14:37:00.8453642Z env:
+2026-08-21T14:37:00.8456180Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.16/x64
+2026-08-21T14:37:00.8459841Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.16/x64/lib/pkgconfig
+2026-08-21T14:37:00.8463268Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.16/x64
+2026-08-21T14:37:00.8466541Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.16/x64
+2026-08-21T14:37:00.8469721Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.16/x64
+2026-08-21T14:37:00.8472935Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.16/x64/lib
+2026-08-21T14:37:00.8475696Z ##[endgroup]
+2026-08-21T14:37:01.3125534Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages (26.2.1)
+2026-08-21T14:37:01.9559989Z Collecting yt-dlp (from -r requirements.txt (line 1))
+2026-08-21T14:37:02.0041959Z   Downloading yt_dlp-2026.8.19-py3-none-any.whl.metadata (183 kB)
+2026-08-21T14:37:02.0596757Z Collecting imageio-ffmpeg (from -r requirements.txt (line 2))
+2026-08-21T14:37:02.0635548Z   Downloading imageio_ffmpeg-0.6.0-py3-none-manylinux2014_x86_64.whl.metadata (1.5 kB)
+2026-08-21T14:37:02.1018449Z Collecting instagrapi (from -r requirements.txt (line 3))
+2026-08-21T14:37:02.1064642Z   Downloading instagrapi-2.18.16-py3-none-any.whl.metadata (19 kB)
+2026-08-21T14:37:02.1199236Z Collecting schedule (from -r requirements.txt (line 4))
+2026-08-21T14:37:02.1236035Z   Downloading schedule-1.2.2-py3-none-any.whl.metadata (3.8 kB)
+2026-08-21T14:37:02.1440595Z Collecting requests (from -r requirements.txt (line 5))
+2026-08-21T14:37:02.1474158Z   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+2026-08-21T14:37:02.1593820Z Collecting requests-oauthlib (from -r requirements.txt (line 6))
+2026-08-21T14:37:02.1627213Z   Downloading requests_oauthlib-2.0.0-py2.py3-none-any.whl.metadata (11 kB)
+2026-08-21T14:37:02.2118694Z Collecting google-api-python-client (from -r requirements.txt (line 7))
+2026-08-21T14:37:02.2156873Z   Downloading google_api_python_client-2.199.0-py3-none-any.whl.metadata (6.8 kB)
+2026-08-21T14:37:02.2324897Z Collecting google-auth-oauthlib (from -r requirements.txt (line 8))
+2026-08-21T14:37:02.2366626Z   Downloading google_auth_oauthlib-1.4.0-py3-none-any.whl.metadata (2.6 kB)
+2026-08-21T14:37:02.2505662Z Collecting python-dotenv (from -r requirements.txt (line 9))
+2026-08-21T14:37:02.2537511Z   Downloading python_dotenv-1.2.3-py3-none-any.whl.metadata (29 kB)
+2026-08-21T14:37:02.2670130Z Collecting PySocks<2,>=1.7.1 (from instagrapi->-r requirements.txt (line 3))
+2026-08-21T14:37:02.2705934Z   Downloading PySocks-1.7.1-py3-none-any.whl.metadata (13 kB)
+2026-08-21T14:37:02.3554807Z Collecting pydantic<2.14,>=2.12.5 (from instagrapi->-r requirements.txt (line 3))
+2026-08-21T14:37:02.3592414Z   Downloading pydantic-2.13.4-py3-none-any.whl.metadata (109 kB)
+2026-08-21T14:37:02.5231590Z Collecting Pillow<13,>=12.2.0 (from instagrapi->-r requirements.txt (line 3))
+2026-08-21T14:37:02.5263993Z   Downloading pillow-12.3.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+2026-08-21T14:37:02.6574347Z Collecting pycryptodomex<4,>=3.23.0 (from instagrapi->-r requirements.txt (line 3))
+2026-08-21T14:37:02.6608502Z   Downloading pycryptodomex-3.23.0-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (3.4 kB)
+2026-08-21T14:37:02.7587516Z Collecting charset_normalizer<4,>=2 (from requests->-r requirements.txt (line 5))
+2026-08-21T14:37:02.7624753Z   Downloading charset_normalizer-3.5.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (45 kB)
+2026-08-21T14:37:02.7776995Z Collecting idna<4,>=2.5 (from requests->-r requirements.txt (line 5))
+2026-08-21T14:37:02.7811556Z   Downloading idna-3.19-py3-none-any.whl.metadata (9.2 kB)
+2026-08-21T14:37:02.7999179Z Collecting urllib3<3,>=1.26 (from requests->-r requirements.txt (line 5))
+2026-08-21T14:37:02.8037474Z   Downloading urllib3-2.7.0-py3-none-any.whl.metadata (6.9 kB)
+2026-08-21T14:37:02.8189546Z Collecting certifi>=2023.5.7 (from requests->-r requirements.txt (line 5))
+2026-08-21T14:37:02.8223106Z   Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
+2026-08-21T14:37:02.8352737Z Collecting annotated-types>=0.6.0 (from pydantic<2.14,>=2.12.5->instagrapi->-r requirements.txt (line 3))
+2026-08-21T14:37:02.8385187Z   Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+2026-08-21T14:37:03.4001453Z Collecting pydantic-core==2.46.4 (from pydantic<2.14,>=2.12.5->instagrapi->-r requirements.txt (line 3))
+2026-08-21T14:37:03.4037506Z   Downloading pydantic_core-2.46.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.6 kB)
+2026-08-21T14:37:03.4391715Z Collecting typing-extensions>=4.14.1 (from pydantic<2.14,>=2.12.5->instagrapi->-r requirements.txt (line 3))
+2026-08-21T14:37:03.4427465Z   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+2026-08-21T14:37:03.4522432Z Collecting typing-inspection>=0.4.2 (from pydantic<2.14,>=2.12.5->instagrapi->-r requirements.txt (line 3))
+2026-08-21T14:37:03.4554190Z   Downloading typing_inspection-0.4.4-py3-none-any.whl.metadata (2.6 kB)
+2026-08-21T14:37:03.4679995Z Collecting oauthlib>=3.0.0 (from requests-oauthlib->-r requirements.txt (line 6))
+2026-08-21T14:37:03.4712394Z   Downloading oauthlib-3.3.1-py3-none-any.whl.metadata (7.9 kB)
+2026-08-21T14:37:03.4861573Z Collecting httplib2<1.0.0,>=0.19.0 (from google-api-python-client->-r requirements.txt (line 7))
+2026-08-21T14:37:03.4892982Z   Downloading httplib2-0.32.0-py3-none-any.whl.metadata (2.2 kB)
+2026-08-21T14:37:03.5160992Z Collecting google-auth!=2.24.0,!=2.25.0,<3.0.0,>=1.32.0 (from google-api-python-client->-r requirements.txt (line 7))
+2026-08-21T14:37:03.5196366Z   Downloading google_auth-2.56.3-py3-none-any.whl.metadata (6.0 kB)
+2026-08-21T14:37:03.5349447Z Collecting google-auth-httplib2<1.0.0,>=0.2.0 (from google-api-python-client->-r requirements.txt (line 7))
+2026-08-21T14:37:03.5386110Z   Downloading google_auth_httplib2-0.4.1-py3-none-any.whl.metadata (3.0 kB)
+2026-08-21T14:37:03.5692172Z Collecting google-api-core!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.0,<3.0.0,>=1.31.5 (from google-api-python-client->-r requirements.txt (line 7))
+2026-08-21T14:37:03.5725893Z   Downloading google_api_core-2.34.0-py3-none-any.whl.metadata (2.9 kB)
+2026-08-21T14:37:03.5829135Z Collecting uritemplate<5,>=3.0.1 (from google-api-python-client->-r requirements.txt (line 7))
+2026-08-21T14:37:03.5869301Z   Downloading uritemplate-4.2.0-py3-none-any.whl.metadata (2.6 kB)
+2026-08-21T14:37:03.6008265Z Collecting googleapis-common-protos<2.0.0,>=1.69.2 (from google-api-core!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.0,<3.0.0,>=1.31.5->google-api-python-client->-r requirements.txt (line 7))
+2026-08-21T14:37:03.6110176Z   Downloading googleapis_common_protos-1.75.1-py3-none-any.whl.metadata (8.5 kB)
+2026-08-21T14:37:03.7249741Z Collecting protobuf<8.0.0,>=6.33.5 (from google-api-core!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.0,<3.0.0,>=1.31.5->google-api-python-client->-r requirements.txt (line 7))
+2026-08-21T14:37:03.7284435Z   Downloading protobuf-7.36.0-cp310-abi3-manylinux2014_x86_64.whl.metadata (595 bytes)
+2026-08-21T14:37:03.7421733Z Collecting proto-plus<2.0.0,>=1.26.1 (from google-api-core!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.0,<3.0.0,>=1.31.5->google-api-python-client->-r requirements.txt (line 7))
+2026-08-21T14:37:03.7453283Z   Downloading proto_plus-1.28.3-py3-none-any.whl.metadata (2.2 kB)
+2026-08-21T14:37:03.7684807Z Collecting pyasn1-modules>=0.2.1 (from google-auth!=2.24.0,!=2.25.0,<3.0.0,>=1.32.0->google-api-python-client->-r requirements.txt (line 7))
+2026-08-21T14:37:03.7726887Z   Downloading pyasn1_modules-0.4.2-py3-none-any.whl.metadata (3.5 kB)
+2026-08-21T14:37:03.9141942Z Collecting cryptography>=38.0.3 (from google-auth!=2.24.0,!=2.25.0,<3.0.0,>=1.32.0->google-api-python-client->-r requirements.txt (line 7))
+2026-08-21T14:37:03.9177684Z   Downloading cryptography-50.0.0-cp311-abi3-manylinux_2_34_x86_64.whl.metadata (4.3 kB)
+2026-08-21T14:37:03.9388312Z Collecting pyparsing<4,>=3.1 (from httplib2<1.0.0,>=0.19.0->google-api-python-client->-r requirements.txt (line 7))
+2026-08-21T14:37:03.9421671Z   Downloading pyparsing-3.3.2-py3-none-any.whl.metadata (5.8 kB)
+2026-08-21T14:37:04.0639225Z Collecting cffi>=2.0.0 (from cryptography>=38.0.3->google-auth!=2.24.0,!=2.25.0,<3.0.0,>=1.32.0->google-api-python-client->-r requirements.txt (line 7))
+2026-08-21T14:37:04.0673334Z   Downloading cffi-2.1.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.5 kB)
+2026-08-21T14:37:04.0783369Z Collecting pycparser (from cffi>=2.0.0->cryptography>=38.0.3->google-auth!=2.24.0,!=2.25.0,<3.0.0,>=1.32.0->google-api-python-client->-r requirements.txt (line 7))
+2026-08-21T14:37:04.0814071Z   Downloading pycparser-3.0-py3-none-any.whl.metadata (8.2 kB)
+2026-08-21T14:37:04.1001371Z Collecting pyasn1<0.7.0,>=0.6.1 (from pyasn1-modules>=0.2.1->google-auth!=2.24.0,!=2.25.0,<3.0.0,>=1.32.0->google-api-python-client->-r requirements.txt (line 7))
+2026-08-21T14:37:04.1034249Z   Downloading pyasn1-0.6.4-py3-none-any.whl.metadata (8.4 kB)
+2026-08-21T14:37:04.1120346Z Downloading yt_dlp-2026.8.19-py3-none-any.whl (3.2 MB)
+2026-08-21T14:37:04.1270091Z    ââââââââââââââââââââââââââââââââââââââââ 3.2/3.2 MB 281.7 MB/s  0:00:00
+2026-08-21T14:37:04.1306656Z Downloading imageio_ffmpeg-0.6.0-py3-none-manylinux2014_x86_64.whl (29.5 MB)
+2026-08-21T14:37:04.2154355Z    ââââââââââââââââââââââââââââââââââââââââ 29.5/29.5 MB 355.6 MB/s  0:00:00
+2026-08-21T14:37:04.2226041Z Downloading instagrapi-2.18.16-py3-none-any.whl (243 kB)
+2026-08-21T14:37:04.2282533Z Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+2026-08-21T14:37:04.2333202Z Downloading charset_normalizer-3.5.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (262 kB)
+2026-08-21T14:37:04.2389095Z Downloading idna-3.19-py3-none-any.whl (68 kB)
+2026-08-21T14:37:04.2440371Z Downloading pillow-12.3.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (6.9 MB)
+2026-08-21T14:37:04.2655166Z    ââââââââââââââââââââââââââââââââââââââââ 6.9/6.9 MB 354.3 MB/s  0:00:00
+2026-08-21T14:37:04.2689865Z Downloading pycryptodomex-3.23.0-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.3 MB)
+2026-08-21T14:37:04.2782358Z    ââââââââââââââââââââââââââââââââââââââââ 2.3/2.3 MB 288.8 MB/s  0:00:00
+2026-08-21T14:37:04.2814259Z Downloading pydantic-2.13.4-py3-none-any.whl (472 kB)
+2026-08-21T14:37:04.2873660Z Downloading pydantic_core-2.46.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.1 MB)
+2026-08-21T14:37:04.2960670Z    ââââââââââââââââââââââââââââââââââââââââ 2.1/2.1 MB 283.7 MB/s  0:00:00
+2026-08-21T14:37:04.2993982Z Downloading PySocks-1.7.1-py3-none-any.whl (16 kB)
+2026-08-21T14:37:04.3046197Z Downloading urllib3-2.7.0-py3-none-any.whl (131 kB)
+2026-08-21T14:37:04.3104002Z Downloading schedule-1.2.2-py3-none-any.whl (12 kB)
+2026-08-21T14:37:04.3155347Z Downloading requests_oauthlib-2.0.0-py2.py3-none-any.whl (24 kB)
+2026-08-21T14:37:04.3208961Z Downloading google_api_python_client-2.199.0-py3-none-any.whl (16.0 MB)
+2026-08-21T14:37:04.3703813Z    ââââââââââââââââââââââââââââââââââââââââ 16.0/16.0 MB 333.8 MB/s  0:00:00
+2026-08-21T14:37:04.3737796Z Downloading google_api_core-2.34.0-py3-none-any.whl (180 kB)
+2026-08-21T14:37:04.3794247Z Downloading google_auth-2.56.3-py3-none-any.whl (259 kB)
+2026-08-21T14:37:04.3849938Z Downloading google_auth_httplib2-0.4.1-py3-none-any.whl (9.5 kB)
+2026-08-21T14:37:04.3904284Z Downloading googleapis_common_protos-1.75.1-py3-none-any.whl (300 kB)
+2026-08-21T14:37:04.3961681Z Downloading httplib2-0.32.0-py3-none-any.whl (93 kB)
+2026-08-21T14:37:04.4011404Z Downloading proto_plus-1.28.3-py3-none-any.whl (50 kB)
+2026-08-21T14:37:04.4057964Z Downloading protobuf-7.36.0-cp310-abi3-manylinux2014_x86_64.whl (340 kB)
+2026-08-21T14:37:04.4114081Z Downloading pyparsing-3.3.2-py3-none-any.whl (122 kB)
+2026-08-21T14:37:04.4183012Z Downloading uritemplate-4.2.0-py3-none-any.whl (11 kB)
+2026-08-21T14:37:04.4233401Z Downloading google_auth_oauthlib-1.4.0-py3-none-any.whl (19 kB)
+2026-08-21T14:37:04.4286854Z Downloading python_dotenv-1.2.3-py3-none-any.whl (22 kB)
+2026-08-21T14:37:04.4337660Z Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+2026-08-21T14:37:04.4387375Z Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)
+2026-08-21T14:37:04.4438397Z Downloading cryptography-50.0.0-cp311-abi3-manylinux_2_34_x86_64.whl (4.7 MB)
+2026-08-21T14:37:04.4582219Z    ââââââââââââââââââââââââââââââââââââââââ 4.7/4.7 MB 368.6 MB/s  0:00:00
+2026-08-21T14:37:04.4614398Z Downloading cffi-2.1.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (217 kB)
+2026-08-21T14:37:04.4670451Z Downloading oauthlib-3.3.1-py3-none-any.whl (160 kB)
+2026-08-21T14:37:04.4794690Z Downloading pyasn1_modules-0.4.2-py3-none-any.whl (181 kB)
+2026-08-21T14:37:04.4848620Z Downloading pyasn1-0.6.4-py3-none-any.whl (84 kB)
+2026-08-21T14:37:04.4902917Z Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+2026-08-21T14:37:04.4951922Z Downloading typing_inspection-0.4.4-py3-none-any.whl (14 kB)
+2026-08-21T14:37:04.5005105Z Downloading pycparser-3.0-py3-none-any.whl (48 kB)
+2026-08-21T14:37:04.7127576Z Installing collected packages: yt-dlp, urllib3, uritemplate, typing-extensions, schedule, python-dotenv, PySocks, pyparsing, pycryptodomex, pycparser, pyasn1, protobuf, Pillow, oauthlib, imageio-ffmpeg, idna, charset_normalizer, certifi, annotated-types, typing-inspection, requests, pydantic-core, pyasn1-modules, proto-plus, httplib2, googleapis-common-protos, cffi, requests-oauthlib, pydantic, cryptography, instagrapi, google-auth, google-auth-oauthlib, google-auth-httplib2, google-api-core, google-api-python-client
+2026-08-21T14:37:10.6462958Z 
+2026-08-21T14:37:10.6485781Z Successfully installed Pillow-12.3.0 PySocks-1.7.1 annotated-types-0.8.0 certifi-2026.7.22 cffi-2.1.1 charset_normalizer-3.5.1 cryptography-50.0.0 google-api-core-2.34.0 google-api-python-client-2.199.0 google-auth-2.56.3 google-auth-httplib2-0.4.1 google-auth-oauthlib-1.4.0 googleapis-common-protos-1.75.1 httplib2-0.32.0 idna-3.19 imageio-ffmpeg-0.6.0 instagrapi-2.18.16 oauthlib-3.3.1 proto-plus-1.28.3 protobuf-7.36.0 pyasn1-0.6.4 pyasn1-modules-0.4.2 pycparser-3.0 pycryptodomex-3.23.0 pydantic-2.13.4 pydantic-core-2.46.4 pyparsing-3.3.2 python-dotenv-1.2.3 requests-2.34.2 requests-oauthlib-2.0.0 schedule-1.2.2 typing-extensions-4.16.0 typing-inspection-0.4.4 uritemplate-4.2.0 urllib3-2.7.0 yt-dlp-2026.8.19
+2026-08-21T14:37:10.7973658Z ##[group]Run mkdir -p logs assets/output assets/source_videos
+2026-08-21T14:37:10.7974502Z [36;1mmkdir -p logs assets/output assets/source_videos[0m
+2026-08-21T14:37:10.7975235Z [36;1mif [ -n "$TOKEN_PICKLE_BASE64" ]; then[0m
+2026-08-21T14:37:10.7975957Z [36;1m  echo "$TOKEN_PICKLE_BASE64" | base64 -d > token.pickle[0m
+2026-08-21T14:37:10.7976884Z [36;1mfi[0m
+2026-08-21T14:37:10.7977456Z [36;1mif [ -n "$CLIENT_SECRET_JSON" ]; then[0m
+2026-08-21T14:37:10.7978157Z [36;1m  echo "$CLIENT_SECRET_JSON" > client_secret.json[0m
+2026-08-21T14:37:10.7978770Z [36;1mfi[0m
+2026-08-21T14:37:10.7979314Z [36;1mif [ -n "$INSTAGRAM_SESSION" ]; then[0m
+2026-08-21T14:37:10.7980010Z [36;1m  echo "$INSTAGRAM_SESSION" > instagram_session.json[0m
+2026-08-21T14:37:10.7980635Z [36;1mfi[0m
+2026-08-21T14:37:10.7981165Z [36;1mecho "X_API_KEY=$X_API_KEY" >> .env[0m
+2026-08-21T14:37:10.7981840Z [36;1mecho "X_API_SECRET=$X_API_SECRET" >> .env[0m
+2026-08-21T14:37:10.7982559Z [36;1mecho "X_ACCESS_TOKEN=$X_ACCESS_TOKEN" >> .env[0m
+2026-08-21T14:37:10.7983286Z [36;1mecho "X_ACCESS_TOKEN_SECRET=$X_ACCESS_TOKEN_SECRET" >> .env[0m
+2026-08-21T14:37:10.8027162Z shell: /usr/bin/bash -e ***0***
+2026-08-21T14:37:10.8027768Z env:
+2026-08-21T14:37:10.8028407Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.16/x64
+2026-08-21T14:37:10.8029224Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.16/x64/lib/pkgconfig
+2026-08-21T14:37:10.8030011Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.16/x64
+2026-08-21T14:37:10.8030739Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.16/x64
+2026-08-21T14:37:10.8031478Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.16/x64
+2026-08-21T14:37:10.8032203Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.16/x64/lib
+2026-08-21T14:37:10.8069735Z   TOKEN_PICKLE_BASE64: ***
+2026-08-21T14:37:10.8071934Z   CLIENT_SECRET_JSON: ***
+2026-08-21T14:37:10.8079419Z   INSTAGRAM_SESSION: ***
+2026-08-21T14:37:10.8080057Z   X_API_KEY: ***
+2026-08-21T14:37:10.8080741Z   X_API_SECRET: ***
+2026-08-21T14:37:10.8081431Z   X_ACCESS_TOKEN: ***
+2026-08-21T14:37:10.8082123Z   X_ACCESS_TOKEN_SECRET: ***
+2026-08-21T14:37:10.8082674Z ##[endgroup]
+2026-08-21T14:37:10.8232877Z ##[group]Run python autopilot.py --privacy public
+2026-08-21T14:37:10.8233634Z [36;1mpython autopilot.py --privacy public[0m
+2026-08-21T14:37:10.8273699Z shell: /usr/bin/bash -e ***0***
+2026-08-21T14:37:10.8274300Z env:
+2026-08-21T14:37:10.8274943Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.16/x64
+2026-08-21T14:37:10.8275761Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.16/x64/lib/pkgconfig
+2026-08-21T14:37:10.8276799Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.16/x64
+2026-08-21T14:37:10.8277574Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.16/x64
+2026-08-21T14:37:10.8278326Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.16/x64
+2026-08-21T14:37:10.8279070Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.16/x64/lib
+2026-08-21T14:37:10.8279748Z ##[endgroup]
+2026-08-21T14:37:12.9656340Z ERROR: [youtube] Ft-ZkvWwfUo: Sign in to confirm youâre not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+2026-08-21T14:37:12.9663139Z Traceback (most recent call last):
+2026-08-21T14:37:12.9672746Z   File "/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/yt_dlp/YoutubeDL.py", line 1731, in wrapper
+2026-08-21T14:37:12.9673852Z 
+2026-08-21T14:37:12.9674587Z     return func(self, *args, **kwargs)
+2026-08-21T14:37:12.9675606Z =================================================================
+2026-08-21T14:37:12.9676978Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-08-21T14:37:12.9678252Z ð [COSMIC MATRIX 5-IN-1 AUTOPILOT RUN] | 2026-08-21 14:37:11
+2026-08-21T14:37:12.9680552Z   File "/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/yt_dlp/YoutubeDL.py", line 1866, in __extract_info
+2026-08-21T14:37:12.9682128Z =================================================================
+2026-08-21T14:37:12.9683373Z     ie_result = ie.extract(url)
+2026-08-21T14:37:12.9684477Z [1/4] Extracting high-retention cosmic moment from master video...
+2026-08-21T14:37:12.9685737Z                 ^^^^^^^^^^^^^^^
+2026-08-21T14:37:12.9687347Z [*] Downloading master source video Ft-ZkvWwfUo from YouTube...
+2026-08-21T14:37:12.9689179Z   File "/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/yt_dlp/extractor/common.py", line 765, in extract
+2026-08-21T14:37:12.9690691Z     ie_result = self._real_extract(url)
+2026-08-21T14:37:12.9691647Z                 ^^^^^^^^^^^^^^^^^^^^^^^
+2026-08-21T14:37:12.9693233Z   File "/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/yt_dlp/extractor/youtube/_video.py", line 4076, in _real_extract
+2026-08-21T14:37:12.9694898Z     self.raise_no_formats(reason, expected=True)
+2026-08-21T14:37:12.9696847Z   File "/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/yt_dlp/extractor/common.py", line 1272, in raise_no_formats
+2026-08-21T14:37:12.9698884Z     raise ExtractorError(msg, expected=expected, video_id=video_id)
+2026-08-21T14:37:12.9702897Z yt_dlp.utils.ExtractorError: [youtube] Ft-ZkvWwfUo: Sign in to confirm youâre not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+2026-08-21T14:37:12.9705881Z 
+2026-08-21T14:37:12.9706769Z During handling of the above exception, another exception occurred:
+2026-08-21T14:37:12.9707538Z 
+2026-08-21T14:37:12.9707959Z Traceback (most recent call last):
+2026-08-21T14:37:12.9709483Z   File "/home/runner/work/cosmic-matrix-autopilot/cosmic-matrix-autopilot/autopilot.py", line 110, in <module>
+2026-08-21T14:37:12.9710907Z     engine.run_cycle()
+2026-08-21T14:37:12.9712630Z   File "/home/runner/work/cosmic-matrix-autopilot/cosmic-matrix-autopilot/autopilot.py", line 57, in run_cycle
+2026-08-21T14:37:12.9714158Z     clip_data = self.cutter.extract_next_clip()
+2026-08-21T14:37:12.9715161Z                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-08-21T14:37:12.9716990Z   File "/home/runner/work/cosmic-matrix-autopilot/cosmic-matrix-autopilot/modules/video_cutter.py", line 113, in extract_next_clip
+2026-08-21T14:37:12.9718709Z     source_path = self.ensure_source_downloaded(moment["vid_id"])
+2026-08-21T14:37:12.9719894Z                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-08-21T14:37:12.9721542Z   File "/home/runner/work/cosmic-matrix-autopilot/cosmic-matrix-autopilot/modules/video_cutter.py", line 101, in ensure_source_downloaded
+2026-08-21T14:37:12.9722982Z     ydl.download([url])
+2026-08-21T14:37:12.9724259Z   File "/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/yt_dlp/YoutubeDL.py", line 3714, in download
+2026-08-21T14:37:12.9725610Z     self.__download_wrapper(self.extract_info)(
+2026-08-21T14:37:12.9727150Z   File "/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/yt_dlp/YoutubeDL.py", line 3687, in wrapper
+2026-08-21T14:37:12.9728408Z     res = func(*args, **kwargs)
+2026-08-21T14:37:12.9729177Z           ^^^^^^^^^^^^^^^^^^^^^
+2026-08-21T14:37:12.9730427Z   File "/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/yt_dlp/YoutubeDL.py", line 1720, in extract_info
+2026-08-21T14:37:12.9731982Z     return self.__extract_info(url, self.get_info_extractor(key), download, extra_info, process)
+2026-08-21T14:37:12.9733188Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-08-21T14:37:12.9734581Z   File "/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/yt_dlp/YoutubeDL.py", line 1749, in wrapper
+2026-08-21T14:37:12.9736090Z     self.report_error(str(e), e.format_traceback())
+2026-08-21T14:37:12.9737828Z   File "/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/yt_dlp/YoutubeDL.py", line 1165, in report_error
+2026-08-21T14:37:12.9739864Z     self.trouble(f'***self._format_err("ERROR:", self.Styles.ERROR)*** ***message***', *args, **kwargs)
+2026-08-21T14:37:12.9741499Z   File "/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/yt_dlp/YoutubeDL.py", line 1103, in trouble
+2026-08-21T14:37:12.9742878Z     raise DownloadError(message, exc_info)
+2026-08-21T14:37:12.9746305Z yt_dlp.utils.DownloadError: ERROR: [youtube] Ft-ZkvWwfUo: Sign in to confirm youâre not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+2026-08-21T14:37:13.0819075Z ##[error]Process completed with exit code 1.
+2026-08-21T14:37:13.0881486Z ##[group]Run git config --global user.name "CosmicBot-Autopilot"
+2026-08-21T14:37:13.0899112Z [36;1mgit config --global user.name "CosmicBot-Autopilot"[0m
+2026-08-21T14:37:13.0899949Z [36;1mgit config --global user.email "bot@cosmicmatrix.local"[0m
+2026-08-21T14:37:13.0900668Z [36;1mgit add logs/ || true[0m
+2026-08-21T14:37:13.0901523Z [36;1mgit commit -m "Auto-update extracted moments and history [skip ci]" || echo "No changes to commit"[0m
+2026-08-21T14:37:13.0902433Z [36;1mgit push || echo "Push skipped"[0m
+2026-08-21T14:37:13.0943980Z shell: /usr/bin/bash -e ***0***
+2026-08-21T14:37:13.0944777Z env:
+2026-08-21T14:37:13.0945437Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.16/x64
+2026-08-21T14:37:13.0946306Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.16/x64/lib/pkgconfig
+2026-08-21T14:37:13.0947263Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.16/x64
+2026-08-21T14:37:13.0948020Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.16/x64
+2026-08-21T14:37:13.0948828Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.16/x64
+2026-08-21T14:37:13.0949598Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.16/x64/lib
+2026-08-21T14:37:13.0950268Z ##[endgroup]
+2026-08-21T14:37:13.1103194Z On branch main
+2026-08-21T14:37:13.1104066Z Your branch is up to date with 'origin/main'.
+2026-08-21T14:37:13.1104549Z 
+2026-08-21T14:37:13.1104954Z nothing to commit, working tree clean
+2026-08-21T14:37:13.1105979Z No changes to commit
+2026-08-21T14:37:13.3282332Z Everything up-to-date
+2026-08-21T14:37:13.3473123Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-08-21T14:37:13.3474693Z Post job cleanup.
+2026-08-21T14:37:13.4328737Z [command]/usr/bin/git version
+2026-08-21T14:37:13.4373161Z git version 2.55.0
+2026-08-21T14:37:13.4440730Z Copying '/home/runner/.gitconfig' to '/home/runner/work/_temp/18139520-c35a-446d-8ae8-33031bab6922/.gitconfig'
+2026-08-21T14:37:13.4451871Z Temporarily overriding HOME='/home/runner/work/_temp/18139520-c35a-446d-8ae8-33031bab6922' before making global git config changes
+2026-08-21T14:37:13.4453437Z Adding repository directory to the temporary git global config as a safe directory
+2026-08-21T14:37:13.4456932Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/cosmic-matrix-autopilot/cosmic-matrix-autopilot
+2026-08-21T14:37:13.4500003Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-08-21T14:37:13.4537525Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-08-21T14:37:13.4810929Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-08-21T14:37:13.4839965Z http.https://github.com/.extraheader
+2026-08-21T14:37:13.4851706Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-08-21T14:37:13.4889416Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-08-21T14:37:13.5174839Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-08-21T14:37:13.5215299Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-08-21T14:37:13.5627091Z Cleaning up orphan processes
+2026-08-21T14:37:13.5971714Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

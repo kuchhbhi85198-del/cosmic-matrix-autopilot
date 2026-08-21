@@ -90,12 +90,18 @@ class VideoCutter:
         url = f"https://youtu.be/{vid_id}"
         print(f"[*] Downloading master source video {vid_id} from YouTube...")
 
+        # Robust Cloud-Compatible Android / MWeb Player Client bypass
         ydl_opts = {
             'format': 'bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio/best',
             'outtmpl': str(SOURCE_VIDEOS_DIR / f"{vid_id}.%(ext)s"),
             'merge_output_format': 'mp4',
             'quiet': True,
             'no_warnings': True,
+            'extractor_args': {
+                'youtube': {
+                    'player_client': ['android', 'ios', 'mweb']
+                }
+            }
         }
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([url])
