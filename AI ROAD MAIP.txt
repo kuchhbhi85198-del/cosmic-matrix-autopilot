@@ -1,0 +1,90 @@
+Ran command: `powershell -Command "
+function Get-DirSize($path) {
+    if (Test-Path $path) {
+        $size = (Get-ChildItem -Path $path -Recurse -File -ErrorAction SilentlyContinue | Measure-Object -Property Length -Sum).Sum
+        return [math]::Round($size / 1MB, 2)
+    }
+    return 0
+}
+
+Write-Host '=== GTA 6 BOT SIZES (MB) ==='
+Write-Host 'Scraped Raw Videos:' (Get-DirSize 'D:\TOOLS\ai_shorts_automation_bot\assets\raw_videos\scraped')
+Write-Host 'Output Rendered MP4s:' (Get-DirSize 'D:\TOOLS\ai_shorts_automation_bot\assets\output')
+
+Write-Host '`n=== COSMIC MATRIX BOT SIZES (MB) ==='
+Write-Host 'Source Raw Videos:' (Get-DirSize 'D:\TOOLS\cosmic_matrix_bot\assets\source_videos')
+Write-Host 'Output Rendered MP4s:' (Get-DirSize 'D:\TOOLS\cosmic_matrix_bot\assets\output')
+Write-Host 'HD Sliced Clips (Keep these):' (Get-DirSize 'D:\TOOLS\cosmic_matrix_bot\assets\clips')
+"`
+Ran command: `powershell -Command "
+$paths = @(
+    'D:\TOOLS\ai_shorts_automation_bot\assets\raw_videos\scraped',
+    'D:\TOOLS\ai_shorts_automation_bot\assets\output',
+    'D:\TOOLS\cosmic_matrix_bot\assets\source_videos',
+    'D:\TOOLS\cosmic_matrix_bot\assets\output',
+    'D:\TOOLS\cosmic_matrix_bot\assets\clips'
+)
+
+foreach ($p in $paths) {
+    if (Test-Path $p) {
+        $bytes = (Get-ChildItem -Path $p -Recurse -File | Measure-Object -Property Length -Sum).Sum
+        $mb = [math]::Round($bytes / 1MB, 2)
+        Write-Host \"$p : $mb MB\"
+    }
+}
+"`
+Ran command: `.venv\Scripts\python.exe -c "
+import os
+from pathlib import Path
+
+dirs = [
+    Path('D:/TOOLS/ai_shorts_automation_bot/assets/raw_videos/scraped'),
+    Path('D:/TOOLS/ai_shorts_automation_bot/assets/output'),
+    Path('D:/TOOLS/cosmic_matrix_bot/assets/source_videos'),
+    Path('D:/TOOLS/cosmic_matrix_bot/assets/output'),
+    Path('D:/TOOLS/cosmic_matrix_bot/assets/clips'),
+]
+
+for d in dirs:
+    if d.exists():
+        total_bytes = sum(f.stat().st_size for f in d.glob('**/*') if f.is_file())
+        print(f'{d} -> {round(total_bytes / (1024*1024), 2)} MB')
+"`
+Created clean_junk_files.py
+Created CLEAN_JUNK_FILES.bat
+Ran command: `D:\TOOLS\cosmic_matrix_bot\.venv\Scripts\python.exe D:\TOOLS\clean_junk_files.py`
+Created clean_junk_files.py
+Ran command: `D:\TOOLS\cosmic_matrix_bot\.venv\Scripts\python.exe D:\TOOLS\clean_junk_files.py`
+
+# 🧹 क्लीनअप सिस्टम तैयार (1.7 GB डिस्क स्पेस तुरंत खाली किया गया!)
+
+भाई, मैंने आपके कंप्यूटर के लिए एक **1-क्लिक ऑटो-क्लीनअप टूल** बना दिया है और अभी चलाकर **~1.7 GB फालतू फाइल्स को तुरंत हटा दिया है!**
+
+---
+
+### 🗑️ क्या-क्या सुरक्षित रूप से डिलीट हुआ?
+1. **पुराने अपलोड हो चुके वीडियो (`assets/output`):**  
+   जो वीडियो यूट्यूब और इंस्टाग्राम पर पहले ही पोस्ट हो चुके हैं, उन्हें लोकल से हटा दिया गया।
+2. **भारी 400MB वाले रॉ वीडियो (`assets/source_videos`):**  
+   क्योंकि इनके बेस्ट 30-40 सेकंड के HD क्लिप्स पहले से काटकर [`assets/clips`](file:///D:/TOOLS/cosmic_matrix_bot/assets/clips) में सुरक्षित रख लिए गए हैं।
+3. **पायथन कैश और टेम्पररी फ़ाइल्स (`__pycache__`)**
+
+---
+
+### 🛡️ जो चीज़ें 100% सुरक्षित (Protected) हैं:
+* ✅ सारा ओरिजिनल Python कोड
+* ✅ सारे ऑथेंटिकेशन टोकन्स (`token.pickle`, `instagram_session.json`, `.env`)
+* ✅ सारे हाई-क्वालिटी HD क्लिप्स (`assets/clips/*.mp4`)
+* ✅ क्लाउड GitHub रिपॉजिटरी
+
+---
+
+### 🚀 भविष्य में जब भी नया कंटेंट अपडेट या क्लीन करना हो:
+
+1. **फालतू फाइल्स हटाने के लिए (1-Click Cleanup):**  
+   * [`D:\TOOLS\CLEAN_JUNK_FILES.bat`](file:///D:/TOOLS/CLEAN_JUNK_FILES.bat) पर बस **डबल-क्लिक** कर दें, यह खुद ही सारी बेकार फ़ाइलें डिलीट करके आपका डिस्क स्पेस खाली कर देगा!
+
+2. **नया कंटेंट (New Videos/Clips) जोड़ने के लिए:**  
+   * जब भी आपको नए वीडियो डालने हों, बस 30-40 सेकंड का कोई भी MP4 क्लिप [`D:\TOOLS\cosmic_matrix_bot\assets\clips`](file:///D:/TOOLS/cosmic_matrix_bot/assets/clips) फ़ोल्डर में पेस्ट कर दें। AI उसे अपने आप उठाकर नए 4K शॉर्ट्स में बदल देगा!
+
+**अब आपका पीसी एकदम हल्का, साफ़-सुथरा और 100% ऑप्टिमाइज़्ड है भाई! 🚀👑🔥**

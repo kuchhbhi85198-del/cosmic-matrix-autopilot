@@ -2,10 +2,12 @@ name: 🌌 24/7 Cosmic Matrix Multi-Platform Autopilot (YouTube + Insta + X)
 
 on:
   schedule:
-    # 09:00 AM IST (03:30 UTC)
+    # 09:00 AM IST (03:30 UTC + 03:40 UTC Resilience)
     - cron: '30 3 * * *'
-    # 06:00 PM IST (12:30 UTC)
+    - cron: '40 3 * * *'
+    # 06:00 PM IST (12:30 UTC + 12:40 UTC Resilience)
     - cron: '30 12 * * *'
+    - cron: '40 12 * * *'
   workflow_dispatch:
 
 permissions:
@@ -41,7 +43,7 @@ jobs:
           X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
           X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
         run: |
-          mkdir -p logs assets/output assets/source_videos
+          mkdir -p logs assets/output assets/source_videos assets/clips
           if [ -n "$TOKEN_PICKLE_BASE64" ]; then
             echo "$TOKEN_PICKLE_BASE64" | base64 -d > token.pickle
           fi
