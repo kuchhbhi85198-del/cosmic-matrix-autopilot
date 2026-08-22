@@ -26,6 +26,13 @@ VIDEO_WIDTH = 1080
 VIDEO_HEIGHT = 1920
 VIDEO_FPS = 60
 
+# Platform Activation Toggles
+ENABLE_YOUTUBE = True
+ENABLE_INSTAGRAM = False  # PAUSED on user request (Set to True to resume)
+ENABLE_FACEBOOK = False
+ENABLE_X_TWITTER = False
+ENABLE_LINKEDIN = False
+
 # Auth Credentials Files
 INSTAGRAM_SESSION_FILE = BASE_DIR / "instagram_session.json"
 YOUTUBE_CLIENT_SECRET = BASE_DIR / "client_secret.json"
