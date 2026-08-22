@@ -28,7 +28,7 @@ VIDEO_FPS = 60
 
 # Platform Activation Toggles
 ENABLE_YOUTUBE = True
-ENABLE_INSTAGRAM = False  # PAUSED on user request (Set to True to resume)
+ENABLE_INSTAGRAM = True   # Resumed per user request
 ENABLE_FACEBOOK = False
 ENABLE_X_TWITTER = False
 ENABLE_LINKEDIN = False
