@@ -17,6 +17,7 @@ SEGMENT_LOG = LOGS_DIR / "extracted_segments.json"
 CLIPS_DIR = BASE_DIR / "assets" / "clips"
 
 CURATED_MOMENTS = [
+    # Episode 1: The Mind Matrix & Frequency Tuning (Hq5otSp5DCs)
     {
         "vid_id": "Hq5otSp5DCs",
         "start": 12,
@@ -26,11 +27,34 @@ CURATED_MOMENTS = [
     },
     {
         "vid_id": "Hq5otSp5DCs",
+        "start": 180,
+        "duration": 35,
+        "hook": "सबकॉन्शियस माइंड का गुप्त सच! 🧠",
+        "topic": "Subconscious Mind Power"
+    },
+    {
+        "vid_id": "Hq5otSp5DCs",
+        "start": 320,
+        "duration": 38,
+        "hook": "क्या सपने दूसरी दुनिया के दरवाजे हैं? 🚪",
+        "topic": "Dreams as Portals"
+    },
+    {
+        "vid_id": "Hq5otSp5DCs",
         "start": 420,
         "duration": 38,
         "hook": "फ्रीक्वेंसी ही आपका असली पता है ⚡",
         "topic": "Cosmic Frequency"
     },
+    {
+        "vid_id": "Hq5otSp5DCs",
+        "start": 560,
+        "duration": 35,
+        "hook": "विचारों से हकीकत कैसे बदलती है? 🌌",
+        "topic": "Thought Manifestation"
+    },
+
+    # Episode 2: Is Reality Scripted & Cosmic Simulation (OnIRUHEFiSs)
     {
         "vid_id": "OnIRUHEFiSs",
         "start": 18,
@@ -40,11 +64,41 @@ CURATED_MOMENTS = [
     },
     {
         "vid_id": "OnIRUHEFiSs",
+        "start": 140,
+        "duration": 36,
+        "hook": "डबल स्लिट एक्सपेरिमेंट का खौफनाक सच! 👁️",
+        "topic": "Observer Effect"
+    },
+    {
+        "vid_id": "OnIRUHEFiSs",
+        "start": 260,
+        "duration": 38,
+        "hook": "मैट्रिक्स में ग्लिच: Deja Vu क्यों होता है? 🌀",
+        "topic": "Glitch in the Matrix"
+    },
+    {
+        "vid_id": "OnIRUHEFiSs",
         "start": 360,
         "duration": 35,
         "hook": "क्वांटम फिजिक्स का सबसे बड़ा रहस्य! 🌌",
         "topic": "Quantum Reality"
     },
+    {
+        "vid_id": "OnIRUHEFiSs",
+        "start": 490,
+        "duration": 37,
+        "hook": "क्या हमारा ब्रह्मांड एक 3D होलोग्राम है? 🔮",
+        "topic": "Holographic Universe"
+    },
+    {
+        "vid_id": "OnIRUHEFiSs",
+        "start": 620,
+        "duration": 35,
+        "hook": "क्वांटम एनटैंगलमेंट: आइंस्टीन का भूतिया जादू! 👻",
+        "topic": "Quantum Entanglement"
+    },
+
+    # Episode 3: Block Universe & Frozen Time Frames (Ft-ZkvWwfUo)
     {
         "vid_id": "Ft-ZkvWwfUo",
         "start": 15,
@@ -54,10 +108,38 @@ CURATED_MOMENTS = [
     },
     {
         "vid_id": "Ft-ZkvWwfUo",
+        "start": 160,
+        "duration": 36,
+        "hook": "ब्लॉक यूनिवर्स: समय एक जमी हुई बर्फ है! 🧊",
+        "topic": "Block Universe Concept"
+    },
+    {
+        "vid_id": "Ft-ZkvWwfUo",
+        "start": 290,
+        "duration": 38,
+        "hook": "लाइट की स्पीड पर समय क्यों रुक जाता है? 🚀",
+        "topic": "Speed of Light Time Dilation"
+    },
+    {
+        "vid_id": "Ft-ZkvWwfUo",
         "start": 410,
         "duration": 42,
         "hook": "समय सिर्फ एक भ्रम (Illusion) है! ⏱️",
         "topic": "Illusion of Time"
+    },
+    {
+        "vid_id": "Ft-ZkvWwfUo",
+        "start": 540,
+        "duration": 36,
+        "hook": "मल्टीवर्स: आपके हर फैसले से नई दुनिया बनती है! 🪐",
+        "topic": "Many Worlds Interpretation"
+    },
+    {
+        "vid_id": "Ft-ZkvWwfUo",
+        "start": 680,
+        "duration": 38,
+        "hook": "ब्लैक होल के अंदर समय का क्या होता है? 🕳️",
+        "topic": "Black Hole Time Singularity"
     }
 ]
 
@@ -85,8 +167,10 @@ class VideoCutter:
             json.dump(list(self.used_moments), f, indent=2)
 
     def extract_next_clip(self) -> dict:
+        # Strict deduplication
         available = [m for m in CURATED_MOMENTS if f"{m['vid_id']}_{m['start']}" not in self.used_moments]
         if not available:
+            print("[*] All moments completed. Cycling through library...")
             self.used_moments = set()
             available = CURATED_MOMENTS
 
@@ -143,4 +227,4 @@ class VideoCutter:
 
 if __name__ == "__main__":
     cutter = VideoCutter()
-    print("Video Cutter ready.")
+    print(f"Video Cutter ready with {len(CURATED_MOMENTS)} curated moments.")
