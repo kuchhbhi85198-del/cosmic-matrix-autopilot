@@ -193,13 +193,13 @@ class VideoCutter:
         source_path = SOURCE_VIDEOS_DIR / f"{moment['vid_id']}.mp4"
         if not source_path.exists():
             url = f"https://youtu.be/{moment['vid_id']}"
-            print(f"[*] Downloading source video {moment['vid_id']}...")
+            print(f"[*] Downloading 1080p source video {moment['vid_id']}...")
             ydl_opts = {
-                'format': 'bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/best',
+                'format': '299+140/303+140/bestvideo[height>=1080]+bestaudio/best',
                 'outtmpl': str(source_path),
                 'merge_output_format': 'mp4',
                 'quiet': True,
-                'extractor_args': {'youtube': {'player_client': ['android', 'ios', 'mweb']}}
+                'js_runtimes': ['node']
             }
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 ydl.download([url])
@@ -210,7 +210,10 @@ class VideoCutter:
             "-i", str(source_path),
             "-t", str(moment["duration"]),
             "-c:v", "libx264",
+            "-crf", "14",
+            "-preset", "fast",
             "-c:a", "aac",
+            "-b:a", "320k",
             str(pre_clipped)
         ]
         subprocess.run(cmd_slice, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True)
