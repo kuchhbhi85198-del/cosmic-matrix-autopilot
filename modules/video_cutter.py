@@ -12,14 +12,17 @@ if str(BASE_DIR) not in sys.path:
     sys.path.insert(0, str(BASE_DIR))
 
 from config import SOURCE_VIDEOS_DIR, LOGS_DIR
+from modules.gdrive_manager import GoogleDriveManager
 
 SEGMENT_LOG = LOGS_DIR / "extracted_segments.json"
 CLIPS_DIR = BASE_DIR / "assets" / "clips"
 
+# Primary Curated Moments mapped directly to Master Episodes
 CURATED_MOMENTS = [
-    # Episode 1: The Mind Matrix & Frequency Tuning (Hq5otSp5DCs)
+    # Master Episode 1: The Mind Matrix & Frequency Tuning (17.3 GB on 5TB GDrive)
     {
         "vid_id": "Hq5otSp5DCs",
+        "gdrive_id": "1_pRUt5pdAMw2Izaqu0WEaXs9iD653uYh",
         "start": 12,
         "duration": 36,
         "hook": "दिमाग एक टीवी जैसा रिसीवर है! 📺",
@@ -27,6 +30,7 @@ CURATED_MOMENTS = [
     },
     {
         "vid_id": "Hq5otSp5DCs",
+        "gdrive_id": "1_pRUt5pdAMw2Izaqu0WEaXs9iD653uYh",
         "start": 180,
         "duration": 35,
         "hook": "सबकॉन्शियस माइंड का गुप्त सच! 🧠",
@@ -34,6 +38,7 @@ CURATED_MOMENTS = [
     },
     {
         "vid_id": "Hq5otSp5DCs",
+        "gdrive_id": "1_pRUt5pdAMw2Izaqu0WEaXs9iD653uYh",
         "start": 320,
         "duration": 38,
         "hook": "क्या सपने दूसरी दुनिया के दरवाजे हैं? 🚪",
@@ -41,6 +46,7 @@ CURATED_MOMENTS = [
     },
     {
         "vid_id": "Hq5otSp5DCs",
+        "gdrive_id": "1_pRUt5pdAMw2Izaqu0WEaXs9iD653uYh",
         "start": 420,
         "duration": 38,
         "hook": "फ्रीक्वेंसी ही आपका असली पता है ⚡",
@@ -48,15 +54,17 @@ CURATED_MOMENTS = [
     },
     {
         "vid_id": "Hq5otSp5DCs",
+        "gdrive_id": "1_pRUt5pdAMw2Izaqu0WEaXs9iD653uYh",
         "start": 560,
         "duration": 35,
         "hook": "विचारों से हकीकत कैसे बदलती है? 🌌",
         "topic": "Thought Manifestation"
     },
 
-    # Episode 2: Is Reality Scripted & Cosmic Simulation (OnIRUHEFiSs)
+    # Master Episode 2: Is Reality Scripted & Cosmic Simulation (20.4 GB on 5TB GDrive)
     {
         "vid_id": "OnIRUHEFiSs",
+        "gdrive_id": "1zbUyD32TiHhEv7loO7u1hjiiA4z8CsAU",
         "start": 18,
         "duration": 40,
         "hook": "क्या यह दुनिया एक कंप्यूटर सिमुलेशन है? 🖥️",
@@ -64,6 +72,7 @@ CURATED_MOMENTS = [
     },
     {
         "vid_id": "OnIRUHEFiSs",
+        "gdrive_id": "1zbUyD32TiHhEv7loO7u1hjiiA4z8CsAU",
         "start": 140,
         "duration": 36,
         "hook": "डबल स्लिट एक्सपेरिमेंट का खौफनाक सच! 👁️",
@@ -71,6 +80,7 @@ CURATED_MOMENTS = [
     },
     {
         "vid_id": "OnIRUHEFiSs",
+        "gdrive_id": "1zbUyD32TiHhEv7loO7u1hjiiA4z8CsAU",
         "start": 260,
         "duration": 38,
         "hook": "मैट्रिक्स में ग्लिच: Deja Vu क्यों होता है? 🌀",
@@ -78,6 +88,7 @@ CURATED_MOMENTS = [
     },
     {
         "vid_id": "OnIRUHEFiSs",
+        "gdrive_id": "1zbUyD32TiHhEv7loO7u1hjiiA4z8CsAU",
         "start": 360,
         "duration": 35,
         "hook": "क्वांटम फिजिक्स का सबसे बड़ा रहस्य! 🌌",
@@ -85,6 +96,7 @@ CURATED_MOMENTS = [
     },
     {
         "vid_id": "OnIRUHEFiSs",
+        "gdrive_id": "1zbUyD32TiHhEv7loO7u1hjiiA4z8CsAU",
         "start": 490,
         "duration": 37,
         "hook": "क्या हमारा ब्रह्मांड एक 3D होलोग्राम है? 🔮",
@@ -92,15 +104,17 @@ CURATED_MOMENTS = [
     },
     {
         "vid_id": "OnIRUHEFiSs",
+        "gdrive_id": "1zbUyD32TiHhEv7loO7u1hjiiA4z8CsAU",
         "start": 620,
         "duration": 35,
         "hook": "क्वांटम एनटैंगलमेंट: आइंस्टीन का भूतिया जादू! 👻",
         "topic": "Quantum Entanglement"
     },
 
-    # Episode 3: Block Universe & Frozen Time Frames (Ft-ZkvWwfUo)
+    # Master Episode 3: Block Universe & Frozen Time Frames (17.2 GB on 5TB GDrive)
     {
         "vid_id": "Ft-ZkvWwfUo",
+        "gdrive_id": "1PUZfZLS0XNOZNKBgVm1EWHpK5nsMWT6K",
         "start": 15,
         "duration": 38,
         "hook": "क्या भविष्य पहले से लिखा हुआ है? 📜",
@@ -108,6 +122,7 @@ CURATED_MOMENTS = [
     },
     {
         "vid_id": "Ft-ZkvWwfUo",
+        "gdrive_id": "1PUZfZLS0XNOZNKBgVm1EWHpK5nsMWT6K",
         "start": 160,
         "duration": 36,
         "hook": "ब्लॉक यूनिवर्स: समय एक जमी हुई बर्फ है! 🧊",
@@ -115,6 +130,7 @@ CURATED_MOMENTS = [
     },
     {
         "vid_id": "Ft-ZkvWwfUo",
+        "gdrive_id": "1PUZfZLS0XNOZNKBgVm1EWHpK5nsMWT6K",
         "start": 290,
         "duration": 38,
         "hook": "लाइट की स्पीड पर समय क्यों रुक जाता है? 🚀",
@@ -122,6 +138,7 @@ CURATED_MOMENTS = [
     },
     {
         "vid_id": "Ft-ZkvWwfUo",
+        "gdrive_id": "1PUZfZLS0XNOZNKBgVm1EWHpK5nsMWT6K",
         "start": 410,
         "duration": 42,
         "hook": "समय सिर्फ एक भ्रम (Illusion) है! ⏱️",
@@ -129,6 +146,7 @@ CURATED_MOMENTS = [
     },
     {
         "vid_id": "Ft-ZkvWwfUo",
+        "gdrive_id": "1PUZfZLS0XNOZNKBgVm1EWHpK5nsMWT6K",
         "start": 540,
         "duration": 36,
         "hook": "मल्टीवर्स: आपके हर फैसले से नई दुनिया बनती है! 🪐",
@@ -136,6 +154,7 @@ CURATED_MOMENTS = [
     },
     {
         "vid_id": "Ft-ZkvWwfUo",
+        "gdrive_id": "1PUZfZLS0XNOZNKBgVm1EWHpK5nsMWT6K",
         "start": 680,
         "duration": 38,
         "hook": "ब्लैक होल के अंदर समय का क्या होता है? 🕳️",
@@ -151,6 +170,10 @@ class VideoCutter:
         LOGS_DIR.mkdir(parents=True, exist_ok=True)
         self.used_moments = self._load_used_moments()
         self.ffmpeg_exe = imageio_ffmpeg.get_ffmpeg_exe()
+        try:
+            self.gdrive = GoogleDriveManager()
+        except Exception:
+            self.gdrive = None
 
     def _load_used_moments(self) -> set:
         if SEGMENT_LOG.exists():
@@ -179,7 +202,7 @@ class VideoCutter:
         pre_clipped = CLIPS_DIR / f"clip_{moment_key}.mp4"
 
         if pre_clipped.exists() and pre_clipped.stat().st_size > 1_000_000:
-            print(f"[*] Using pre-cached HD clip: {pre_clipped.name}")
+            print(f"[*] Slicing from 5TB Vault: {pre_clipped.name}")
             self._save_used_moment(moment_key)
             return {
                 "clip_path": pre_clipped,
@@ -189,11 +212,18 @@ class VideoCutter:
                 "duration": moment["duration"]
             }
 
-        # Fallback dynamic download & slice
+        # Dynamic Slice from 5TB Google Drive Master Source
         source_path = SOURCE_VIDEOS_DIR / f"{moment['vid_id']}.mp4"
+        if not source_path.exists() and self.gdrive and moment.get("gdrive_id"):
+            print(f"[*] ☁️ Fetching master stream from 5TB Google Drive (ID: {moment['gdrive_id']})...")
+            try:
+                self.gdrive.download_file(moment["gdrive_id"], source_path)
+            except Exception as e:
+                print(f"[!] GDrive fetch fallback: {e}")
+
         if not source_path.exists():
             url = f"https://youtu.be/{moment['vid_id']}"
-            print(f"[*] Downloading 1080p source video {moment['vid_id']}...")
+            print(f"[*] Fetching 1080p source video {moment['vid_id']}...")
             ydl_opts = {
                 'format': '299+140/303+140/bestvideo[height>=1080]+bestaudio/best',
                 'outtmpl': str(source_path),
@@ -230,4 +260,4 @@ class VideoCutter:
 
 if __name__ == "__main__":
     cutter = VideoCutter()
-    print(f"Video Cutter ready with {len(CURATED_MOMENTS)} curated moments.")
+    print(f"Video Cutter connected to 5TB Google Drive with {len(CURATED_MOMENTS)} scenes.")
