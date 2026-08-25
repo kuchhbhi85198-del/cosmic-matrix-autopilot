@@ -11,13 +11,13 @@ if sys.platform == "win32":
         pass
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-CLEAN_JSON = BASE_DIR / "assets" / "cleaned_726_science_scripts.json"
+VAULT_JSON = BASE_DIR / "assets" / "pure_factual_science_vault.json"
 HISTORY_FILE = BASE_DIR / "logs" / "used_scripts_history.json"
 
 class CosmicScriptEngine:
     def __init__(self):
-        if CLEAN_JSON.exists():
-            with open(CLEAN_JSON, "r", encoding="utf-8") as f:
+        if VAULT_JSON.exists():
+            with open(VAULT_JSON, "r", encoding="utf-8") as f:
                 self.scripts = json.load(f)
         else:
             self.scripts = []
@@ -40,19 +40,19 @@ class CosmicScriptEngine:
 
     def get_next_pro_script(self) -> dict:
         """
-        Picks the next 100% pure science script from the 543 cleaned database.
-        Zero conversational chatter, zero AI greetings, zero names.
+        Picks the next 100% PURE HARDCORE SCIENCE script from the 215 Audited Vault.
+        Zero God/Religion, Zero casual chat, Zero AI reactions, Zero personal names.
         """
         available = [s for s in self.scripts if s["id"] not in self.used_ids]
         if not available:
             self.used_ids = []
             available = self.scripts
 
-        chosen = available[0] # Take sequentially
+        chosen = available[0]
         self._save_history(chosen["id"])
 
         return {
-            "source_file": chosen.get("source_file", f"Science_Script_{chosen['id']}"),
+            "source_file": chosen.get("source_file", f"Science_Vault_{chosen['id']}"),
             "narration": chosen["narration"],
             "top_hook": chosen["headline"],
             "topic_tag": chosen["tag"]
