@@ -1,11 +1,26 @@
 import random
 from typing import Dict, Any
+import sys
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+if str(BASE_DIR) not in sys.path:
+    sys.path.insert(0, str(BASE_DIR))
+
+from config import (
+    BUY_ME_A_COFFEE_URL,
+    EBOOK_DOWNLOAD_URL,
+    TOPMATE_CONSULT_URL,
+    VIP_COMMUNITY_URL
+)
 
 
 class CosmicSEO:
     """
-    Advanced Multi-Platform Viral SEO for Cosmic, Quantum & Reality Content.
-    Generates custom metadata tailored for YouTube, Instagram, Facebook, X, and LinkedIn.
+    Advanced Multi-Platform Viral SEO & Monetization Funnel Engine:
+    - High-CTR Golden Titles & Descriptions
+    - Embedded Monetization (E-Book, Buy Me a Coffee / Topmate, VIP Community)
+    - Platform-specific algorithmic tags for YouTube, Instagram, Facebook, X, and LinkedIn.
     """
 
     YT_TAGS_POOL = [
@@ -31,6 +46,9 @@ class CosmicSEO:
             f"🌌 {hook}\n\n"
             f"🧠 Deep Truth: {topic}\n"
             f"Decode the hidden secrets of Quantum Physics, Block Universe, and Consciousness.\n\n"
+            f"📥 [DOWNLOAD] The Cosmic Matrix Code Secret Blueprint:\n👉 {EBOOK_DOWNLOAD_URL}\n\n"
+            f"☕ [SUPPORT US] Support the Cosmic Research on Buy Me a Coffee:\n👉 {BUY_ME_A_COFFEE_URL}\n\n"
+            f"🔮 [VIP GROUP] Join our Official Cosmic Tribe:\n👉 {VIP_COMMUNITY_URL}\n\n"
             f"🔔 SUBSCRIBE for daily mind-bending cosmic truths!\n\n"
             f"📌 Tags:\n{', '.join(yt_tags)}"
         )
@@ -40,8 +58,10 @@ class CosmicSEO:
         insta_caption = (
             f"🌌 {hook}\n\n"
             f"🧠 क्या आप जानते हैं? {topic} का यह रहस्य आपकी सोच बदल देगा!\n\n"
-            f"👉 Follow for daily cosmic & quantum reality reels!\n"
-            f"💬 Comment your thoughts below!\n\n"
+            f"📖 'The Cosmic Matrix Code' सीक्रेट गाइड डाउनलोड करने के लिए बायो में दिए गए लिंक पर क्लिक करें! 📥\n"
+            f"☕ हमारे काम को सपोर्ट करने के लिए बायो में Buy Me a Coffee लिंक देखें।\n\n"
+            f"👉 Follow @rathour_vibe_ for daily deep cosmic reels!\n"
+            f"💬 Comment 'COSMIC' to unlock reality.\n\n"
             f"{' '.join(insta_tags)}"
         )
 
@@ -50,6 +70,8 @@ class CosmicSEO:
             f"🌌 {hook}\n\n"
             f"विज्ञान और ब्रह्मांड का सबसे बड़ा रहस्य: {topic}!\n"
             f"क्या हमारी वास्तविकता सच में वही है जो हमें दिखाई देती है या यह दिमाग का एक भ्रम है?\n\n"
+            f"📥 पूरी रिसर्च ई-बुक डाउनलोड करें: {EBOOK_DOWNLOAD_URL}\n"
+            f"☕ सपोर्ट करें: {BUY_ME_A_COFFEE_URL}\n\n"
             f"Share this with someone who loves deep science & universe secrets! 🚀\n"
             f"#Universe #QuantumPhysics #MindMatrix #ScienceFacts"
         )
@@ -58,7 +80,8 @@ class CosmicSEO:
         x_post = (
             f"🌌 {hook}\n\n"
             f"What if reality isn't what it seems? Quantum Physics & The {topic} revealed.\n\n"
-            f"Are we living in a cosmic simulation? 🧵👇\n"
+            f"📥 Download the full Cosmic Blueprint: {EBOOK_DOWNLOAD_URL}\n"
+            f"☕ Support us: {BUY_ME_A_COFFEE_URL}\n\n"
             f"#QuantumPhysics #Matrix #Universe #Consciousness"
         )[:280]
 
@@ -70,7 +93,7 @@ class CosmicSEO:
             f"Key Takeaways:\n"
             f"• Perception is an active construction, not passive observation.\n"
             f"• Quantum mechanics demonstrates the observer's pivotal role in shaping state.\n\n"
-            f"What are your perspectives on human consciousness and reality models?\n\n"
+            f"📖 Read our comprehensive whitepaper & guide: {EBOOK_DOWNLOAD_URL}\n\n"
             f"#Neuroscience #QuantumMechanics #PhilosophyOfMind #Consciousness #DeepThinking"
         )
 
@@ -100,7 +123,5 @@ class CosmicSEO:
 
 if __name__ == "__main__":
     seo = CosmicSEO()
-    meta = seo.generate_all("शरीर सिर्फ एक सिग्नल रिसीवर है!", "Brain as Receiver")
-    print("YT Title:", meta["youtube"]["title"])
-    print("\nX Post:\n", meta["x_twitter"]["text"])
-    print("\nLinkedIn Post:\n", meta["linkedin"]["text"])
+    meta = seo.generate_all("दिमाग एक टीवी जैसा रिसीवर है! 📺", "Brain as Receiver")
+    print("YT Description Preview:\n", meta["youtube"]["description"])

@@ -28,7 +28,7 @@ VIDEO_FPS = 60
 
 # Platform Activation Toggles
 ENABLE_YOUTUBE = True
-ENABLE_INSTAGRAM = True   # Resumed per user request
+ENABLE_INSTAGRAM = True
 ENABLE_FACEBOOK = False
 ENABLE_X_TWITTER = False
 ENABLE_LINKEDIN = False
@@ -37,6 +37,13 @@ ENABLE_LINKEDIN = False
 INSTAGRAM_SESSION_FILE = BASE_DIR / "instagram_session.json"
 YOUTUBE_CLIENT_SECRET = BASE_DIR / "client_secret.json"
 YOUTUBE_TOKEN_PICKLE = BASE_DIR / "token.pickle"
+
+# Monetization & Public Support Funnels (Customizable via .env)
+BUY_ME_A_COFFEE_URL = os.getenv("BUY_ME_A_COFFEE_URL", "https://buymeacoffee.com/cosmicmatrix")
+EBOOK_DOWNLOAD_URL = os.getenv("EBOOK_DOWNLOAD_URL", "https://topmate.io/cosmic_matrix/ebook")
+TOPMATE_CONSULT_URL = os.getenv("TOPMATE_CONSULT_URL", "https://topmate.io/cosmic_matrix")
+VIP_COMMUNITY_URL = os.getenv("VIP_COMMUNITY_URL", "https://t.me/CosmicMatrixOfficial")
+AMAZON_GALAXY_PROJECTOR_URL = os.getenv("AMAZON_GALAXY_PROJECTOR_URL", "https://amzn.to/cosmic-galaxy")
 
 # Social API Credentials (Loaded from .env)
 X_API_KEY = os.getenv("X_API_KEY", "")
