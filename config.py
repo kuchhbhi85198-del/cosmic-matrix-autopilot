@@ -30,7 +30,7 @@ VIDEO_FPS = 60
 ENABLE_YOUTUBE = True
 ENABLE_INSTAGRAM = True
 ENABLE_FACEBOOK = False
-ENABLE_X_TWITTER = False
+ENABLE_X_TWITTER = True    # Connected: @PRADEEP85198
 ENABLE_LINKEDIN = False
 
 # Auth Credentials Files
@@ -38,11 +38,11 @@ INSTAGRAM_SESSION_FILE = BASE_DIR / "instagram_session.json"
 YOUTUBE_CLIENT_SECRET = BASE_DIR / "client_secret.json"
 YOUTUBE_TOKEN_PICKLE = BASE_DIR / "token.pickle"
 
-# Monetization & Public Support Funnels (Customizable via .env)
-BUY_ME_A_COFFEE_URL = os.getenv("BUY_ME_A_COFFEE_URL", "https://buymeacoffee.com/cosmicmatrix")
-EBOOK_DOWNLOAD_URL = os.getenv("EBOOK_DOWNLOAD_URL", "https://topmate.io/cosmic_matrix/ebook")
-TOPMATE_CONSULT_URL = os.getenv("TOPMATE_CONSULT_URL", "https://topmate.io/cosmic_matrix")
-VIP_COMMUNITY_URL = os.getenv("VIP_COMMUNITY_URL", "https://t.me/CosmicMatrixOfficial")
+# Live Monetization & Public Support Funnels (Pradeep Rathour Official)
+EBOOK_DOWNLOAD_URL = os.getenv("EBOOK_DOWNLOAD_URL", "https://topmate.io/rathour_vibes/2267065")
+TOPMATE_CONSULT_URL = os.getenv("TOPMATE_CONSULT_URL", "https://topmate.io/rathour_vibes")
+BUY_ME_A_COFFEE_URL = os.getenv("BUY_ME_A_COFFEE_URL", "https://topmate.io/rathour_vibes")
+VIP_COMMUNITY_URL = os.getenv("VIP_COMMUNITY_URL", "https://topmate.io/rathour_vibes")
 AMAZON_GALAXY_PROJECTOR_URL = os.getenv("AMAZON_GALAXY_PROJECTOR_URL", "https://amzn.to/cosmic-galaxy")
 
 # Social API Credentials (Loaded from .env)
