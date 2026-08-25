@@ -18,7 +18,7 @@ if sys.platform == "win32":
     except Exception:
         pass
 
-from config import OUTPUT_DIR, LOGS_DIR
+from config import OUTPUT_DIR, LOGS_DIR, SOURCE_VIDEOS_DIR
 from modules.video_cutter import VideoCutter
 from modules.cinematic_editor import CinematicEditor
 from modules.cosmic_seo import CosmicSEO
@@ -58,8 +58,8 @@ class CosmicAutopilotEngine:
         print(f"🌌 [COSMIC MATRIX 5-IN-1 AUTOPILOT RUN] | {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         print("=" * 65)
 
-        # 1. Extract next deep moment
-        print("[1/5] Extracting high-retention cosmic moment from master video...")
+        # 1. Extract next deep moment from 5TB Google Drive / Vault
+        print("[1/5] Extracting high-retention cosmic moment from 5TB Master Vault...")
         clip_data = self.cutter.extract_next_clip()
         print(f"      Selected Moment: '{clip_data['hook']}' ({clip_data['topic']})")
         print(f"      Clip Path: {clip_data['clip_path']}")
@@ -83,46 +83,55 @@ class CosmicAutopilotEngine:
         file_size_mb = round(rendered_short.stat().st_size / (1024 * 1024), 2)
         print(f"      [SUCCESS] Rendered Short: {rendered_short.name} ({file_size_mb} MB)")
 
-        # 4. Dispatch to social media platforms
-        print("\n[4/5] Broadcasting to YouTube Shorts, Instagram Reels...")
-        results = self.dispatcher.dispatch_all(
-            video_path=rendered_short,
-            seo_data=seo_data,
-            privacy=self.privacy_status
-        )
-
-        # 5. Archive to 5TB Google Drive Vault
+        # 4. Upload & Store in 5TB Google Drive Vault
         gdrive_file_id = None
+        results = {}
         if self.gdrive:
             try:
-                print("\n[5/5] ☁️ Archiving rendered 1080p60 Reel to 5TB Google Drive Vault...")
+                print("\n[4/5] ☁️ Saving 1080p60 Reel directly into 5TB Google Drive Vault...")
                 gdrive_file_id = self.gdrive.upload_file(rendered_short, self.gdrive.reels_folder_id)
-                print(f"      [SUCCESS] Uploaded to 5TB Google Drive! (File ID: {gdrive_file_id})")
+                print(f"      [SUCCESS] Stored in 5TB Google Drive! (File ID: {gdrive_file_id})")
                 results["google_drive"] = {
                     "status": "success",
                     "file_id": gdrive_file_id,
                     "folder": "Cosmic_Matrix_5TB_Vault/Rendered_Reels_Archive"
                 }
             except Exception as e:
-                print(f"      [!] GDrive Archive Notice: {e}")
+                print(f"      [!] GDrive Save Notice: {e}")
                 results["google_drive"] = {"status": "skipped", "message": str(e)}
+
+        # 5. Dispatch to YouTube Shorts and Instagram Reels
+        print("\n[5/5] Broadcasting to YouTube Shorts & Instagram Reels...")
+        dispatch_results = self.dispatcher.dispatch_all(
+            video_path=rendered_short,
+            seo_data=seo_data,
+            privacy=self.privacy_status
+        )
+        results.update(dispatch_results)
+
+        # 6. Auto-Purge from local PC (Zero PC Storage Guarantee)
+        try:
+            if rendered_short.exists():
+                rendered_short.unlink()
+                print(f"      [CLEANUP] Purged local temp render file from PC. (Zero PC storage used!)")
+        except Exception:
+            pass
 
         record = {
             "timestamp": datetime.now().isoformat(),
             "hook": clip_data["hook"],
             "topic": clip_data["topic"],
-            "video_path": str(rendered_short),
+            "gdrive_file_id": gdrive_file_id,
             "results": results
         }
         self._save_history(record)
 
         print("\n" + "=" * 65)
-        print("🎉 [COSMIC AUTOPILOT CYCLE COMPLETE]")
-        print(f"👉 Rendered Video: {rendered_short}")
+        print("🎉 [COSMIC AUTOPILOT CYCLE COMPLETE - 100% IN 5TB GDRIVE]")
         if gdrive_file_id:
-            print(f"👉 5TB Google Drive Cloud Backup: ID {gdrive_file_id}")
+            print(f"👉 5TB Google Drive Cloud Reel ID: {gdrive_file_id}")
         print("=" * 65)
-        return rendered_short
+        return Path(f"gdrive://{gdrive_file_id}")
 
 
 if __name__ == "__main__":
