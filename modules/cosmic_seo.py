@@ -3,65 +3,61 @@ from typing import Dict, Any
 import sys
 from pathlib import Path
 
+# Ensure UTF-8 output on Windows
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 if str(BASE_DIR) not in sys.path:
     sys.path.insert(0, str(BASE_DIR))
 
-from config import (
-    BUY_ME_A_COFFEE_URL,
-    EBOOK_DOWNLOAD_URL,
-    TOPMATE_CONSULT_URL,
-    VIP_COMMUNITY_URL
-)
-
 
 class CosmicSEO:
     """
-    Advanced Multi-Platform Viral SEO & Monetization Funnel Engine:
-    - High-CTR Golden Titles & Descriptions
-    - Embedded Monetization (E-Book, Buy Me a Coffee / Topmate, VIP Community)
+    Clean, Pure Science & High-Retention SEO Metadata Engine:
+    - High-CTR Golden Titles & Captions
+    - Pure Science / Deep Universe Explanations (Zero Book / Zero Sales links)
     - Platform-specific algorithmic tags for YouTube, Instagram, Facebook, X, and LinkedIn.
     """
 
     YT_TAGS_POOL = [
         "mind matrix", "quantum physics in hindi", "reality of universe in hindi",
-        "frequency and vibration hindi", "how brain filters reality", "spiritual awakening hindi",
-        "simulation theory hindi", "block universe theory", "observer effect in hindi",
-        "multiverse theory", "holographic universe", "nikola tesla 369", "illusion of time",
-        "consciousness hindi", "maya matrix", "parallel universe"
+        "frequency and vibration hindi", "how brain filters reality", "simulation theory hindi",
+        "block universe theory", "observer effect in hindi", "multiverse theory",
+        "holographic universe", "nikola tesla 369", "illusion of time",
+        "consciousness hindi", "parallel universe", "space facts hindi"
     ]
 
     INSTA_TAGS_POOL = [
         "#mindmatrix", "#quantumphysics", "#simulationtheory", "#cosmicsecrets",
-        "#universefacts", "#spiritualawakening", "#frequency", "#vibration",
-        "#illusionoftime", "#reelsinstagram", "#explorepage", "#viralreels",
-        "#blockuniverse", "#multiverse", "#consciousness"
+        "#universefacts", "#frequency", "#vibration", "#illusionoftime",
+        "#reelsinstagram", "#explorepage", "#viralreels", "#blockuniverse",
+        "#multiverse", "#sciencefacts", "#space"
     ]
 
     def generate_all(self, hook: str, topic: str) -> Dict[str, Any]:
-        # 1. YouTube Shorts Metadata
+        # 1. YouTube Shorts Metadata (Clean & Focused)
         yt_tags = random.sample(self.YT_TAGS_POOL, k=min(12, len(self.YT_TAGS_POOL)))
         yt_title = f"{hook} 🌌 #shorts #mindmatrix #universe"[:100]
         yt_description = (
             f"🌌 {hook}\n\n"
-            f"🧠 Deep Truth: {topic}\n"
-            f"Decode the hidden secrets of Quantum Physics, Block Universe, and Consciousness.\n\n"
-            f"📥 [DOWNLOAD] The Cosmic Matrix Code Secret Blueprint:\n👉 {EBOOK_DOWNLOAD_URL}\n\n"
-            f"☕ [SUPPORT US] Support the Cosmic Research on Buy Me a Coffee:\n👉 {BUY_ME_A_COFFEE_URL}\n\n"
-            f"🔮 [VIP GROUP] Join our Official Cosmic Tribe:\n👉 {VIP_COMMUNITY_URL}\n\n"
-            f"🔔 SUBSCRIBE for daily mind-bending cosmic truths!\n\n"
+            f"🧠 विषय (Deep Concept): {topic}\n\n"
+            f"क्वांटम फिजिक्स, ब्लॉक यूनिवर्स और चेतना के अनसुलझे वैज्ञानिक रहस्यों का गहन विश्लेषण।\n\n"
+            f"🔔 रोज़ाना ऐसे ही गहरे वैज्ञानिक तथ्यों के लिए चैनल को सब्सक्राइब करें!\n\n"
             f"📌 Tags:\n{', '.join(yt_tags)}"
         )
 
-        # 2. Instagram Reels Metadata
+        # 2. Instagram Reels Metadata (Clean & Engaging)
         insta_tags = random.sample(self.INSTA_TAGS_POOL, k=min(12, len(self.INSTA_TAGS_POOL)))
         insta_caption = (
             f"🌌 {hook}\n\n"
-            f"🧠 क्या आप जानते हैं? {topic} का यह रहस्य आपकी सोच बदल देगा!\n\n"
-            f"📖 'The Cosmic Matrix Code' सीक्रेट गाइड डाउनलोड करने के लिए बायो में दिए गए लिंक पर क्लिक करें! 📥\n"
-            f"☕ हमारे काम को सपोर्ट करने के लिए बायो में Buy Me a Coffee लिंक देखें।\n\n"
-            f"👉 Follow @rathour_vibe_ for daily deep cosmic reels!\n"
-            f"💬 Comment 'COSMIC' to unlock reality.\n\n"
+            f"🧠 क्या आप जानते हैं? {topic} का यह वैज्ञानिक सिद्धांत आपकी सोच को पूरी तरह बदल देगा!\n\n"
+            f"👉 ऐसी और भी माइंड-ब्लोइंग रील्स के लिए फॉलो करें: @rathour_vibe_\n"
+            f"💬 कमेंट में बताएं अपनी राय!\n\n"
             f"{' '.join(insta_tags)}"
         )
 
@@ -69,9 +65,7 @@ class CosmicSEO:
         fb_caption = (
             f"🌌 {hook}\n\n"
             f"विज्ञान और ब्रह्मांड का सबसे बड़ा रहस्य: {topic}!\n"
-            f"क्या हमारी वास्तविकता सच में वही है जो हमें दिखाई देती है या यह दिमाग का एक भ्रम है?\n\n"
-            f"📥 पूरी रिसर्च ई-बुक डाउनलोड करें: {EBOOK_DOWNLOAD_URL}\n"
-            f"☕ सपोर्ट करें: {BUY_ME_A_COFFEE_URL}\n\n"
+            f"क्या हमारी भौतिक वास्तविकता सच में वही है जो हमें दिखाई देती है?\n\n"
             f"Share this with someone who loves deep science & universe secrets! 🚀\n"
             f"#Universe #QuantumPhysics #MindMatrix #ScienceFacts"
         )
@@ -79,22 +73,18 @@ class CosmicSEO:
         # 4. X (Twitter) Post Metadata
         x_post = (
             f"🌌 {hook}\n\n"
-            f"What if reality isn't what it seems? Quantum Physics & The {topic} revealed.\n\n"
-            f"📥 Download the full Cosmic Blueprint: {EBOOK_DOWNLOAD_URL}\n"
-            f"☕ Support us: {BUY_ME_A_COFFEE_URL}\n\n"
-            f"#QuantumPhysics #Matrix #Universe #Consciousness"
+            f"What if reality isn't what it seems? Exploring {topic} and the quantum universe.\n\n"
+            f"#QuantumPhysics #Matrix #Universe #Science"
         )[:280]
 
         # 5. LinkedIn Post Metadata
         linkedin_post = (
-            f"🌌 The Science of Perception: {hook}\n\n"
+            f"🌌 The Science of Reality: {hook}\n\n"
             f"Recent breakthroughs in theoretical physics and neuroscience highlight a fascinating principle: {topic}.\n\n"
-            f"How does our brain filter reality, and how does internal state dictate external perception?\n\n"
             f"Key Takeaways:\n"
-            f"• Perception is an active construction, not passive observation.\n"
+            f"• Perception is an active construction of electrical neural data.\n"
             f"• Quantum mechanics demonstrates the observer's pivotal role in shaping state.\n\n"
-            f"📖 Read our comprehensive whitepaper & guide: {EBOOK_DOWNLOAD_URL}\n\n"
-            f"#Neuroscience #QuantumMechanics #PhilosophyOfMind #Consciousness #DeepThinking"
+            f"#Neuroscience #QuantumMechanics #Science #Consciousness"
         )
 
         return {
@@ -124,4 +114,5 @@ class CosmicSEO:
 if __name__ == "__main__":
     seo = CosmicSEO()
     meta = seo.generate_all("दिमाग एक टीवी जैसा रिसीवर है! 📺", "Brain as Receiver")
-    print("YT Description Preview:\n", meta["youtube"]["description"])
+    print("Clean YT Description Preview:\n", meta["youtube"]["description"])
+    print("\nClean Insta Caption Preview:\n", meta["instagram"]["caption"])
