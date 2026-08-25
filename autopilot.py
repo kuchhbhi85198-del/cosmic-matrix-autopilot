@@ -26,12 +26,13 @@ from config import OUTPUT_DIR, LOGS_DIR, ASSETS_DIR
 from modules.script_engine import CosmicScriptEngine
 from modules.voice_generator import ElevenLabsVoiceEngine
 from modules.video_cutter import VideoCutter
-from modules.cinematic_editor import CinematicEditor
 from modules.cosmic_seo import CosmicSEO
 from modules.multi_uploader import MultiPlatformDispatcher
 from modules.gdrive_manager import GoogleDriveManager
 
 HISTORY_LOG = LOGS_DIR / "upload_history.json"
+AI_VIDEO_DIR = Path("D:/WORKING/AI VIDEO/3 ai")
+BGM_TRACK = Path("D:/WORKING/CHANNLE/AI MUSIC/The_Weight_of_Silence.mp3")
 
 
 class CosmicAutopilotEngine:
@@ -40,7 +41,6 @@ class CosmicAutopilotEngine:
         self.script_engine = CosmicScriptEngine()
         self.voice_engine = ElevenLabsVoiceEngine()
         self.cutter = VideoCutter()
-        self.editor = CinematicEditor()
         self.seo = CosmicSEO()
         self.dispatcher = MultiPlatformDispatcher()
         try:
@@ -74,69 +74,104 @@ class CosmicAutopilotEngine:
         except Exception:
             return 30.0
 
+    def _get_matching_3d_ai_clip(self, topic: str) -> Path:
+        clips = list(AI_VIDEO_DIR.glob("*.mp4"))
+        if not clips:
+            return self.cutter.extract_next_clip(duration=35.0)["clip_path"]
+        
+        # Match topic keywords to 3D clips
+        if "BRAIN" in topic.upper() or "दिमाग" in topic:
+            brain_clips = [c for c in clips if "brain" in c.name.lower()]
+            if brain_clips:
+                return brain_clips[int(time.time()) % len(brain_clips)]
+        elif "ATOMIC" in topic.upper() or "परमाणु" in topic:
+            atom_clips = [c for c in clips if "atom" in c.name.lower() or "subatomic" in c.name.lower() or "scientific" in c.name.lower()]
+            if atom_clips:
+                return atom_clips[int(time.time()) % len(atom_clips)]
+        
+        return clips[int(time.time()) % len(clips)]
+
     def run_cycle(self) -> Path:
         timestamp = int(time.time())
         print("\n" + "=" * 65)
         print(f"🌌 [COSMIC MASTER AUTOPILOT RUN] | {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         print("=" * 65)
 
-        # 1. Extract Next Deep Script from 726 Original Library
-        print("[1/6] 📜 Extracting high-impact script from 726 Master Library...")
+        # 1. Extract Next Deep Pure Science Script from 726 Library
+        print("[1/6] 📜 Extracting high-impact pure science script from 726 Library...")
         script_data = self.script_engine.get_next_pro_script()
+        narration_with_outro = script_data["narration"] + " पूरा एपिसोड देखने के लिए बायो में लिंक चेक करें।"
+        
         print(f"      Source File: {script_data['source_file']}")
         print(f"      Top Hook: {script_data['top_hook']}")
         print(f"      Topic: {script_data['topic_tag']}")
-        print(f"      Narration: {script_data['narration'][:70]}...")
+        print(f"      Narration: {narration_with_outro[:75]}...")
 
-        # 2. Synthesize Deep Emotional ElevenLabs Voice (Multi-Key Rotating)
-        print("\n[2/6] 🎙️ Synthesizing Deep Emotional Voice (ElevenLabs Multilingual V2)...")
+        # 2. Synthesize Deep Authority Voice (ElevenLabs Multi-Key Rotating)
+        print("\n[2/6] 🎙️ Synthesizing Deep Authority Voice (ElevenLabs Multilingual V2)...")
         voice_file = ASSETS_DIR / f"voice_{timestamp}.mp3"
-        self.voice_engine.generate_speech(script_data["narration"], voice_file)
+        self.voice_engine.generate_speech(narration_with_outro, voice_file)
         duration = self._get_audio_duration(voice_file)
         print(f"      [SUCCESS] Voice Duration: {duration:.2f}s")
 
-        # 3. Fetch 4K Visual Scenes from Master Vault
-        print("\n[3/6] 🎬 Matching 4K Cosmic & Quantum Visual Scenes...")
-        clip_data = self.cutter.extract_next_clip(duration=duration + 0.5)
-        raw_clip = clip_data["clip_path"]
-        print(f"      Background Visual: {raw_clip.name}")
+        # 3. Match 3D Scientific AI Footage from D:\WORKING\AI VIDEO
+        print("\n[3/6] 🎬 Matching 3D Scientific AI Footage from Library...")
+        visual_clip = self._get_matching_3d_ai_clip(script_data["topic_tag"])
+        print(f"      Background Visual: {visual_clip.name}")
 
-        # 4. Generate 5-Platform SEO Metadata with Topmate Live Store Link
-        print("\n[4/6] 📑 Generating 5-Platform SEO Metadata with Monetization Link...")
+        # 4. Generate 5-Platform SEO Metadata with Full Episode Link
+        print("\n[4/6] 📑 Generating 5-Platform SEO Metadata...")
         seo_data = self.seo.generate_all(hook=script_data["top_hook"], topic=script_data["topic_tag"])
 
-        # 5. Render 1080x1920 @ 60 FPS Full-Bleed Pro Reel with Headlines & Graphics
-        print(f"\n[5/6] ⚡ Rendering 1080p60 Full-Screen Reel with Headlines & Pro Graphics...")
+        # 5. Render 1080p60 Full-Bleed Master Reel with "Watch Full Episode" Outro & Whisper BGM
+        print(f"\n[5/6] ⚡ Rendering 1080p60 Pro Reel with Outro Overlay & Whisper BGM...")
         output_video = OUTPUT_DIR / f"cosmic_reel_{timestamp}.mp4"
         
         font_path = "C:/Windows/Fonts/arialbd.ttf"
         font_arg = f":fontfile='{font_path.replace(':', chr(92)+':')}'" if Path(font_path).exists() else ""
         
-        # Clean text for drawtext
         clean_hook = script_data['top_hook'].replace("'", "").replace(":", "")
         clean_tag = script_data['topic_tag'].replace("'", "")
-        
+        outro_start = max(0.0, duration - 4.0)
+
         vf_pipeline = (
             f"[0:v]scale=1080:1920:force_original_aspect_ratio=increase:flags=lanczos,"
             f"crop=1080:1920,"
             f"unsharp=5:5:1.2:5:5:0.6,"
-            f"eq=contrast=1.15:saturation=1.20:brightness=0.02,fps=60[base];"
-            f"[base]drawtext=text='{clean_hook}'{font_arg}:fontcolor=yellow:fontsize=46:box=1:boxcolor=black@0.85:boxborderw=18:"
-            f"x=(w-text_w)/2:y=240:enable='between(t,0,{duration+0.5})'[with_top];"
-            f"[with_top]drawtext=text='{clean_tag}'{font_arg}:fontcolor=white:fontsize=32:box=1:boxcolor=red@0.85:boxborderw=10:"
-            f"x=(w-text_w)/2:y=h-240:enable='between(t,0,{duration+0.5})'[with_bot];"
-            f"[with_bot]drawbox=x=0:y=ih-16:w=iw:h=16:color=yellow@0.9:t=fill[v]"
+            f"eq=contrast=1.18:saturation=1.25:brightness=0.02,fps=60[base];"
+            # Main Top Headline
+            f"[base]drawtext=text='{clean_hook}'{font_arg}:fontcolor=yellow:fontsize=48:box=1:boxcolor=black@0.85:boxborderw=20:"
+            f"x=(w-text_w)/2:y=240:enable='between(t,0,{outro_start})'[with_top];"
+            # Main Bottom Badge
+            f"[with_top]drawtext=text='{clean_tag}'{font_arg}:fontcolor=white:fontsize=30:box=1:boxcolor=red@0.85:boxborderw=12:"
+            f"x=(w-text_w)/2:y=h-240:enable='between(t,0,{outro_start})'[with_bot];"
+            # Center Outro Box
+            f"[with_bot]drawtext=text='🎬 WATCH FULL EPISODE'{font_arg}:fontcolor=yellow:fontsize=44:box=1:boxcolor=black@0.90:boxborderw=22:"
+            f"x=(w-text_w)/2:y=(h/2)-60:enable='between(t,{outro_start},{duration+0.5})'[with_outro1];"
+            # Outro Subtitle
+            f"[with_outro1]drawtext=text='Link in Bio & Description 👉'{font_arg}:fontcolor=white:fontsize=32:box=1:boxcolor=red@0.90:boxborderw=14:"
+            f"x=(w-text_w)/2:y=(h/2)+40:enable='between(t,{outro_start},{duration+0.5})'[with_outro2];"
+            # Channel Handle
+            f"[with_outro2]drawtext=text='@rathour_vibe_'{font_arg}:fontcolor=cyan:fontsize=28:box=1:boxcolor=black@0.80:boxborderw=8:"
+            f"x=(w-text_w)/2:y=(h/2)+130:enable='between(t,{outro_start},{duration+0.5})'[with_outro3];"
+            # Bottom Progress Bar
+            f"[with_outro3]drawbox=x=0:y=ih-16:w=iw:h=16:color=yellow@0.9:t=fill[v];"
+            # Audio Mix: Loud Voice (volume=1.40) + Whisper-Quiet BGM (volume=0.04)
+            f"[1:a]volume=1.40[voice];"
+            f"[2:a]volume=0.04,afade=t=out:st={duration-1.5}:d=1.5[bgm];"
+            f"[voice][bgm]amix=inputs=2:duration=first:dropout_transition=2[a]"
         )
 
         cmd = [
             FFMPEG_EXE, "-y",
             "-stream_loop", "-1",
-            "-i", str(raw_clip),
+            "-i", str(visual_clip),
             "-i", str(voice_file),
+            "-i", str(BGM_TRACK),
             "-t", str(duration + 0.5),
             "-filter_complex", vf_pipeline,
             "-map", "[v]",
-            "-map", "1:a",
+            "-map", "[a]",
             "-c:v", "libx264",
             "-preset", "fast",
             "-crf", "14",
