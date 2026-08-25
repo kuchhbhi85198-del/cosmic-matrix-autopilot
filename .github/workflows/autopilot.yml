@@ -41,9 +41,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: 🔐 Restore Authentication Credentials
+      - name: 🔐 Restore Authentication Credentials & 5TB GDrive Tokens
         env:
           TOKEN_PICKLE_BASE64: ${{ secrets.TOKEN_PICKLE_BASE64 }}
+          GDRIVE_TOKEN_BASE64: ${{ secrets.GDRIVE_TOKEN_BASE64 }}
           CLIENT_SECRET_JSON: ${{ secrets.CLIENT_SECRET_JSON }}
           INSTAGRAM_SESSION: ${{ secrets.INSTAGRAM_SESSION }}
           X_API_KEY: ${{ secrets.X_API_KEY }}
@@ -54,6 +55,9 @@ jobs:
           mkdir -p logs assets/output assets/source_videos assets/clips
           if [ -n "$TOKEN_PICKLE_BASE64" ]; then
             echo "$TOKEN_PICKLE_BASE64" | base64 -d > token.pickle
+          fi
+          if [ -n "$GDRIVE_TOKEN_BASE64" ]; then
+            echo "$GDRIVE_TOKEN_BASE64" | base64 -d > gdrive_token.pickle
           fi
           if [ -n "$CLIENT_SECRET_JSON" ]; then
             echo "$CLIENT_SECRET_JSON" > client_secret.json
