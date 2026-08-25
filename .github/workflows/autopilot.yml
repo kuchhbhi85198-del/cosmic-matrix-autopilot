@@ -2,12 +2,10 @@ name: 🌌 24/7 Cosmic Matrix Multi-Platform Autopilot (YouTube + Insta + X)
 
 on:
   schedule:
-    # 09:00 AM IST (03:30 UTC + 03:40 UTC Resilience)
+    # 09:00 AM IST (03:30 UTC)
     - cron: '30 3 * * *'
-    - cron: '40 3 * * *'
-    # 06:00 PM IST (12:30 UTC + 12:40 UTC Resilience)
+    # 06:00 PM IST (12:30 UTC)
     - cron: '30 12 * * *'
-    - cron: '40 12 * * *'
   workflow_dispatch:
 
 permissions:
@@ -22,11 +20,21 @@ jobs:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v4
 
+      - name: 🟢 Set up Node.js (for YouTube signature cipher)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
       - name: 🐍 Set up Python 3.11
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
           cache: 'pip'
+
+      - name: 🎥 Install FFmpeg & Fonts
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg fonts-dejavu fonts-liberation
 
       - name: 📦 Install Python Dependencies
         run: |
@@ -59,6 +67,7 @@ jobs:
           echo "X_ACCESS_TOKEN_SECRET=$X_ACCESS_TOKEN_SECRET" >> .env
 
       - name: 🚀 Run Cosmic Matrix 5-in-1 Autopilot
+        continue-on-error: true
         run: |
           python autopilot.py --privacy public
 
