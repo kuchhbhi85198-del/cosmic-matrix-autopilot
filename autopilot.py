@@ -25,7 +25,6 @@ FFMPEG_EXE = imageio_ffmpeg.get_ffmpeg_exe()
 from config import OUTPUT_DIR, LOGS_DIR, ASSETS_DIR
 from modules.script_engine import CosmicScriptEngine
 from modules.voice_generator import ElevenLabsVoiceEngine
-from modules.video_cutter import VideoCutter
 from modules.cosmic_seo import CosmicSEO
 from modules.multi_uploader import MultiPlatformDispatcher
 from modules.gdrive_manager import GoogleDriveManager
@@ -40,7 +39,6 @@ class CosmicAutopilotEngine:
         self.privacy_status = privacy_status
         self.script_engine = CosmicScriptEngine()
         self.voice_engine = ElevenLabsVoiceEngine()
-        self.cutter = VideoCutter()
         self.seo = CosmicSEO()
         self.dispatcher = MultiPlatformDispatcher()
         try:
@@ -77,44 +75,48 @@ class CosmicAutopilotEngine:
     def _get_matching_3d_ai_clip(self, topic: str) -> Path:
         clips = list(AI_VIDEO_DIR.glob("*.mp4"))
         if not clips:
-            return self.cutter.extract_next_clip(duration=35.0)["clip_path"]
+            return AI_VIDEO_DIR / "A_glowing_energy_wave_enters_a.mp4"
         
-        # Match topic keywords to 3D clips
-        if "BRAIN" in topic.upper() or "दिमाग" in topic:
-            brain_clips = [c for c in clips if "brain" in c.name.lower()]
-            if brain_clips:
-                return brain_clips[int(time.time()) % len(brain_clips)]
-        elif "ATOMIC" in topic.upper() or "परमाणु" in topic:
-            atom_clips = [c for c in clips if "atom" in c.name.lower() or "subatomic" in c.name.lower() or "scientific" in c.name.lower()]
-            if atom_clips:
-                return atom_clips[int(time.time()) % len(atom_clips)]
+        t_upper = topic.upper()
+        if "BRAIN" in t_upper or "NEURO" in t_upper or "दिमाग" in t_upper:
+            matches = [c for c in clips if "brain" in c.name.lower()]
+            if matches:
+                return matches[int(time.time()) % len(matches)]
+        elif "ATOMIC" in t_upper or "परमाणु" in t_upper or "ELECTRO" in t_upper:
+            matches = [c for c in clips if "energy" in c.name.lower() or "atom" in c.name.lower() or "wave" in c.name.lower()]
+            if matches:
+                return matches[int(time.time()) % len(matches)]
+        elif "QUANTUM" in t_upper or "TIME" in t_upper or "RELATIVITY" in t_upper:
+            matches = [c for c in clips if "scientific" in c.name.lower() or "wave" in c.name.lower() or "realistic" in c.name.lower()]
+            if matches:
+                return matches[int(time.time()) % len(matches)]
         
         return clips[int(time.time()) % len(clips)]
 
     def run_cycle(self) -> Path:
         timestamp = int(time.time())
         print("\n" + "=" * 65)
-        print(f"🌌 [COSMIC MASTER AUTOPILOT RUN] | {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        print(f"🌌 [COSMIC MASTER PURE SCIENCE AUTOPILOT RUN] | {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         print("=" * 65)
 
-        # 1. Extract Next Deep Pure Science Script from 726 Library
-        print("[1/6] 📜 Extracting high-impact pure science script from 726 Library...")
+        # 1. Extract Next 100% Pure Hardcore Science Script
+        print("[1/6] 📜 Extracting 100% Pure Hardcore Science Script from 215 Audited Vault...")
         script_data = self.script_engine.get_next_pro_script()
         narration_with_outro = script_data["narration"] + " पूरा एपिसोड देखने के लिए बायो में लिंक चेक करें।"
         
-        print(f"      Source File: {script_data['source_file']}")
+        print(f"      Source: {script_data['source_file']}")
         print(f"      Top Hook: {script_data['top_hook']}")
         print(f"      Topic: {script_data['topic_tag']}")
         print(f"      Narration: {narration_with_outro[:75]}...")
 
-        # 2. Synthesize Deep Authority Voice (ElevenLabs Multi-Key Rotating)
+        # 2. Synthesize Deep Voice (ElevenLabs Multilingual V2)
         print("\n[2/6] 🎙️ Synthesizing Deep Authority Voice (ElevenLabs Multilingual V2)...")
         voice_file = ASSETS_DIR / f"voice_{timestamp}.mp3"
         self.voice_engine.generate_speech(narration_with_outro, voice_file)
         duration = self._get_audio_duration(voice_file)
         print(f"      [SUCCESS] Voice Duration: {duration:.2f}s")
 
-        # 3. Match 3D Scientific AI Footage from D:\WORKING\AI VIDEO
+        # 3. Match 3D Scientific AI Footage from D:\WORKING\AI VIDEO\3 ai
         print("\n[3/6] 🎬 Matching 3D Scientific AI Footage from Library...")
         visual_clip = self._get_matching_3d_ai_clip(script_data["topic_tag"])
         print(f"      Background Visual: {visual_clip.name}")
@@ -123,8 +125,8 @@ class CosmicAutopilotEngine:
         print("\n[4/6] 📑 Generating 5-Platform SEO Metadata...")
         seo_data = self.seo.generate_all(hook=script_data["top_hook"], topic=script_data["topic_tag"])
 
-        # 5. Render 1080p60 Full-Bleed Master Reel with "Watch Full Episode" Outro & Whisper BGM
-        print(f"\n[5/6] ⚡ Rendering 1080p60 Pro Reel with Outro Overlay & Whisper BGM...")
+        # 5. Render 1080p60 Full-Bleed Master Reel with Boosted Voice & Outro Overlay
+        print(f"\n[5/6] ⚡ Rendering 1080p60 Pro Reel with Extra Loud Voice (+55% Boost) & Outro...")
         output_video = OUTPUT_DIR / f"cosmic_reel_{timestamp}.mp4"
         
         font_path = "C:/Windows/Fonts/arialbd.ttf"
@@ -156,9 +158,9 @@ class CosmicAutopilotEngine:
             f"x=(w-text_w)/2:y=(h/2)+130:enable='between(t,{outro_start},{duration+0.5})'[with_outro3];"
             # Bottom Progress Bar
             f"[with_outro3]drawbox=x=0:y=ih-16:w=iw:h=16:color=yellow@0.9:t=fill[v];"
-            # Audio Mix: Loud Voice (volume=1.40) + Whisper-Quiet BGM (volume=0.04)
-            f"[1:a]volume=1.40[voice];"
-            f"[2:a]volume=0.04,afade=t=out:st={duration-1.5}:d=1.5[bgm];"
+            # Audio Mix: Extra Boosted Loud Voice (volume=1.55) + Whisper BGM (volume=0.035)
+            f"[1:a]volume=1.55[voice];"
+            f"[2:a]volume=0.035,afade=t=out:st={duration-1.5}:d=1.5[bgm];"
             f"[voice][bgm]amix=inputs=2:duration=first:dropout_transition=2[a]"
         )
 
@@ -203,7 +205,7 @@ class CosmicAutopilotEngine:
                 print(f"      [!] GDrive Save Notice: {e}")
                 results["google_drive"] = {"status": "skipped", "message": str(e)}
 
-        # 7. Dispatch to YouTube Shorts, Instagram Reels, and X (Twitter)
+        # 7. Dispatch to YouTube Shorts, Instagram Reels & Connected Platforms
         print("\n🚀 Broadcasting to YouTube Shorts, Instagram Reels & X...")
         dispatch_results = self.dispatcher.dispatch_all(
             video_path=output_video,
@@ -232,7 +234,7 @@ class CosmicAutopilotEngine:
         self._save_history(record)
 
         print("\n" + "=" * 65)
-        print("🎉 [COSMIC AUTOPILOT CYCLE COMPLETE - 100% PRO VIDEO LIVE]")
+        print("🎉 [COSMIC MASTER AUTOPILOT RUN COMPLETE - 100% PRO PURE SCIENCE LIVE]")
         if gdrive_file_id:
             print(f"👉 5TB Google Drive Cloud Reel ID: {gdrive_file_id}")
         print("=" * 65)
