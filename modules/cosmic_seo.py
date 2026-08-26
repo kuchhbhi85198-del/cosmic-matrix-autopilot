@@ -18,73 +18,82 @@ if str(BASE_DIR) not in sys.path:
 
 class CosmicSEO:
     """
-    Clean, Pure Science & High-Retention SEO Metadata Engine:
-    - High-CTR Golden Titles & Captions
-    - Pure Science / Deep Universe Explanations (Zero Book / Zero Sales links)
-    - Platform-specific algorithmic tags for YouTube, Instagram, Facebook, X, and LinkedIn.
+    Supercharged High-Retention Viral Cosmic SEO Engine:
+    - High-CTR English/Hinglish Titles with Intriguing Emojis & Search Hooks
+    - Algorithmic Search Tags for YouTube Shorts & Instagram Explore
+    - Direct Traffic Funnel from LinkedIn & X to YouTube Channel
     """
 
     YT_TAGS_POOL = [
         "mind matrix", "quantum physics in hindi", "reality of universe in hindi",
         "frequency and vibration hindi", "how brain filters reality", "simulation theory hindi",
-        "block universe theory", "observer effect in hindi", "multiverse theory",
-        "holographic universe", "nikola tesla 369", "illusion of time",
-        "consciousness hindi", "parallel universe", "space facts hindi"
+        "block universe theory", "observer effect in hindi", "multiverse theory in hindi",
+        "holographic universe", "nikola tesla 369 secret", "illusion of time hindi",
+        "consciousness hindi", "parallel universe facts", "space secrets hindi",
+        "astrophysics facts", "quantum entanglement hindi", "matrix glitch",
+        "science facts in hindi", "cosmic mysteries"
     ]
 
     INSTA_TAGS_POOL = [
         "#mindmatrix", "#quantumphysics", "#simulationtheory", "#cosmicsecrets",
         "#universefacts", "#frequency", "#vibration", "#illusionoftime",
         "#reelsinstagram", "#explorepage", "#viralreels", "#blockuniverse",
-        "#multiverse", "#sciencefacts", "#space"
+        "#multiverse", "#sciencefacts", "#space", "#deepfacts",
+        "#quantummechanics", "#trendingreels", "#fyp"
     ]
 
-    def generate_all(self, hook: str, topic: str) -> Dict[str, Any]:
-        # 1. YouTube Shorts Metadata (Clean & Focused)
-        yt_tags = random.sample(self.YT_TAGS_POOL, k=min(12, len(self.YT_TAGS_POOL)))
-        yt_title = f"{hook} 🌌 #shorts #mindmatrix #universe"[:100]
+    def generate_all(self, hook: str, topic: str, youtube_url: str = "") -> Dict[str, Any]:
+        # 1. YouTube Shorts Metadata (High-CTR English/Hinglish Title)
+        yt_tags = random.sample(self.YT_TAGS_POOL, k=min(15, len(self.YT_TAGS_POOL)))
+        yt_title = f"{hook} 🌌 #shorts #mindmatrix #quantum #viral"[:100]
         yt_description = (
             f"🌌 {hook}\n\n"
-            f"🧠 विषय (Deep Concept): {topic}\n\n"
-            f"क्वांटम फिजिक्स, ब्लॉक यूनिवर्स और चेतना के अनसुलझे वैज्ञानिक रहस्यों का गहन विश्लेषण।\n\n"
-            f"🔔 रोज़ाना ऐसे ही गहरे वैज्ञानिक तथ्यों के लिए चैनल को सब्सक्राइब करें!\n\n"
-            f"📌 Tags:\n{', '.join(yt_tags)}"
+            f"🧠 Concept: {topic}\n\n"
+            f"Exploring the deepest mysteries of quantum mechanics, block universe theory, and cosmic reality.\n\n"
+            f"🔔 Subscribe to our channel for daily mind-bending science facts!\n"
+            f"💬 Drop a comment with your thoughts!\n\n"
+            f"📌 Trending Tags:\n{', '.join(yt_tags)}"
         )
 
-        # 2. Instagram Reels Metadata (Clean & Engaging)
-        insta_tags = random.sample(self.INSTA_TAGS_POOL, k=min(12, len(self.INSTA_TAGS_POOL)))
+        # 2. Instagram Reels Metadata (Viral Explore Ranker)
+        insta_tags = random.sample(self.INSTA_TAGS_POOL, k=min(14, len(self.INSTA_TAGS_POOL)))
         insta_caption = (
             f"🌌 {hook}\n\n"
-            f"🧠 क्या आप जानते हैं? {topic} का यह वैज्ञानिक सिद्धांत आपकी सोच को पूरी तरह बदल देगा!\n\n"
-            f"👉 ऐसी और भी माइंड-ब्लोइंग रील्स के लिए फॉलो करें: @rathour_vibe_\n"
-            f"💬 कमेंट में बताएं अपनी राय!\n\n"
+            f"🧠 Did you know? Exploring {topic} will completely shift how you perceive reality!\n\n"
+            f"👉 Follow @rathour_vibe_ for daily mind-blowing science reels! 🚀\n"
+            f"💬 Tell us in the comments: What do you think?\n\n"
             f"{' '.join(insta_tags)}"
         )
 
-        # 3. Facebook Post/Reels Metadata
+        # 3. Facebook Post/Reels Metadata (With YouTube Video Link)
+        yt_link_line = f"\n\n🎬 Watch Full HD Video on YouTube: {youtube_url}" if youtube_url else ""
         fb_caption = (
             f"🌌 {hook}\n\n"
-            f"विज्ञान और ब्रह्मांड का सबसे बड़ा रहस्य: {topic}!\n"
-            f"क्या हमारी भौतिक वास्तविकता सच में वही है जो हमें दिखाई देती है?\n\n"
-            f"Share this with someone who loves deep science & universe secrets! 🚀\n"
-            f"#Universe #QuantumPhysics #MindMatrix #ScienceFacts"
+            f"The deepest secret of the quantum universe: {topic}!"
+            f"{yt_link_line}\n\n"
+            f"Share this with someone who loves deep science & space secrets! 🚀\n"
+            f"#Universe #QuantumPhysics #MindMatrix #ScienceFacts #Viral"
         )
 
-        # 4. X (Twitter) Post Metadata
+        # 4. X (Twitter) Post Metadata (With Direct YouTube Funnel Link)
+        yt_short_link = f"\n\n🎬 Watch Video on YouTube: {youtube_url}" if youtube_url else ""
         x_post = (
             f"🌌 {hook}\n\n"
-            f"What if reality isn't what it seems? Exploring {topic} and the quantum universe.\n\n"
-            f"#QuantumPhysics #Matrix #Universe #Science"
+            f"Exploring {topic} and the quantum nature of reality."
+            f"{yt_short_link}\n\n"
+            f"#QuantumPhysics #Universe #Science #MindMatrix"
         )[:280]
 
-        # 5. LinkedIn Post Metadata
+        # 5. LinkedIn Post Metadata (Professional Analysis + Direct YouTube Traffic Callout)
+        yt_li_line = f"\n\n🎬 Watch Full 4K Video on YouTube: {youtube_url}\n🔔 Subscribe to our YouTube Channel for daily scientific insights!" if youtube_url else ""
         linkedin_post = (
             f"🌌 The Science of Reality: {hook}\n\n"
             f"Recent breakthroughs in theoretical physics and neuroscience highlight a fascinating principle: {topic}.\n\n"
             f"Key Takeaways:\n"
             f"• Perception is an active construction of electrical neural data.\n"
-            f"• Quantum mechanics demonstrates the observer's pivotal role in shaping state.\n\n"
-            f"#Neuroscience #QuantumMechanics #Science #Consciousness"
+            f"• Quantum mechanics demonstrates the observer's pivotal role in shaping state."
+            f"{yt_li_line}\n\n"
+            f"#Neuroscience #QuantumMechanics #Science #Consciousness #DeepThinking"
         )
 
         return {
@@ -113,6 +122,6 @@ class CosmicSEO:
 
 if __name__ == "__main__":
     seo = CosmicSEO()
-    meta = seo.generate_all("दिमाग एक टीवी जैसा रिसीवर है! 📺", "Brain as Receiver")
-    print("Clean YT Description Preview:\n", meta["youtube"]["description"])
-    print("\nClean Insta Caption Preview:\n", meta["instagram"]["caption"])
+    meta = seo.generate_all("Brain Is Just a TV Receiver! 📺", "Brain as Receiver", "https://youtu.be/PJjhnxWTBQY")
+    print("Supercharged English Title:", meta["youtube"]["title"])
+    print("YT Tags count:", len(meta["youtube"]["tags"]))

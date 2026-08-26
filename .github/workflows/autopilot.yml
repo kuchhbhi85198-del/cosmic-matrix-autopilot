@@ -2,10 +2,17 @@ name: 🌌 24/7 Cosmic Matrix Multi-Platform Autopilot (YouTube + Insta + X)
 
 on:
   schedule:
-    # 09:00 AM IST (03:30 UTC)
+    # Morning Slot: 09:00 AM IST (03:30 UTC) + Resilient Catchups
     - cron: '30 3 * * *'
-    # 06:00 PM IST (12:30 UTC)
+    - cron: '0 4 * * *'
+    - cron: '30 4 * * *'
+    - cron: '0 5 * * *'
+    # Evening Slot: 06:00 PM IST (12:30 UTC) + Resilient Catchups
     - cron: '30 12 * * *'
+    - cron: '0 13 * * *'
+    - cron: '30 13 * * *'
+    - cron: '0 14 * * *'
+    - cron: '30 14 * * *'
   workflow_dispatch:
 
 permissions:
@@ -69,6 +76,8 @@ jobs:
           echo "X_API_SECRET=$X_API_SECRET" >> .env
           echo "X_ACCESS_TOKEN=$X_ACCESS_TOKEN" >> .env
           echo "X_ACCESS_TOKEN_SECRET=$X_ACCESS_TOKEN_SECRET" >> .env
+          echo "LINKEDIN_ACCESS_TOKEN=${{ secrets.LINKEDIN_ACCESS_TOKEN }}" >> .env
+          echo "LINKEDIN_PERSON_URN=${{ secrets.LINKEDIN_PERSON_URN }}" >> .env
 
       - name: 🚀 Run Cosmic Matrix 5-in-1 Autopilot
         continue-on-error: true

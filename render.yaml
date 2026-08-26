@@ -1,0 +1,11 @@
+services:
+  - type: worker
+    name: cosmic-matrix-autopilot-worker
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: Dockerfile
+    autoDeploy: true
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: "1"

@@ -31,12 +31,40 @@ ENABLE_YOUTUBE = True
 ENABLE_INSTAGRAM = True
 ENABLE_FACEBOOK = False
 ENABLE_X_TWITTER = True    # Connected: @PRADEEP85198
-ENABLE_LINKEDIN = False
+ENABLE_LINKEDIN = True     # Connected: KUCHH BHI (kuchhbhi85198@gmail.com)
+
 
 # Auth Credentials Files
 INSTAGRAM_SESSION_FILE = BASE_DIR / "instagram_session.json"
 YOUTUBE_CLIENT_SECRET = BASE_DIR / "client_secret.json"
 YOUTUBE_TOKEN_PICKLE = BASE_DIR / "token.pickle"
+GDRIVE_TOKEN_PICKLE = BASE_DIR / "gdrive_token.pickle"
+
+# Cloud Environment Token Auto-Restoration
+import base64
+if not YOUTUBE_TOKEN_PICKLE.exists() and os.getenv("TOKEN_PICKLE_BASE64"):
+    try:
+        YOUTUBE_TOKEN_PICKLE.write_bytes(base64.b64decode(os.getenv("TOKEN_PICKLE_BASE64")))
+    except Exception:
+        pass
+
+if not GDRIVE_TOKEN_PICKLE.exists() and os.getenv("GDRIVE_TOKEN_BASE64"):
+    try:
+        GDRIVE_TOKEN_PICKLE.write_bytes(base64.b64decode(os.getenv("GDRIVE_TOKEN_BASE64")))
+    except Exception:
+        pass
+
+if not YOUTUBE_CLIENT_SECRET.exists() and os.getenv("CLIENT_SECRET_JSON"):
+    try:
+        YOUTUBE_CLIENT_SECRET.write_text(os.getenv("CLIENT_SECRET_JSON"), encoding="utf-8")
+    except Exception:
+        pass
+
+if not INSTAGRAM_SESSION_FILE.exists() and os.getenv("INSTAGRAM_SESSION"):
+    try:
+        INSTAGRAM_SESSION_FILE.write_text(os.getenv("INSTAGRAM_SESSION"), encoding="utf-8")
+    except Exception:
+        pass
 
 # Live Monetization & Public Support Funnels (Pradeep Rathour Official)
 EBOOK_DOWNLOAD_URL = os.getenv("EBOOK_DOWNLOAD_URL", "https://topmate.io/rathour_vibes/2267065")

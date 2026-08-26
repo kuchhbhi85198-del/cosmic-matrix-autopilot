@@ -28,6 +28,32 @@ from modules.gdrive_manager import GoogleDriveManager
 HISTORY_LOG = LOGS_DIR / "upload_history.json"
 
 
+def has_slot_posted_today() -> bool:
+    """Checks if current time slot (morning 4-14, evening 14-23) was already posted today."""
+    if not HISTORY_LOG.exists():
+        return False
+    try:
+        with open(HISTORY_LOG, "r", encoding="utf-8") as f:
+            history = json.load(f)
+        today_str = datetime.now().strftime("%Y-%m-%d")
+        current_hour = datetime.now().hour
+        slot_type = "morning" if current_hour < 14 else "evening"
+        for item in history:
+            ts_str = item.get("timestamp", "")
+            if ts_str.startswith(today_str):
+                try:
+                    dt = datetime.fromisoformat(ts_str)
+                    if slot_type == "morning" and 4 <= dt.hour < 14:
+                        return True
+                    elif slot_type == "evening" and 14 <= dt.hour <= 23:
+                        return True
+                except Exception:
+                    pass
+    except Exception:
+        pass
+    return False
+
+
 class CosmicAutopilotEngine:
     def __init__(self, privacy_status: str = "public"):
         self.privacy_status = privacy_status
@@ -64,7 +90,7 @@ class CosmicAutopilotEngine:
         print(f"      Selected Moment: '{clip_data['hook']}' ({clip_data['topic']})")
         print(f"      Clip Path: {clip_data['clip_path'].name}")
 
-        # 2. Generate 5-Platform SEO Metadata with Topmate Store Link
+        # 2. Generate 5-Platform SEO Metadata
         print("\n[2/5] Generating tailored 5-Platform SEO (YouTube, Insta, FB, X, LinkedIn)...")
         seo_data = self.seo.generate_all(hook=clip_data["hook"], topic=clip_data["topic"])
         print(f"      YouTube Title: {seo_data['youtube']['title']}")
@@ -136,7 +162,12 @@ class CosmicAutopilotEngine:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Cosmic Matrix 5-in-1 Autopilot")
     parser.add_argument("--privacy", type=str, default="public", choices=["public", "private", "unlisted"])
+    parser.add_argument("--force", action="store_true", help="Force upload even if slot already posted today")
     args = parser.parse_args()
+
+    if not args.force and has_slot_posted_today():
+        print(f"[*] [AUTO-SLOT CHECK] Current slot already posted today! Exiting cleanly in 1s.")
+        sys.exit(0)
 
     engine = CosmicAutopilotEngine(privacy_status=args.privacy)
     engine.run_cycle()

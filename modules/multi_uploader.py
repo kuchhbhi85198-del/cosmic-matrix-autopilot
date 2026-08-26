@@ -23,11 +23,11 @@ from modules.linkedin_uploader import LinkedInUploader
 class MultiPlatformDispatcher:
     """
     Simultaneously dispatches generated Cosmic Matrix shorts to Platforms:
-    1. YouTube Shorts
-    2. Instagram Reels (Can be toggled via ENABLE_INSTAGRAM)
-    3. Facebook Reels / Post
-    4. X (Twitter) Video Tweet
-    5. LinkedIn Video Post
+    1. YouTube Shorts (Primary Destination)
+    2. Instagram Reels (@rathour_vibe_)
+    3. LinkedIn Video & Funnel Post (Directs traffic to YouTube)
+    4. X (Twitter) Video & Tweet (Directs traffic to YouTube)
+    5. Facebook Post / Video
     """
     def __init__(self):
         self.yt = YouTubeUploader() if ENABLE_YOUTUBE else None
@@ -38,8 +38,9 @@ class MultiPlatformDispatcher:
 
     def dispatch_all(self, video_path: Path, seo_data: Dict[str, Any], privacy: str = "public") -> Dict[str, Any]:
         results = {}
+        youtube_live_url = ""
 
-        # 1. YouTube Shorts
+        # 1. YouTube Shorts (Primary)
         if ENABLE_YOUTUBE and self.yt:
             print("\n[*] [1/5] Dispatching to YouTube Shorts...")
             try:
@@ -51,7 +52,8 @@ class MultiPlatformDispatcher:
                     privacy=privacy
                 )
                 results["youtube"] = yt_res
-                print(f"    -> YouTube: {yt_res.get('status').upper()} ({yt_res.get('url', yt_res.get('message'))})")
+                youtube_live_url = yt_res.get("url", "")
+                print(f"    -> YouTube: {yt_res.get('status').upper()} ({youtube_live_url})")
             except Exception as e:
                 results["youtube"] = {"status": "error", "message": str(e)}
         else:
@@ -70,12 +72,49 @@ class MultiPlatformDispatcher:
             except Exception as e:
                 results["instagram"] = {"status": "error", "message": str(e)}
         else:
-            print("[*] [2/5] Instagram Reels: PAUSED BY USER (Skipping Instagram upload)")
-            results["instagram"] = {"status": "paused_by_user", "message": "Instagram upload temporarily paused"}
+            results["instagram"] = {"status": "skipped", "message": "Instagram upload disabled"}
 
-        # 3. Facebook Video
+        # 3. LinkedIn (Native Video Post + YouTube Link Funnel)
+        if ENABLE_LINKEDIN and self.li:
+            print("[*] [3/5] Dispatching to LinkedIn (Driving Traffic to YouTube)...")
+            try:
+                li_text = seo_data["linkedin"]["text"]
+                if youtube_live_url:
+                    li_text += f"\n\n🎬 Watch Full 4K Video on YouTube: {youtube_live_url}\n🔔 Subscribe to our YouTube Channel for daily episodes!"
+                
+                li_res = self.li.upload_video_post(
+                    video_path=video_path,
+                    text=li_text
+                )
+                results["linkedin"] = li_res
+                print(f"    -> LinkedIn: {li_res.get('status').upper()} ({li_res.get('post_id', 'Posted')})")
+            except Exception as e:
+                results["linkedin"] = {"status": "error", "message": str(e)}
+        else:
+            results["linkedin"] = {"status": "skipped", "message": "LinkedIn upload disabled"}
+
+        # 4. X (Twitter) (Tweet + Direct YouTube Funnel)
+        if ENABLE_X_TWITTER and self.x:
+            print("[*] [4/5] Dispatching to X (Twitter)...")
+            try:
+                x_text = seo_data["x_twitter"]["text"]
+                if youtube_live_url:
+                    x_text = f"{seo_data['hook']}\n\n🎬 Watch Video: {youtube_live_url}\n\n#QuantumPhysics #Universe #Science"
+                
+                x_res = self.x.upload_video_tweet(
+                    video_path=video_path,
+                    text=x_text
+                )
+                results["x_twitter"] = x_res
+                print(f"    -> X (Twitter): {x_res.get('status').upper()} ({x_res.get('url', x_res.get('message'))})")
+            except Exception as e:
+                results["x_twitter"] = {"status": "error", "message": str(e)}
+        else:
+            results["x_twitter"] = {"status": "skipped", "message": "X (Twitter) upload disabled"}
+
+        # 5. Facebook Post/Video
         if ENABLE_FACEBOOK and self.fb:
-            print("[*] [3/5] Dispatching to Facebook...")
+            print("[*] [5/5] Dispatching to Facebook...")
             try:
                 fb_res = self.fb.upload_video(
                     video_path=video_path,
@@ -88,39 +127,9 @@ class MultiPlatformDispatcher:
         else:
             results["facebook"] = {"status": "skipped", "message": "Facebook API credentials not configured / disabled"}
 
-        # 4. X (Twitter)
-        if ENABLE_X_TWITTER and self.x:
-            print("[*] [4/5] Dispatching to X (Twitter)...")
-            try:
-                x_res = self.x.upload_video_tweet(
-                    video_path=video_path,
-                    text=seo_data["x_twitter"]["text"]
-                )
-                results["x_twitter"] = x_res
-                print(f"    -> X (Twitter): {x_res.get('status').upper()} ({x_res.get('url', x_res.get('message'))})")
-            except Exception as e:
-                results["x_twitter"] = {"status": "error", "message": str(e)}
-        else:
-            results["x_twitter"] = {"status": "skipped", "message": "X (Twitter) upload disabled"}
-
-        # 5. LinkedIn
-        if ENABLE_LINKEDIN and self.li:
-            print("[*] [5/5] Dispatching to LinkedIn...")
-            try:
-                li_res = self.li.upload_video_post(
-                    video_path=video_path,
-                    text=seo_data["linkedin"]["text"]
-                )
-                results["linkedin"] = li_res
-                print(f"    -> LinkedIn: {li_res.get('status').upper()} ({li_res.get('message', 'Posted')})")
-            except Exception as e:
-                results["linkedin"] = {"status": "error", "message": str(e)}
-        else:
-            results["linkedin"] = {"status": "skipped", "message": "LinkedIn upload disabled"}
-
         return results
 
 
 if __name__ == "__main__":
     dispatcher = MultiPlatformDispatcher()
-    print("Multi-Platform Dispatcher ready.")
+    print("Multi-Platform YouTube-Funneling Dispatcher ready.")

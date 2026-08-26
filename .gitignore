@@ -3,20 +3,22 @@
 __pycache__/
 *.pyc
 
-# Local secrets & scripts with keys
+# Local secrets & credentials
 .env
 token.pickle
+gdrive_token.pickle
 client_secret*.json
 instagram_session.json
 auto_set_github_secrets.py
 
-# Raw 400MB full source videos (Clips in assets/clips/ ARE committed)
-assets/source_videos/*.mp4
-assets/source_videos/*.m4a
-assets/output/*.mp4
-assets/output/*.jpg
+# Video & Media Binary Files (Fast-streamed from 5TB Google Drive)
+assets/source_videos/
+assets/output/
+assets/clips/*.mp4
+assets/*.mp4
+assets/*.mp3
+assets/*.part
 
 # Logs
 logs/*.log
-logs/upload_history.json
 cloud_run.log
