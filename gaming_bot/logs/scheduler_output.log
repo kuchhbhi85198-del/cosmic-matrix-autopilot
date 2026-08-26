@@ -1,0 +1,223 @@
+ffmpeg version 7.1-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 14.2.0 (Rev1, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+  libavutil      59. 39.100 / 59. 39.100
+  libavcodec     61. 19.100 / 61. 19.100
+  libavformat    61.  7.100 / 61.  7.100
+  libavdevice    61.  3.100 / 61.  3.100
+  libavfilter    10.  4.100 / 10.  4.100
+  libswscale      8.  3.100 /  8.  3.100
+  libswresample   5.  3.100 /  5.  3.100
+  libpostproc    58.  3.100 / 58.  3.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'D:\TOOLS\ai_shorts_automation_bot\assets\raw_videos\scraped\gta6_n7UabjWmrM4.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2mp41
+    encoder         : Lavf63.1.100
+  Duration: 00:00:20.02, start: 0.000000, bitrate: 39403 kb/s
+  Stream #0:0[0x1](und): Video: vp9 (Profile 0) (vp09 / 0x39307076), yuv420p(tv, bt709), 3840x2160, 31603 kb/s, 60 fps, 60 tbr, 16k tbn (default)
+      Metadata:
+        handler_name    : ISO Media file produced by Google Inc. Created on: 08/21/2026.
+        vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](eng): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 127 kb/s (default)
+      Metadata:
+        handler_name    : ISO Media file produced by Google Inc.
+        vendor_id       : [0][0][0][0]
+Input #1, mp3, from 'D:\TOOLS\ai_shorts_automation_bot\assets\music\viral_phonk_3.mp3':
+  Metadata:
+    major_brand     : M4A 
+    minor_version   : 512
+    compatible_brands: M4A isomiso2
+    encoder         : Lavf63.1.100
+  Duration: 00:00:40.05, start: 0.025057, bitrate: 247 kb/s
+  Stream #1:0: Audio: mp3 (mp3float), 44100 Hz, stereo, fltp, 247 kb/s
+      Metadata:
+        encoder         : Lavc63.1.
+Stream mapping:
+  Stream #0:0 -> #0:0 (vp9 (native) -> h264 (libx264))
+  Stream #1:0 -> #0:1 (mp3 (mp3float) -> aac (native))
+Press [q] to stop, [?] for help
+[libx264 @ 000002639abc98c0] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+[libx264 @ 000002639abc98c0] profile High, level 4.2, 4:2:0, 8-bit
+[libx264 @ 000002639abc98c0] 264 - core 164 r3192 c24e06c - H.264/MPEG-4 AVC codec - Copyleft 2003-2024 - http://www.videolan.org/x264.html - options: cabac=1 ref=3 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=7 psy=1 psy_rd=1.00:0.00 mixed_ref=1 me_range=16 chroma_me=1 trellis=1 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=-2 threads=18 lookahead_threads=3 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=2 keyint=250 keyint_min=25 scenecut=40 intra_refresh=0 rc_lookahead=40 rc=crf mbtree=1 crf=16.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to 'D:\TOOLS\ai_shorts_automation_bot\assets\output\pro_short_gta6_1787315484.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2mp41
+    encoder         : Lavf61.7.100
+  Stream #0:0(und): Video: h264 (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1080x1920, q=2-31, 18000 kb/s, 60 fps, 15360 tbn (default)
+      Metadata:
+        handler_name    : ISO Media file produced by Google Inc. Created on: 08/21/2026.
+        vendor_id       : [0][0][0][0]
+        encoder         : Lavc61.19.100 libx264
+      Side data:
+        cpb: bitrate max/min/avg: 0/0/18000000 buffer size: 0 vbv_delay: N/A
+  Stream #0:1: Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 256 kb/s
+      Metadata:
+        encoder         : Lavc61.19.100 aac
+frame=    0 fps=0.0 q=0.0 size=       0KiB time=N/A bitrate=N/A speed=N/A    frame=    0 fps=0.0 q=0.0 size=       0KiB time=N/A bitrate=N/A speed=N/A    frame=    0 fps=0.0 q=0.0 size=       0KiB time=N/A bitrate=N/A speed=N/A    frame=   14 fps=3.8 q=24.0 size=    1536KiB time=00:00:00.20 bitrate=62916.5kbits/s speed=0.0547x    frame=   28 fps=6.7 q=24.0 size=    2816KiB time=00:00:00.43 bitrate=53236.3kbits/s speed=0.104x    frame=   43 fps=9.2 q=24.0 size=    4352KiB time=00:00:00.68 bitrate=52173.6kbits/s speed=0.146x    frame=   59 fps= 11 q=24.0 size=    5632KiB time=00:00:00.95 bitrate=48566.0kbits/s speed=0.183x    frame=   74 fps= 13 q=24.0 size=    7168KiB time=00:00:01.20 bitrate=48933.9kbits/s speed=0.21x    frame=   90 fps= 14 q=24.0 size=    8704KiB time=00:00:01.45 bitrate=49174.9kbits/s speed=0.232x    frame=  106 fps= 16 q=24.0 size=   10240KiB time=00:00:01.73 bitrate=48396.0kbits/s speed=0.256x    frame=  121 fps= 17 q=24.0 size=   11264KiB time=00:00:01.98 bitrate=46525.3kbits/s speed=0.272x    frame=  139 fps= 18 q=24.0 size=   12800KiB time=00:00:02.30 bitrate=45590.4kbits/s speed=0.294x    frame=  153 fps= 18 q=24.0 size=   13824KiB time=00:00:02.51 bitrate=44998.6kbits/s speed=0.302x    frame=  168 fps= 19 q=24.0 size=   15104KiB time=00:00:02.76 bitrate=44722.5kbits/s speed=0.312x    frame=  184 fps= 20 q=24.0 size=   16640KiB time=00:00:03.03 bitrate=44939.1kbits/s speed=0.323x    frame=  200 fps= 20 q=24.0 size=   17920KiB time=00:00:03.30 bitrate=44485.2kbits/s speed=0.333x    frame=  214 fps= 21 q=24.0 size=   19200KiB time=00:00:03.53 bitrate=44515.1kbits/s speed=0.339x    frame=  229 fps= 21 q=24.0 size=   20736KiB time=00:00:03.78 bitrate=44899.5kbits/s speed=0.345x    frame=  244 fps= 21 q=24.0 size=   22016KiB time=00:00:04.01 bitrate=44901.8kbits/s speed=0.35x    frame=  261 fps= 22 q=24.0 size=   23552KiB time=00:00:04.31 bitrate=44696.1kbits/s speed=0.36x    frame=  277 fps= 22 q=24.0 size=   24832KiB time=00:00:04.58 bitrate=44383.4kbits/s speed=0.366x    frame=  293 fps= 22 q=24.0 size=   26368KiB time=00:00:04.85 bitrate=44537.5kbits/s speed=0.372x    frame=  311 fps= 23 q=24.0 size=   27904KiB time=00:00:05.15 bitrate=44386.4kbits/s speed=0.379x    frame=  325 fps= 23 q=24.0 size=   28928KiB time=00:00:05.36 bitrate=44157.5kbits/s speed=0.38x    frame=  340 fps= 23 q=24.0 size=   30208KiB time=00:00:05.63 bitrate=43928.6kbits/s speed=0.385x    frame=  355 fps= 23 q=24.0 size=   31232KiB time=00:00:05.88 bitrate=43487.8kbits/s speed=0.388x    frame=  373 fps= 24 q=24.0 size=   32768KiB time=00:00:06.18 bitrate=43412.8kbits/s speed=0.395x    frame=  388 fps= 24 q=24.0 size=   33792KiB time=00:00:06.41 bitrate=43141.5kbits/s speed=0.396x    frame=  402 fps= 24 q=24.0 size=   34816KiB time=00:00:06.66 bitrate=42782.0kbits/s speed=0.398x    frame=  418 fps= 24 q=24.0 size=   36608KiB time=00:00:06.93 bitrate=43253.8kbits/s speed=0.402x    frame=  436 fps= 25 q=24.0 size=   38144KiB time=00:00:07.23 bitrate=43199.5kbits/s speed=0.407x    frame=  453 fps= 25 q=24.0 size=   39680KiB time=00:00:07.51 bitrate=43245.1kbits/s speed=0.411x    frame=  468 fps= 25 q=24.0 size=   41216KiB time=00:00:07.76 bitrate=43473.2kbits/s speed=0.412x    frame=  483 fps= 25 q=24.0 size=   42752KiB time=00:00:08.01 bitrate=43687.1kbits/s speed=0.414x    frame=  503 fps= 25 q=24.0 size=   44544KiB time=00:00:08.35 bitrate=43701.2kbits/s speed=0.42x    frame=  515 fps= 25 q=24.0 size=   45568KiB time=00:00:08.55 bitrate=43660.1kbits/s speed=0.418x    frame=  533 fps= 25 q=24.0 size=   47360KiB time=00:00:08.85 bitrate=43838.8kbits/s speed=0.422x    frame=  547 fps= 25 q=24.0 size=   48640KiB time=00:00:09.08 bitrate=43867.1kbits/s speed=0.423x    frame=  563 fps= 26 q=24.0 size=   50176KiB time=00:00:09.35 bitrate=43961.7kbits/s speed=0.425x    frame=  576 fps= 26 q=24.0 size=   51456KiB time=00:00:09.56 bitrate=44062.2kbits/s speed=0.425x    frame=  596 fps= 26 q=24.0 size=   53504KiB time=00:00:09.90 bitrate=44273.2kbits/s speed=0.43x    frame=  610 fps= 26 q=24.0 size=   54784KiB time=00:00:10.13 bitrate=44288.6kbits/s speed=0.43x    frame=  627 fps= 26 q=24.0 size=   56320KiB time=00:00:10.35 bitrate=44577.2kbits/s speed=0.43x    frame=  640 fps= 26 q=24.0 size=   57600KiB time=00:00:10.63 bitrate=44375.5kbits/s speed=0.432x    frame=  656 fps= 26 q=24.0 size=   58880KiB time=00:00:10.90 bitrate=44251.9kbits/s speed=0.433x    frame=  675 fps= 26 q=24.0 size=   60672KiB time=00:00:11.20 bitrate=44377.3kbits/s speed=0.436x    frame=  691 fps= 26 q=24.0 size=   62208KiB time=00:00:11.48 bitrate=44378.1kbits/s speed=0.438x    frame=  707 fps= 26 q=24.0 size=   63744KiB time=00:00:11.75 bitrate=44441.8kbits/s speed=0.44x    frame=  721 fps= 26 q=24.0 size=   65024KiB time=00:00:11.96 bitrate=44513.4kbits/s speed=0.439x    frame=  735 fps= 26 q=24.0 size=   66304KiB time=00:00:12.21 bitrate=44460.8kbits/s speed=0.439x    frame=  755 fps= 27 q=24.0 size=   68096KiB time=00:00:12.55 bitrate=44449.6kbits/s speed=0.443x    frame=  771 fps= 27 q=24.0 size=   69632KiB time=00:00:12.81 bitrate=44506.6kbits/s speed=0.445x    frame=  783 fps= 27 q=24.0 size=   70912KiB time=00:00:13.01 bitrate=44628.3kbits/s speed=0.443x    frame=  799 fps= 27 q=24.0 size=   72704KiB time=00:00:13.26 bitrate=44893.8kbits/s speed=0.444x    frame=  814 fps= 27 q=24.0 size=   74240KiB time=00:00:13.53 bitrate=44939.0kbits/s speed=0.445x    frame=  831 fps= 27 q=24.0 size=   76032KiB time=00:00:13.81 bitrate=45079.9kbits/s speed=0.447x    frame=  850 fps= 27 q=24.0 size=   78080KiB time=N/A bitrate=N/A speed=N/A    frame=  876 fps= 27 q=24.0 size=   81152KiB time=N/A bitrate=N/A speed=N/A    [out#0/mp4 @ 000002639abeda80] video:83655KiB audio:502KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.030130%
+frame=  900 fps= 28 q=-1.0 Lsize=   84182KiB time=00:00:14.96 bitrate=46076.9kbits/s speed=0.462x    
+[libx264 @ 000002639abc98c0] frame I:4     Avg QP:17.60  size:285291
+[libx264 @ 000002639abc98c0] frame P:268   Avg QP:19.96  size:178175
+[libx264 @ 000002639abc98c0] frame B:628   Avg QP:22.31  size: 58551
+[libx264 @ 000002639abc98c0] consecutive B-frames:  2.8% 10.7%  5.7% 80.9%
+[libx264 @ 000002639abc98c0] mb I  I16..4: 16.4% 52.8% 30.8%
+[libx264 @ 000002639abc98c0] mb P  I16..4:  4.5% 16.1%  7.5%  P16..4: 25.4% 22.1% 10.4%  0.0%  0.0%    skip:14.0%
+[libx264 @ 000002639abc98c0] mb B  I16..4:  0.5%  1.3%  0.8%  B16..8: 27.7% 12.6%  4.7%  direct: 5.2%  skip:47.1%  L0:44.1% L1:38.3% BI:17.6%
+[libx264 @ 000002639abc98c0] 8x8 transform intra:55.8% inter:55.7%
+[libx264 @ 000002639abc98c0] coded y,uvDC,uvAC intra: 65.7% 61.2% 31.9% inter: 29.4% 20.2% 1.4%
+[libx264 @ 000002639abc98c0] i16 v,h,dc,p: 23% 48%  5% 24%
+[libx264 @ 000002639abc98c0] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu: 15% 29% 16%  5%  6%  6%  7%  7%  7%
+[libx264 @ 000002639abc98c0] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 16% 33% 12%  5%  8%  6%  8%  5%  7%
+[libx264 @ 000002639abc98c0] i8c dc,h,v,p: 50% 30% 14%  7%
+[libx264 @ 000002639abc98c0] Weighted P-Frames: Y:2.2% UV:1.1%
+[libx264 @ 000002639abc98c0] ref P L0: 57.8% 19.6% 15.2%  7.2%  0.2%
+[libx264 @ 000002639abc98c0] ref B L0: 89.2%  8.6%  2.2%
+[libx264 @ 000002639abc98c0] ref B L1: 97.5%  2.5%
+[libx264 @ 000002639abc98c0] kb/s:45686.36
+[aac @ 000002639ad8fec0] Qavg: 705.944
+
+============================================================
+[+] [AUTOPILOT DUAL UPLOAD RUN] Category: GTA6 | 2026-08-21 18:00:02
+============================================================
+[1/5] Scraping internet for fresh viral GTA6 4K clips...
+[*] [Attempt 1/3] Searching Ultra 4K GTA6 clips: 'gta 6 ultra realistic graphics 4k 60fps rtx 4090 gameplay'...
+[*] Selected High-End Clip: '⁴ᴷ⁶⁰ GTA 6 Graphics!? RTX 4090 Ultra Realistic Graphics Gameplay! 2023 Ray Tracing Graphics Mod' (n7UabjWmrM4)
+[*] Downloading Ultra 4K video segment from internet...
+[SUCCESS] Downloaded High-Res Footage: D:\TOOLS\ai_shorts_automation_bot\assets\raw_videos\scraped\gta6_n7UabjWmrM4.mp4 (94.02 MB)
+[1/5] Active footage: gta6_n7UabjWmrM4.mp4
+[2/5] Viral Title: Wait For The GTA 6 Supercar Speed Test! 🏎️ #shorts #gta6
+      Hook Text: Wait For The GTA 6 Supercar Speed Test! 🏎️
+      Algorithmic Tags: 12 tags generated
+[3/5] PRO 4K EDITING: Blur-Pad Canvas + GTA Neon Grading + SFX + Progress Bar...
+[!] Warning during Ultra 4K render: ffmpeg version 7.1-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 14.2.0 (Rev1, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --... Running high-quality fallback.
+      [OK] Rendered PRO Short -> pro_short_gta6_1787315484.mp4 (82.21 MB)
+[4/5] Uploading to YouTube Shorts (public)...
+[*] Uploading 'Wait For The GTA 6 Supercar Speed Test! 🏎️ #shorts #gta6' to YouTube (public)...
+[SUCCESS] Uploaded to YouTube! URL: https://youtu.be/VU3PhqqKlbY
+[5/5] Uploading to Instagram Reels...
+[*] Loading saved Instagram session...
+[*] Uploading Reel to Instagram account @gaming143vibes...
+Analyzing CLIP file "D:\TOOLS\ai_shorts_automation_bot\assets\output\pro_short_gta6_1787315484.mp4"
+[SUCCESS] Uploaded to Instagram Reels! Media PK: 3968612880683686689
+============================================================
+[+] [DUAL AUTOPILOT COMPLETE] YouTube & Instagram Ready!
+👉 Video: D:\TOOLS\ai_shorts_automation_bot\assets\output\pro_short_gta6_1787315484.mp4
+============================================================
+
+ffmpeg version 7.1-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 14.2.0 (Rev1, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+  libavutil      59. 39.100 / 59. 39.100
+  libavcodec     61. 19.100 / 61. 19.100
+  libavformat    61.  7.100 / 61.  7.100
+  libavdevice    61.  3.100 / 61.  3.100
+  libavfilter    10.  4.100 / 10.  4.100
+  libswscale      8.  3.100 /  8.  3.100
+  libswresample   5.  3.100 /  5.  3.100
+  libpostproc    58.  3.100 / 58.  3.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'D:\TOOLS\ai_shorts_automation_bot\assets\raw_videos\scraped\gta6_qwfvjqZvzu4.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2mp41
+    encoder         : Lavf63.1.100
+  Duration: 00:00:20.02, start: 0.000000, bitrate: 28370 kb/s
+  Stream #0:0[0x1](und): Video: vp9 (Profile 0) (vp09 / 0x39307076), yuv420p(tv, bt709), 3840x2160, 22722 kb/s, 60 fps, 60 tbr, 16k tbn (default)
+      Metadata:
+        handler_name    : ISO Media file produced by Google Inc. Created on: 08/21/2026.
+        vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](und): Audio: aac (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 128 kb/s (default)
+      Metadata:
+        handler_name    : ISO Media file produced by Google Inc.
+        vendor_id       : [0][0][0][0]
+Input #1, mp3, from 'D:\TOOLS\ai_shorts_automation_bot\assets\music\viral_phonk_2.mp3':
+  Metadata:
+    major_brand     : M4A 
+    minor_version   : 512
+    compatible_brands: M4A isomiso2
+    encoder         : Lavf63.1.100
+  Duration: 00:00:40.05, start: 0.025057, bitrate: 210 kb/s
+  Stream #1:0: Audio: mp3 (mp3float), 44100 Hz, stereo, fltp, 210 kb/s
+      Metadata:
+        encoder         : Lavc63.1.
+Stream mapping:
+  Stream #0:0 -> #0:0 (vp9 (native) -> h264 (libx264))
+  Stream #1:0 -> #0:1 (mp3 (mp3float) -> aac (native))
+Press [q] to stop, [?] for help
+[libx264 @ 0000020b1d13db00] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+[libx264 @ 0000020b1d13db00] profile High, level 4.2, 4:2:0, 8-bit
+[libx264 @ 0000020b1d13db00] 264 - core 164 r3192 c24e06c - H.264/MPEG-4 AVC codec - Copyleft 2003-2024 - http://www.videolan.org/x264.html - options: cabac=1 ref=3 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=7 psy=1 psy_rd=1.00:0.00 mixed_ref=1 me_range=16 chroma_me=1 trellis=1 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=-2 threads=18 lookahead_threads=3 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=2 keyint=250 keyint_min=25 scenecut=40 intra_refresh=0 rc_lookahead=40 rc=crf mbtree=1 crf=16.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to 'D:\TOOLS\ai_shorts_automation_bot\assets\output\pro_short_gta6_1787322070.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2mp41
+    encoder         : Lavf61.7.100
+  Stream #0:0(und): Video: h264 (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1080x1920, q=2-31, 18000 kb/s, 60 fps, 15360 tbn (default)
+      Metadata:
+        handler_name    : ISO Media file produced by Google Inc. Created on: 08/21/2026.
+        vendor_id       : [0][0][0][0]
+        encoder         : Lavc61.19.100 libx264
+      Side data:
+        cpb: bitrate max/min/avg: 0/0/18000000 buffer size: 0 vbv_delay: N/A
+  Stream #0:1: Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 256 kb/s
+      Metadata:
+        encoder         : Lavc61.19.100 aac
+frame=    0 fps=0.0 q=0.0 size=       0KiB time=N/A bitrate=N/A speed=N/A    frame=    0 fps=0.0 q=0.0 size=       0KiB time=N/A bitrate=N/A speed=N/A    frame=    0 fps=0.0 q=0.0 size=       0KiB time=N/A bitrate=N/A speed=N/A    frame=    0 fps=0.0 q=0.0 size=       0KiB time=N/A bitrate=N/A speed=N/A    frame=    0 fps=0.0 q=0.0 size=       0KiB time=N/A bitrate=N/A speed=N/A    frame=    0 fps=0.0 q=0.0 size=       0KiB time=N/A bitrate=N/A speed=N/A    frame=    0 fps=0.0 q=0.0 size=       0KiB time=N/A bitrate=N/A speed=N/A    frame=    0 fps=0.0 q=24.0 size=       0KiB time=N/A bitrate=N/A speed=N/A    frame=    8 fps=0.9 q=24.0 size=     256KiB time=00:00:00.10 bitrate=20975.4kbits/s speed=0.0117x    frame=    9 fps=1.0 q=24.0 size=     256KiB time=00:00:00.11 bitrate=17978.8kbits/s speed=0.0128x    frame=   13 fps=1.3 q=24.0 size=     512KiB time=00:00:00.18 bitrate=22880.2kbits/s speed=0.0189x    frame=   17 fps=1.6 q=24.0 size=     768KiB time=00:00:00.25 bitrate=25167.4kbits/s speed=0.024x    frame=   19 fps=1.7 q=24.0 size=     768KiB time=00:00:00.28 bitrate=22206.5kbits/s speed=0.0253x    frame=   27 fps=2.3 q=24.0 size=    1280KiB time=00:00:00.36 bitrate=28598.5kbits/s speed=0.0307x    frame=   38 fps=2.9 q=24.0 size=    2048KiB time=00:00:00.53 bitrate=31458.0kbits/s speed=0.0407x    frame=   41 fps=2.8 q=24.0 size=    2048KiB time=00:00:00.65 bitrate=25811.7kbits/s speed=0.045x    frame=   44 fps=2.9 q=24.0 size=    2048KiB time=00:00:00.70 bitrate=23968.0kbits/s speed=0.0466x    frame=   48 fps=3.1 q=24.0 size=    2304KiB time=00:00:00.76 bitrate=24619.2kbits/s speed=0.0493x    frame=   56 fps=3.4 q=24.0 size=    2560KiB time=00:00:00.88 bitrate=23741.8kbits/s speed=0.0541x    frame=   69 fps=3.9 q=24.0 size=    3328KiB time=00:00:01.01 bitrate=26816.4kbits/s speed=0.0579x    frame=   78 fps=4.1 q=24.0 size=    3840KiB time=00:00:01.26 bitrate=24835.0kbits/s speed=0.0663x    frame=   83 fps=4.1 q=24.0 size=    3840KiB time=00:00:01.35 bitrate=23302.0kbits/s speed=0.0669x    frame=   96 fps=4.6 q=24.0 size=    4608KiB time=00:00:01.48 bitrate=25448.9kbits/s speed=0.0703x    frame=  110 fps=4.9 q=24.0 size=    5376KiB time=00:00:01.68 bitrate=26162.7kbits/s speed=0.0751x    frame=  126 fps=5.3 q=24.0 size=    6144KiB time=00:00:01.93 bitrate=26033.8kbits/s speed=0.0817x    frame=  131 fps=5.3 q=24.0 size=    6400KiB time=00:00:02.15 bitrate=24385.7kbits/s speed=0.0863x    frame=  144 fps=5.6 q=24.0 size=    6912KiB time=00:00:02.31 bitrate=24441.8kbits/s speed=0.0903x    frame=  158 fps=5.9 q=24.0 size=    7424KiB time=00:00:02.53 bitrate=24007.0kbits/s speed=0.0947x    frame=  174 fps=6.2 q=24.0 size=    8192KiB time=00:00:02.80 bitrate=23967.6kbits/s speed=0.0999x    frame=  179 fps=6.2 q=24.0 size=    8448KiB time=00:00:02.95 bitrate=23459.8kbits/s speed=0.102x    frame=  180 fps=6.1 q=24.0 size=    8448KiB time=00:00:02.96 bitrate=23328.0kbits/s speed=0.101x    frame=  195 fps=6.4 q=24.0 size=    9216KiB time=00:00:03.13 bitrate=24095.1kbits/s speed=0.103x    frame=  200 fps=6.3 q=24.0 size=    9472KiB time=00:00:03.30 bitrate=23513.6kbits/s speed=0.104x    frame=  200 fps=6.2 q=24.0 size=    9472KiB time=00:00:03.30 bitrate=23513.6kbits/s speed=0.102x    frame=  204 fps=6.2 q=24.0 size=    9472KiB time=00:00:03.36 bitrate=23048.0kbits/s speed=0.102x    frame=  212 fps=6.3 q=24.0 size=    9984KiB time=00:00:03.50 bitrate=23368.4kbits/s speed=0.104x    frame=  230 fps=6.7 q=24.0 size=   11008KiB time=00:00:03.71 bitrate=24263.1kbits/s speed=0.108x    frame=  242 fps=6.8 q=24.0 size=   11520KiB time=00:00:03.90 bitrate=24198.0kbits/s speed=0.11x    frame=  254 fps=7.0 q=24.0 size=   12032KiB time=00:00:04.20 bitrate=23468.2kbits/s speed=0.115x    frame=  265 fps=7.2 q=24.0 size=   12544KiB time=00:00:04.38 bitrate=23443.5kbits/s speed=0.118x    frame=  276 fps=7.3 q=24.0 size=   13056KiB time=00:00:04.56 bitrate=23420.8kbits/s speed=0.121x    frame=  285 fps=7.4 q=24.0 size=   13312KiB time=00:00:04.71 bitrate=23120.6kbits/s speed=0.123x    frame=  304 fps=7.8 q=24.0 size=   14336KiB time=00:00:04.90 bitrate=23967.5kbits/s speed=0.126x    frame=  313 fps=7.7 q=24.0 size=   14592KiB time=00:00:05.18 bitrate=23062.0kbits/s speed=0.128x    frame=  317 fps=7.7 q=24.0 size=   14848KiB time=00:00:05.25 bitrate=23168.6kbits/s speed=0.127x    frame=  325 fps=7.8 q=24.0 size=   15104KiB time=00:00:05.36 bitrate=23055.7kbits/s speed=0.128x    frame=  338 fps=7.9 q=24.0 size=   15616KiB time=00:00:05.53 bitrate=23119.3kbits/s speed=0.13x    frame=  342 fps=7.8 q=24.0 size=   15872KiB time=00:00:05.66 bitrate=22945.4kbits/s speed=0.129x    frame=  354 fps=8.0 q=24.0 size=   16640KiB time=00:00:05.80 bitrate=23502.6kbits/s speed=0.131x    frame=  363 fps=8.0 q=24.0 size=   16896KiB time=00:00:06.01 bitrate=23004.8kbits/s speed=0.133x    frame=  375 fps=8.2 q=24.0 size=   17408KiB time=00:00:06.16 bitrate=23125.4kbits/s speed=0.135x    frame=  389 fps=8.3 q=24.0 size=   18176KiB time=00:00:06.36 bitrate=23387.1kbits/s speed=0.136x    frame=  398 fps=8.4 q=24.0 size=   18432KiB time=00:00:06.60 bitrate=22878.1kbits/s speed=0.139x    frame=  412 fps=8.6 q=24.0 size=   19200KiB time=00:00:06.83 bitrate=23017.6kbits/s speed=0.142x    frame=  420 fps=8.6 q=24.0 size=   19456KiB time=00:00:06.96 bitrate=22878.1kbits/s speed=0.143x    frame=  432 fps=8.8 q=24.0 size=   19968KiB time=00:00:07.16 bitrate=22824.9kbits/s speed=0.146x    frame=  441 fps=8.9 q=24.0 size=   20224KiB time=00:00:07.31 bitrate=22643.6kbits/s speed=0.147x    frame=  445 fps=8.9 q=24.0 size=   20480KiB time=00:00:07.38 bitrate=22723.1kbits/s speed=0.147x    frame=  454 fps=9.0 q=24.0 size=   20736KiB time=00:00:07.53 bitrate=22549.1kbits/s speed=0.149x    frame=  463 fps=9.0 q=24.0 size=   21248KiB time=00:00:07.68 bitrate=22654.8kbits/s speed=0.15x    frame=  472 fps=9.1 q=24.0 size=   21760KiB time=00:00:07.85 bitrate=22708.1kbits/s speed=0.152x    frame=  481 fps=9.2 q=24.0 size=   22272KiB time=00:00:07.98 bitrate=22854.2kbits/s speed=0.153x    frame=  488 fps=9.2 q=24.0 size=   22528KiB time=00:00:08.10 bitrate=22783.9kbits/s speed=0.153x    frame=  500 fps=9.4 q=24.0 size=   23040KiB time=00:00:08.30 bitrate=22740.2kbits/s speed=0.156x    frame=  509 fps=9.5 q=24.0 size=   23552KiB time=00:00:08.45 bitrate=22832.9kbits/s speed=0.157x    frame=  521 fps=9.6 q=24.0 size=   24064KiB time=00:00:08.65 bitrate=22789.9kbits/s speed=0.159x    frame=  533 fps=9.7 q=24.0 size=   24576KiB time=00:00:08.85 bitrate=22748.8kbits/s speed=0.161x    frame=  541 fps=9.8 q=24.0 size=   25088KiB time=00:00:08.98 bitrate=22878.1kbits/s speed=0.162x    frame=  550 fps=9.8 q=24.0 size=   25344KiB time=00:00:09.15 bitrate=22690.5kbits/s speed=0.164x    frame=  558 fps=9.9 q=24.0 size=   25600KiB time=00:00:09.26 bitrate=22631.2kbits/s speed=0.164x    frame=  569 fps= 10 q=24.0 size=   26112KiB time=00:00:09.45 bitrate=22636.0kbits/s speed=0.166x    frame=  578 fps= 10 q=24.0 size=   26624KiB time=00:00:09.60 bitrate=22719.2kbits/s speed=0.167x    frame=  589 fps= 10 q=24.0 size=   27136KiB time=00:00:09.78 bitrate=22722.2kbits/s speed=0.169x    frame=  601 fps= 10 q=24.0 size=   27648KiB time=00:00:09.98 bitrate=22687.1kbits/s speed=0.171x    frame=  614 fps= 10 q=24.0 size=   28160KiB time=00:00:10.20 bitrate=22616.4kbits/s speed=0.173x    frame=  626 fps= 11 q=24.0 size=   28928KiB time=00:00:10.38 bitrate=22823.0kbits/s speed=0.174x    frame=  638 fps= 11 q=24.0 size=   29440KiB time=00:00:10.60 bitrate=22752.2kbits/s speed=0.176x    frame=  647 fps= 11 q=24.0 size=   29696KiB time=00:00:10.75 bitrate=22629.8kbits/s speed=0.177x    frame=  659 fps= 11 q=24.0 size=   30464KiB time=00:00:10.95 bitrate=22791.0kbits/s speed=0.179x    frame=  667 fps= 11 q=24.0 size=   30976KiB time=00:00:11.06 bitrate=22929.7kbits/s speed=0.179x    frame=  678 fps= 11 q=24.0 size=   31232KiB time=00:00:11.26 bitrate=22708.8kbits/s speed=0.181x    frame=  689 fps= 11 q=24.0 size=   31744KiB time=00:00:11.45 bitrate=22711.5kbits/s speed=0.182x    frame=  702 fps= 11 q=24.0 size=   32256KiB time=00:00:11.66 bitrate=22649.3kbits/s speed=0.184x    frame=  710 fps= 11 q=24.0 size=   32768KiB time=00:00:11.80 bitrate=22748.8kbits/s speed=0.185x    frame=  718 fps= 11 q=24.0 size=   33024KiB time=00:00:11.93 bitrate=22670.4kbits/s speed=0.185x    frame=  726 fps= 11 q=24.0 size=   33280KiB time=00:00:12.05 bitrate=22624.9kbits/s speed=0.186x    frame=  734 fps= 11 q=24.0 size=   34048KiB time=00:00:12.20 bitrate=22862.4kbits/s speed=0.186x    frame=  742 fps= 11 q=24.0 size=   34304KiB time=00:00:12.33 bitrate=22785.3kbits/s speed=0.187x    frame=  752 fps= 11 q=24.0 size=   34816KiB time=00:00:12.50 bitrate=22817.0kbits/s speed=0.188x    frame=  767 fps= 11 q=24.0 size=   35584KiB time=00:00:12.75 bitrate=22863.1kbits/s speed=0.19x    frame=  775 fps= 11 q=24.0 size=   35840KiB time=00:00:12.88 bitrate=22789.3kbits/s speed=0.191x    frame=  785 fps= 12 q=24.0 size=   36352KiB time=00:00:13.05 bitrate=22819.6kbits/s speed=0.192x    frame=  801 fps= 12 q=24.0 size=   36864KiB time=00:00:13.31 bitrate=22677.6kbits/s speed=0.194x    frame=  817 fps= 12 q=24.0 size=   37632KiB time=00:00:13.58 bitrate=22695.6kbits/s speed=0.196x    frame=  830 fps= 12 q=24.0 size=   38144KiB time=00:00:13.80 bitrate=22643.2kbits/s speed=0.198x    frame=  845 fps= 12 q=24.0 size=   38656KiB time=N/A bitrate=N/A speed=N/A    frame=  878 fps= 12 q=24.0 size=   39680KiB time=N/A bitrate=N/A speed=N/A    [out#0/mp4 @ 0000020b1d14db40] video:40057KiB audio:475KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.062733%
+frame=  900 fps= 13 q=-1.0 Lsize=   40557KiB time=00:00:14.96 bitrate=22198.9kbits/s speed=0.21x    
+[libx264 @ 0000020b1d13db00] frame I:4     Avg QP:16.95  size:190310
+[libx264 @ 0000020b1d13db00] frame P:243   Avg QP:19.46  size:104149
+[libx264 @ 0000020b1d13db00] frame B:653   Avg QP:21.60  size: 22892
+[libx264 @ 0000020b1d13db00] consecutive B-frames:  1.2%  4.9%  3.7% 90.2%
+[libx264 @ 0000020b1d13db00] mb I  I16..4: 13.9% 58.9% 27.2%
+[libx264 @ 0000020b1d13db00] mb P  I16..4:  6.5% 21.1%  5.7%  P16..4: 26.3% 18.0%  7.1%  0.0%  0.0%    skip:15.2%
+[libx264 @ 0000020b1d13db00] mb B  I16..4:  0.7%  2.9%  0.8%  B16..8: 21.7%  6.2%  1.4%  direct: 3.1%  skip:63.2%  L0:43.3% L1:46.1% BI:10.6%
+[libx264 @ 0000020b1d13db00] 8x8 transform intra:64.0% inter:68.8%
+[libx264 @ 0000020b1d13db00] coded y,uvDC,uvAC intra: 64.5% 59.3% 32.2% inter: 18.1% 17.2% 1.5%
+[libx264 @ 0000020b1d13db00] i16 v,h,dc,p:  8% 71%  3% 18%
+[libx264 @ 0000020b1d13db00] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu: 18% 31% 11%  4%  7%  8%  8%  6%  7%
+[libx264 @ 0000020b1d13db00] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 20% 37% 11%  4%  6%  6%  7%  4%  5%
+[libx264 @ 0000020b1d13db00] i8c dc,h,v,p: 46% 34% 13%  6%
+[libx264 @ 0000020b1d13db00] Weighted P-Frames: Y:0.0% UV:0.0%
+[libx264 @ 0000020b1d13db00] ref P L0: 58.3% 17.6% 17.2%  7.0%
+[libx264 @ 0000020b1d13db00] ref B L0: 86.2% 10.3%  3.5%
+[libx264 @ 0000020b1d13db00] ref B L1: 98.3%  1.7%
+[libx264 @ 0000020b1d13db00] kb/s:21876.20
+[aac @ 0000020b1d24a540] Qavg: 842.414
+
+============================================================
+[+] [AUTOPILOT DUAL UPLOAD RUN] Category: GTA6 | 2026-08-21 19:50:05
+============================================================
+[1/5] Scraping internet for fresh viral GTA6 4K clips...
+[*] [Attempt 1/3] Searching Ultra 4K GTA6 clips: 'gta 5 ultra graphics mod photorealistic 4k 60fps digital dreams'...
+[*] Selected High-End Clip: '[4K] GTA V INSANE GRAPHICS MOD - NATURAL VISION EVOLVED | COP CHASE Gameplay' (qwfvjqZvzu4)
+[*] Downloading Ultra 4K video segment from internet...
+[SUCCESS] Downloaded High-Res Footage: D:\TOOLS\ai_shorts_automation_bot\assets\raw_videos\scraped\gta6_qwfvjqZvzu4.mp4 (67.69 MB)
+[1/5] Active footage: gta6_qwfvjqZvzu4.mp4
+[2/5] Viral Title: Wait For The GTA 6 Supercar Speed Test! 🏎️ #shorts #gta6
+      Hook Text: Wait For The GTA 6 Supercar Speed Test! 🏎️
+      Algorithmic Tags: 12 tags generated
+[3/5] PRO 4K EDITING: Blur-Pad Canvas + GTA Neon Grading + SFX + Progress Bar...
+[!] Warning during Ultra 4K render: ffmpeg version 7.1-essentials_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 14.2.0 (Rev1, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --... Running high-quality fallback.
+      [OK] Rendered PRO Short -> pro_short_gta6_1787322070.mp4 (39.61 MB)
+[4/5] Uploading to YouTube Shorts (public)...
+[*] Uploading 'Wait For The GTA 6 Supercar Speed Test! 🏎️ #shorts #gta6' to YouTube (public)...
+[SUCCESS] Uploaded to YouTube! URL: https://youtu.be/BfkpkfwHi08
+[5/5] Uploading to Instagram Reels...
+[*] Loading saved Instagram session...
+[*] Uploading Reel to Instagram account @gaming143vibes...
+Analyzing CLIP file "D:\TOOLS\ai_shorts_automation_bot\assets\output\pro_short_gta6_1787322070.mp4"
+[SUCCESS] Uploaded to Instagram Reels! Media PK: 3968668486283134940
+============================================================
+[+] [DUAL AUTOPILOT COMPLETE] YouTube & Instagram Ready!
+👉 Video: D:\TOOLS\ai_shorts_automation_bot\assets\output\pro_short_gta6_1787322070.mp4
+============================================================
+
+^C

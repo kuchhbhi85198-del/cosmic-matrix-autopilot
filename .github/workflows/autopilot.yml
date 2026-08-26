@@ -1,27 +1,28 @@
-name: 🌌 24/7 Cosmic Matrix Multi-Platform Autopilot (YouTube + Insta + X)
+name: 🌌 Master 24/7 Autopilot (Cosmic Matrix + Viral Gaming)
 
 on:
   schedule:
-    # Morning Slot: 09:00 AM IST (03:30 UTC) + Resilient Catchups
+    # Slot 1: Morning 09:00 AM IST (03:30 UTC) - Cosmic 1 + Gaming 1
     - cron: '30 3 * * *'
     - cron: '0 4 * * *'
-    - cron: '30 4 * * *'
-    - cron: '0 5 * * *'
-    # Evening Slot: 06:00 PM IST (12:30 UTC) + Resilient Catchups
+    # Slot 2: Afternoon 02:00 PM IST (08:30 UTC) - Gaming 2
+    - cron: '30 8 * * *'
+    - cron: '0 9 * * *'
+    # Slot 3: Evening 06:00 PM IST (12:30 UTC) - Cosmic 2
     - cron: '30 12 * * *'
     - cron: '0 13 * * *'
+    # Slot 4: Night 07:00 PM IST (13:30 UTC) - Gaming 3
     - cron: '30 13 * * *'
     - cron: '0 14 * * *'
-    - cron: '30 14 * * *'
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  run-cosmic-autopilot:
+  run-master-autopilot:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 20
 
     steps:
       - name: 📥 Checkout Repository
@@ -36,7 +37,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-          cache: 'pip'
 
       - name: 🎥 Install FFmpeg & Fonts
         run: |
@@ -46,7 +46,7 @@ jobs:
       - name: 📦 Install Python Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install yt-dlp imageio-ffmpeg instagrapi schedule requests requests-oauthlib google-api-python-client google-auth-oauthlib python-dotenv Pillow
 
       - name: 🔐 Restore Authentication Credentials & 5TB GDrive Tokens
         env:
@@ -54,41 +54,51 @@ jobs:
           GDRIVE_TOKEN_BASE64: ${{ secrets.GDRIVE_TOKEN_BASE64 }}
           CLIENT_SECRET_JSON: ${{ secrets.CLIENT_SECRET_JSON }}
           INSTAGRAM_SESSION: ${{ secrets.INSTAGRAM_SESSION }}
-          X_API_KEY: ${{ secrets.X_API_KEY }}
-          X_API_SECRET: ${{ secrets.X_API_SECRET }}
-          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
-          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+          GAMING_TOKEN_PICKLE_BASE64: ${{ secrets.GAMING_TOKEN_PICKLE_BASE64 }}
+          GAMING_INSTAGRAM_SESSION: ${{ secrets.GAMING_INSTAGRAM_SESSION }}
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          LINKEDIN_PERSON_URN: ${{ secrets.LINKEDIN_PERSON_URN }}
         run: |
-          mkdir -p logs assets/output assets/source_videos assets/clips
+          mkdir -p logs assets/output assets/clips gaming_bot/logs gaming_bot/assets/output
+          
+          # Restore Cosmic Tokens
           if [ -n "$TOKEN_PICKLE_BASE64" ]; then
             echo "$TOKEN_PICKLE_BASE64" | base64 -d > token.pickle
           fi
           if [ -n "$GDRIVE_TOKEN_BASE64" ]; then
             echo "$GDRIVE_TOKEN_BASE64" | base64 -d > gdrive_token.pickle
+            echo "$GDRIVE_TOKEN_BASE64" | base64 -d > gaming_bot/gdrive_token.pickle
           fi
           if [ -n "$CLIENT_SECRET_JSON" ]; then
             echo "$CLIENT_SECRET_JSON" > client_secret.json
+            echo "$CLIENT_SECRET_JSON" > gaming_bot/client_secret.json
           fi
           if [ -n "$INSTAGRAM_SESSION" ]; then
             echo "$INSTAGRAM_SESSION" > instagram_session.json
           fi
-          echo "X_API_KEY=$X_API_KEY" >> .env
-          echo "X_API_SECRET=$X_API_SECRET" >> .env
-          echo "X_ACCESS_TOKEN=$X_ACCESS_TOKEN" >> .env
-          echo "X_ACCESS_TOKEN_SECRET=$X_ACCESS_TOKEN_SECRET" >> .env
-          echo "LINKEDIN_ACCESS_TOKEN=${{ secrets.LINKEDIN_ACCESS_TOKEN }}" >> .env
-          echo "LINKEDIN_PERSON_URN=${{ secrets.LINKEDIN_PERSON_URN }}" >> .env
+          
+          # Restore Gaming Tokens
+          if [ -n "$GAMING_TOKEN_PICKLE_BASE64" ]; then
+            echo "$GAMING_TOKEN_PICKLE_BASE64" | base64 -d > gaming_bot/token.pickle
+          fi
+          if [ -n "$GAMING_INSTAGRAM_SESSION" ]; then
+            echo "$GAMING_INSTAGRAM_SESSION" > gaming_bot/instagram_session.json
+          fi
+          
+          # Restore LinkedIn Environment Variables
+          echo "LINKEDIN_ACCESS_TOKEN=$LINKEDIN_ACCESS_TOKEN" >> .env
+          echo "LINKEDIN_PERSON_URN=$LINKEDIN_PERSON_URN" >> .env
 
-      - name: 🚀 Run Cosmic Matrix 5-in-1 Autopilot
+      - name: 🚀 Run Unified 24/7 Master Autopilot (Cosmic + Gaming)
         continue-on-error: true
         run: |
-          python autopilot.py --privacy public
+          python unified_master_autopilot.py
 
       - name: 💾 Commit & Push Extracted History & Logs
         if: always()
         run: |
-          git config --global user.name "CosmicBot-Autopilot"
-          git config --global user.email "bot@cosmicmatrix.local"
-          git add logs/ || true
-          git commit -m "Auto-update extracted moments and history [skip ci]" || echo "No changes to commit"
+          git config --global user.name "MasterAutopilot-Bot"
+          git config --global user.email "bot@masterautopilot.local"
+          git add logs/ gaming_bot/logs/ || true
+          git commit -m "Auto-update multi-channel history and logs [skip ci]" || echo "No changes to commit"
           git push || echo "Push skipped"
