@@ -112,21 +112,8 @@ class CosmicAutopilotEngine:
         gdrive_file_id = None
         results = {}
         if self.gdrive:
-            try:
-                print("\n[4/5] ☁️ Saving 1080p60 Reel directly into 5TB Google Drive Vault...")
-                gdrive_file_id = self.gdrive.upload_file(rendered_short, self.gdrive.reels_folder_id)
-                print(f"      [SUCCESS] Stored in 5TB Google Drive! (File ID: {gdrive_file_id})")
-                results["google_drive"] = {
-                    "status": "success",
-                    "file_id": gdrive_file_id,
-                    "folder": "Cosmic_Matrix_5TB_Vault/Rendered_Reels_Archive"
-                }
-            except Exception as e:
-                print(f"      [!] GDrive Save Notice: {e}")
-                results["google_drive"] = {"status": "skipped", "message": str(e)}
-
-        # 5. Dispatch to YouTube Shorts and Instagram Reels
-        print("\n[5/5] Broadcasting to YouTube Shorts & Instagram Reels...")
+        # 4. Dispatch to YouTube Shorts and Instagram Reels
+        print("\n[4/4] Broadcasting to YouTube Shorts & Instagram Reels...")
         dispatch_results = self.dispatcher.dispatch_all(
             video_path=rendered_short,
             seo_data=seo_data,
@@ -134,11 +121,11 @@ class CosmicAutopilotEngine:
         )
         results.update(dispatch_results)
 
-        # 6. Auto-Purge from local PC (Zero PC Storage Guarantee)
+        # 5. Immediate Auto-Purge (Zero Storage - Never Save Rendered Videos)
         try:
             if rendered_short.exists():
                 rendered_short.unlink()
-                print(f"      [CLEANUP] Purged local temp render file from PC. (Zero PC storage used!)")
+                print(f"      [CLEANUP] Deleted {rendered_short.name} immediately after upload! (Zero storage used)")
         except Exception:
             pass
 
@@ -146,9 +133,9 @@ class CosmicAutopilotEngine:
             "timestamp": datetime.now().isoformat(),
             "hook": clip_data["hook"],
             "topic": clip_data["topic"],
-            "gdrive_file_id": gdrive_file_id,
             "results": results
         }
+
         self._save_history(record)
 
         print("\n" + "=" * 65)
