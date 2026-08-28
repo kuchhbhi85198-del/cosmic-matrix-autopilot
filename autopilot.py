@@ -138,11 +138,10 @@ class CosmicAutopilotEngine:
         self._save_history(record)
 
         print("\n" + "=" * 65)
-        print("🎉 [COSMIC ORIGINAL AUTOPILOT CYCLE COMPLETE - 100% IN 5TB GDRIVE]")
-        if gdrive_file_id:
-            print(f"👉 5TB Google Drive Cloud Reel ID: {gdrive_file_id}")
+        print("🎉 [COSMIC ORIGINAL AUTOPILOT CYCLE COMPLETE - ZERO STORAGE AUTO-PURGED]")
         print("=" * 65)
-        return Path(f"gdrive://{gdrive_file_id}")
+        return record
+
 
 
 if __name__ == "__main__":
