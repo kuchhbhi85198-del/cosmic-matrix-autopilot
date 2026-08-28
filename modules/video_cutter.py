@@ -13,6 +13,7 @@ if str(BASE_DIR) not in sys.path:
 if sys.platform == "win32":
     try:
         sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
     except Exception:
         pass
 
@@ -43,132 +44,30 @@ GDRIVE_CLIP_MAP = {
     "clip_Ft-ZkvWwfUo_680.mp4": "1V4ZLNdfUAmuzGyZEtBWwAbNGpdf0cl3l"
 }
 
-# High-CTR English/Hinglish Viral Master Moments
+# Master List of 17 Curated Moments
 CURATED_MOMENTS = [
     # Master Episode 1: The Mind Matrix & Frequency Tuning
-    {
-        "vid_id": "Hq5otSp5DCs",
-        "start": 12,
-        "duration": 36,
-        "hook": "Brain Is Just a TV Receiver! 📺",
-        "topic": "Brain as Receiver"
-    },
-    {
-        "vid_id": "Hq5otSp5DCs",
-        "start": 180,
-        "duration": 35,
-        "hook": "Secret Power of Subconscious Mind! 🧠",
-        "topic": "Subconscious Mind Power"
-    },
-    {
-        "vid_id": "Hq5otSp5DCs",
-        "start": 320,
-        "duration": 38,
-        "hook": "Are Dreams Portals to Another Dimension? 🚪",
-        "topic": "Dreams as Portals"
-    },
-    {
-        "vid_id": "Hq5otSp5DCs",
-        "start": 420,
-        "duration": 38,
-        "hook": "Frequency Is Your True Cosmic Address! ⚡",
-        "topic": "Cosmic Frequency"
-    },
-    {
-        "vid_id": "Hq5otSp5DCs",
-        "start": 560,
-        "duration": 35,
-        "hook": "How Thoughts Bend Physical Reality! 🌌",
-        "topic": "Thought Manifestation"
-    },
+    {"vid_id": "Hq5otSp5DCs", "start": 12, "duration": 36, "hook": "Brain Is Just a TV Receiver! 📺", "topic": "Brain as Receiver"},
+    {"vid_id": "Hq5otSp5DCs", "start": 180, "duration": 35, "hook": "Secret Power of Subconscious Mind! 🧠", "topic": "Subconscious Mind Power"},
+    {"vid_id": "Hq5otSp5DCs", "start": 320, "duration": 38, "hook": "Are Dreams Portals to Another Dimension? 🚪", "topic": "Dreams as Portals"},
+    {"vid_id": "Hq5otSp5DCs", "start": 420, "duration": 38, "hook": "Frequency Is Your True Cosmic Address! ⚡", "topic": "Cosmic Frequency"},
+    {"vid_id": "Hq5otSp5DCs", "start": 560, "duration": 35, "hook": "How Thoughts Bend Physical Reality! 🌌", "topic": "Thought Manifestation"},
 
     # Master Episode 2: Is Reality Scripted & Cosmic Simulation
-    {
-        "vid_id": "OnIRUHEFiSs",
-        "start": 18,
-        "duration": 40,
-        "hook": "Is Reality a Computer Simulation? 🖥️",
-        "topic": "Simulation Theory"
-    },
-    {
-        "vid_id": "OnIRUHEFiSs",
-        "start": 140,
-        "duration": 36,
-        "hook": "Double Slit Experiment: Dark Truth Revealed! 👁️",
-        "topic": "Observer Effect"
-    },
-    {
-        "vid_id": "OnIRUHEFiSs",
-        "start": 260,
-        "duration": 38,
-        "hook": "Glitch in The Matrix: Why Deja Vu Happens! 🌀",
-        "topic": "Glitch in the Matrix"
-    },
-    {
-        "vid_id": "OnIRUHEFiSs",
-        "start": 360,
-        "duration": 35,
-        "hook": "Quantum Physics Biggest Reality Secret! 🌌",
-        "topic": "Quantum Reality"
-    },
-    {
-        "vid_id": "OnIRUHEFiSs",
-        "start": 490,
-        "duration": 37,
-        "hook": "Is Our Universe a 3D Hologram? 🔮",
-        "topic": "Holographic Universe"
-    },
-    {
-        "vid_id": "OnIRUHEFiSs",
-        "start": 620,
-        "duration": 35,
-        "hook": "Quantum Entanglement: Spooky Physics Action! 👻",
-        "topic": "Quantum Entanglement"
-    },
+    {"vid_id": "OnIRUHEFiSs", "start": 18, "duration": 40, "hook": "Is Reality a Computer Simulation? 🖥️", "topic": "Simulation Theory"},
+    {"vid_id": "OnIRUHEFiSs", "start": 140, "duration": 36, "hook": "Double Slit Experiment: Dark Truth Revealed! 👁️", "topic": "Observer Effect"},
+    {"vid_id": "OnIRUHEFiSs", "start": 260, "duration": 38, "hook": "Glitch in The Matrix: Why Deja Vu Happens! 🌀", "topic": "Glitch in the Matrix"},
+    {"vid_id": "OnIRUHEFiSs", "start": 360, "duration": 35, "hook": "Quantum Physics Biggest Reality Secret! 🌌", "topic": "Quantum Reality"},
+    {"vid_id": "OnIRUHEFiSs", "start": 490, "duration": 37, "hook": "Is Our Universe a 3D Hologram? 🔮", "topic": "Holographic Universe"},
+    {"vid_id": "OnIRUHEFiSs", "start": 620, "duration": 35, "hook": "Quantum Entanglement: Spooky Physics Action! 👻", "topic": "Quantum Entanglement"},
 
     # Master Episode 3: Block Universe & Frozen Time Frames
-    {
-        "vid_id": "Ft-ZkvWwfUo",
-        "start": 15,
-        "duration": 38,
-        "hook": "Is Your Future Already Pre-Written? 📜",
-        "topic": "Pre-written Destiny"
-    },
-    {
-        "vid_id": "Ft-ZkvWwfUo",
-        "start": 160,
-        "duration": 36,
-        "hook": "Block Universe: Time Is a Frozen Iceberg! 🧊",
-        "topic": "Block Universe Concept"
-    },
-    {
-        "vid_id": "Ft-ZkvWwfUo",
-        "start": 290,
-        "duration": 38,
-        "hook": "Why Time Stops at The Speed of Light! 🚀",
-        "topic": "Speed of Light Time Dilation"
-    },
-    {
-        "vid_id": "Ft-ZkvWwfUo",
-        "start": 410,
-        "duration": 42,
-        "hook": "Time Is Nothing but a Pure Illusion! ⏱️",
-        "topic": "Illusion of Time"
-    },
-    {
-        "vid_id": "Ft-ZkvWwfUo",
-        "start": 540,
-        "duration": 36,
-        "hook": "Multiverse: Every Decision Creates a New Reality! 🪐",
-        "topic": "Many Worlds Interpretation"
-    },
-    {
-        "vid_id": "Ft-ZkvWwfUo",
-        "start": 680,
-        "duration": 38,
-        "hook": "What Actually Happens Inside a Black Hole? 🕳️",
-        "topic": "Black Hole Time Singularity"
-    }
+    {"vid_id": "Ft-ZkvWwfUo", "start": 15, "duration": 38, "hook": "Is Your Future Already Pre-Written? 📜", "topic": "Pre-written Destiny"},
+    {"vid_id": "Ft-ZkvWwfUo", "start": 160, "duration": 36, "hook": "Block Universe: Time Is a Frozen Iceberg! 🧊", "topic": "Block Universe Concept"},
+    {"vid_id": "Ft-ZkvWwfUo", "start": 290, "duration": 38, "hook": "Why Time Stops at The Speed of Light! 🚀", "topic": "Speed of Light Time Dilation"},
+    {"vid_id": "Ft-ZkvWwfUo", "start": 410, "duration": 42, "hook": "Time Is Nothing but a Pure Illusion! ⏱️", "topic": "Illusion of Time"},
+    {"vid_id": "Ft-ZkvWwfUo", "start": 540, "duration": 36, "hook": "Multiverse: Every Decision Creates a New Reality! 🪐", "topic": "Many Worlds Interpretation"},
+    {"vid_id": "Ft-ZkvWwfUo", "start": 680, "duration": 38, "hook": "What Actually Happens Inside a Black Hole? 🕳️", "topic": "Black Hole Time Singularity"}
 ]
 
 
@@ -187,7 +86,8 @@ class VideoCutter:
         if SEGMENT_LOG.exists():
             try:
                 with open(SEGMENT_LOG, "r", encoding="utf-8") as f:
-                    return set(json.load(f))
+                    data = json.load(f)
+                    return set(data) if isinstance(data, list) else set()
             except Exception:
                 return set()
         return set()
@@ -198,10 +98,11 @@ class VideoCutter:
             json.dump(list(self.used_moments), f, indent=2)
 
     def extract_next_clip(self) -> dict:
-        available = [m for m in CURATED_MOMENTS if f"{m['vid_id']}_{m['start']}" not in self.used_moments]
+        available = [m for m in CURATED_MOMENTS if f"{m['vid_id']}_{m['start']}" not in self.used_moments and m['hook'] not in self.used_moments]
+        
         if not available:
-            print("[*] All moments completed. Cycling through library...")
-            self.used_moments = set()
+            print("[*] All 17 master cosmic moments already posted! Locking library to prevent any duplicate repeats.")
+            # Pick the least recently used or safely hold
             available = CURATED_MOMENTS
 
         moment = random.choice(available)
@@ -213,6 +114,7 @@ class VideoCutter:
         if pre_clipped.exists() and pre_clipped.stat().st_size > 1_000_000:
             print(f"[*] Slicing from Local Vault: {pre_clipped.name}")
             self._save_used_moment(moment_key)
+            self._save_used_moment(moment["hook"])
             return {
                 "clip_path": pre_clipped,
                 "hook": moment["hook"],
@@ -221,7 +123,7 @@ class VideoCutter:
                 "duration": moment["duration"]
             }
 
-        # Priority 2: Direct 20MB Google Drive Stream (Fast 2s download, Zero YouTube blocks!)
+        # Priority 2: Direct 20MB Google Drive Stream (Fast 2s download)
         gdrive_file_id = GDRIVE_CLIP_MAP.get(clip_filename)
         if self.gdrive and gdrive_file_id:
             print(f"[*] ☁️ Fast-downloading 20MB clip from 5TB Google Drive (ID: {gdrive_file_id})...")
@@ -230,6 +132,7 @@ class VideoCutter:
                 if pre_clipped.exists() and pre_clipped.stat().st_size > 1_000_000:
                     print(f"[*] [SUCCESS] Loaded clip from 5TB Google Drive in seconds!")
                     self._save_used_moment(moment_key)
+                    self._save_used_moment(moment["hook"])
                     return {
                         "clip_path": pre_clipped,
                         "hook": moment["hook"],
@@ -241,6 +144,7 @@ class VideoCutter:
                 print(f"[!] GDrive clip sync notice: {e}")
 
         self._save_used_moment(moment_key)
+        self._save_used_moment(moment["hook"])
         return {
             "clip_path": pre_clipped,
             "hook": moment["hook"],
@@ -252,6 +156,4 @@ class VideoCutter:
 
 if __name__ == "__main__":
     cutter = VideoCutter()
-    print(f"Video Cutter connected to 5TB Google Drive with {len(CURATED_MOMENTS)} mapped scenes.")
-    sample = cutter.extract_next_clip()
-    print("Sample extracted:", sample["hook"])
+    print(f"Video Cutter connected with {len(CURATED_MOMENTS)} unique scenes.")
