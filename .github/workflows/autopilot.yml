@@ -53,6 +53,7 @@ jobs:
           TOKEN_PICKLE_BASE64: ${{ secrets.TOKEN_PICKLE_BASE64 }}
           GDRIVE_TOKEN_BASE64: ${{ secrets.GDRIVE_TOKEN_BASE64 }}
           CLIENT_SECRET_JSON: ${{ secrets.CLIENT_SECRET_JSON }}
+          GAMING_CLIENT_SECRET_JSON: ${{ secrets.GAMING_CLIENT_SECRET_JSON }}
           INSTAGRAM_SESSION: ${{ secrets.INSTAGRAM_SESSION }}
           GAMING_TOKEN_PICKLE_BASE64: ${{ secrets.GAMING_TOKEN_PICKLE_BASE64 }}
           GAMING_INSTAGRAM_SESSION: ${{ secrets.GAMING_INSTAGRAM_SESSION }}
@@ -71,7 +72,9 @@ jobs:
           fi
           if [ -n "$CLIENT_SECRET_JSON" ]; then
             echo "$CLIENT_SECRET_JSON" > client_secret.json
-            echo "$CLIENT_SECRET_JSON" > gaming_bot/client_secret.json
+          fi
+          if [ -n "$GAMING_CLIENT_SECRET_JSON" ]; then
+            echo "$GAMING_CLIENT_SECRET_JSON" > gaming_bot/client_secret.json
           fi
           if [ -n "$INSTAGRAM_SESSION" ]; then
             echo "$INSTAGRAM_SESSION" > instagram_session.json
@@ -81,6 +84,7 @@ jobs:
           if [ -n "$GAMING_TOKEN_PICKLE_BASE64" ]; then
             echo "$GAMING_TOKEN_PICKLE_BASE64" | base64 -d > gaming_bot/token.pickle
           fi
+
           if [ -n "$GAMING_INSTAGRAM_SESSION" ]; then
             echo "$GAMING_INSTAGRAM_SESSION" > gaming_bot/instagram_session.json
           fi
