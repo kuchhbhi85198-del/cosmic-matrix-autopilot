@@ -670,5 +670,34 @@
         "message": "Facebook API credentials not configured / disabled"
       }
     }
+  },
+  {
+    "timestamp": "2026-08-28T04:48:27.150350",
+    "hook": "Multiverse: Every Decision Creates a New Reality! \ud83e\ude90",
+    "topic": "Many Worlds Interpretation",
+    "results": {
+      "youtube": {
+        "status": "success",
+        "video_id": "H60RqaS8Jk0",
+        "url": "https://youtu.be/H60RqaS8Jk0"
+      },
+      "instagram": {
+        "status": "success",
+        "media_pk": "3973452336964059873",
+        "media_id": "3973452336964059873_48561087873"
+      },
+      "linkedin": {
+        "status": "success",
+        "post_id": "urn:li:ugcPost:7498964692036673537"
+      },
+      "x_twitter": {
+        "status": "skipped",
+        "message": "X (Twitter) API keys not configured in .env"
+      },
+      "facebook": {
+        "status": "skipped",
+        "message": "Facebook API credentials not configured / disabled"
+      }
+    }
   }
 ]
