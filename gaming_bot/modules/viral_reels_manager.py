@@ -130,7 +130,7 @@ class ViralReelsManager:
     def _init_drive_service(self):
         token_file = GDRIVE_TOKEN_FILE
         if not token_file.exists():
-            token_file = BASE_DIR.parent / "cosmic_matrix_bot" / "gdrive_token.pickle"
+            token_file = BASE_DIR.parent / "gdrive_token.pickle"
         if not token_file.exists():
             return None
         try:
@@ -151,6 +151,10 @@ class ViralReelsManager:
                 return {}
         return {}
 
+    def _save_gdrive_map(self):
+        with open(GDRIVE_MAP_FILE, "w", encoding="utf-8") as f:
+            json.dump(self.gdrive_map, f, indent=2)
+
     def _load_used(self) -> set:
         if USED_REELS_LOG.exists():
             try:
@@ -167,19 +171,21 @@ class ViralReelsManager:
             json.dump(list(self.used_reels), f, indent=2)
 
     def scan_all_reels(self) -> list:
-        # Priority 1: Local PC Folder
+        # Priority 1: Check Local Folder if exists
         if self.reels_dir.exists():
             valid_extensions = [".mp4", ".mov", ".mkv", ".webm"]
             videos = []
             for file in self.reels_dir.rglob("*"):
                 if file.is_file() and file.suffix.lower() in valid_extensions and file.stat().st_size > 1_000_000:
-                    videos.append(file)
+                    if file.name not in self.used_reels:
+                        videos.append(file)
             if videos:
                 return sorted(videos, key=lambda x: x.name)
 
-        # Priority 2: 5TB Google Drive Cloud Map (When PC is OFF)
+        # Priority 2: 5TB Google Drive Cloud Map (Fresh unposted reels only)
         if self.gdrive_map:
-            return [Path(name) for name in sorted(self.gdrive_map.keys())]
+            available = [Path(name) for name in sorted(self.gdrive_map.keys()) if name not in self.used_reels]
+            return available
 
         return []
 
@@ -214,9 +220,9 @@ class ViralReelsManager:
             cat = "tech"
         elif any(w in lower for w in ["space", "isro", "nasa", "earth", "planet", "universe"]):
             cat = "space"
-        elif any(w in lower for w in ["win", "race", "balloon", "guess", "surprise", "challenge", "egg", "spicy", "vault", "food"]):
+        elif any(w in lower for w in ["win", "race", "balloon", "guess", "surprise", "challenge", "egg", "spicy", "vault", "food", "dog"]):
             cat = "challenge"
-        elif any(w in lower for w in ["dog", "animal", "zebra", "slimed"]):
+        elif any(w in lower for w in ["animal", "zebra", "slimed"]):
             cat = "comedy"
         elif any(w in lower for w in ["cricket", "fastest", "match", "shot", "player", "strongest"]):
             cat = "sports"
@@ -282,16 +288,10 @@ class ViralReelsManager:
     def get_next_viral_reel(self) -> Optional[Dict[str, Any]]:
         all_videos = self.scan_all_reels()
         if not all_videos:
-            print(f"[!] No video files found locally or in 5TB Google Drive cloud map.")
+            print(f"[!] No fresh unposted viral reels left in 5TB Google Drive!")
             return None
 
-        available = [v for v in all_videos if v.name not in self.used_reels]
-        if not available:
-            print("[*] All viral reels in library posted! Resetting cycle safely...")
-            self.used_reels = set()
-            available = all_videos
-
-        selected = random.choice(available)
+        selected = random.choice(all_videos)
         meta = self.clean_title_and_seo(selected.name)
         meta["raw_video_path"] = selected
         
@@ -301,7 +301,7 @@ class ViralReelsManager:
         else:
             gdrive_id = self.gdrive_map.get(selected.name)
             if not gdrive_id:
-                raise FileNotFoundError(f"File {selected.name} not found locally or in GDrive map.")
+                raise FileNotFoundError(f"File {selected.name} not found in GDrive map.")
             temp_raw = OUTPUT_DIR / f"raw_cloud_{selected.name}"
             print(f"[*] ☁️ Fast-downloading 20MB raw reel from 5TB Google Drive (ID: {gdrive_id})...")
             self.download_from_gdrive(gdrive_id, temp_raw)
@@ -315,4 +315,25 @@ class ViralReelsManager:
         return meta
 
     def mark_as_posted(self, raw_filename: str):
+        # 1. Lock in database
         self._save_used(raw_filename)
+        
+        # 2. Delete raw reel file from 5TB Google Drive immediately so it can never be posted again!
+        gdrive_id = self.gdrive_map.pop(raw_filename, None)
+        self._save_gdrive_map()
+        
+        if self.drive_service and gdrive_id:
+            try:
+                self.drive_service.files().delete(fileId=gdrive_id).execute()
+                print(f"[*] 🗑️ [PERMANENT PURGE] Deleted {raw_filename} from 5TB Google Drive! (Zero repeats guarantee)")
+            except Exception as e:
+                print(f"[!] Notice: Could not delete {raw_filename} from Drive: {e}")
+        
+        # 3. Delete from local PC if present
+        local_file = self.reels_dir / raw_filename
+        if local_file.exists():
+            try:
+                local_file.unlink()
+                print(f"[*] 🗑️ [LOCAL PURGE] Deleted {raw_filename} from local PC disk.")
+            except Exception:
+                pass
