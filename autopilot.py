@@ -108,11 +108,8 @@ class CosmicAutopilotEngine:
         file_size_mb = round(rendered_short.stat().st_size / (1024 * 1024), 2)
         print(f"      [SUCCESS] Rendered Short: {rendered_short.name} ({file_size_mb} MB)")
 
-        # 4. Upload & Store in 5TB Google Drive Vault
-        gdrive_file_id = None
-        results = {}
-        if self.gdrive:
         # 4. Dispatch to YouTube Shorts and Instagram Reels
+        results = {}
         print("\n[4/4] Broadcasting to YouTube Shorts & Instagram Reels...")
         dispatch_results = self.dispatcher.dispatch_all(
             video_path=rendered_short,
@@ -120,6 +117,8 @@ class CosmicAutopilotEngine:
             privacy=self.privacy_status
         )
         results.update(dispatch_results)
+
+
 
         # 5. Immediate Auto-Purge (Zero Storage - Never Save Rendered Videos)
         try:
