@@ -728,5 +728,34 @@
         "message": "Facebook API credentials not configured / disabled"
       }
     }
+  },
+  {
+    "timestamp": "2026-08-29T12:18:21.894417",
+    "hook": "Quantum Physics Biggest Reality Secret! \ud83c\udf0c",
+    "topic": "Quantum Physics Biggest Reality Secret",
+    "results": {
+      "youtube": {
+        "status": "success",
+        "video_id": "mQXG-b7WkXk",
+        "url": "https://youtu.be/mQXG-b7WkXk"
+      },
+      "instagram": {
+        "status": "success",
+        "media_pk": "3974403621645238426",
+        "media_id": "3974403621645238426_48561087873"
+      },
+      "linkedin": {
+        "status": "success",
+        "post_id": "urn:li:ugcPost:7499440301573292032"
+      },
+      "x_twitter": {
+        "status": "skipped",
+        "message": "X (Twitter) API keys not configured in .env"
+      },
+      "facebook": {
+        "status": "skipped",
+        "message": "Facebook API credentials not configured / disabled"
+      }
+    }
   }
 ]
