@@ -28,15 +28,21 @@ from modules.gdrive_manager import GoogleDriveManager
 HISTORY_LOG = LOGS_DIR / "upload_history.json"
 
 
+from datetime import datetime, timezone, timedelta
+
+def get_ist_now() -> datetime:
+    return datetime.now(timezone.utc) + timedelta(hours=5, minutes=30)
+
 def has_slot_posted_today() -> bool:
-    """Checks if current time slot (morning 4-14, evening 14-23) was already posted today."""
+    """Checks if current time slot (morning 4-14, evening 14-23 IST) was already posted today."""
     if not HISTORY_LOG.exists():
         return False
     try:
         with open(HISTORY_LOG, "r", encoding="utf-8") as f:
             history = json.load(f)
-        today_str = datetime.now().strftime("%Y-%m-%d")
-        current_hour = datetime.now().hour
+        ist_now = get_ist_now()
+        today_str = ist_now.strftime("%Y-%m-%d")
+        current_hour = ist_now.hour
         slot_type = "morning" if current_hour < 14 else "evening"
         for item in history:
             ts_str = item.get("timestamp", "")
@@ -52,6 +58,7 @@ def has_slot_posted_today() -> bool:
     except Exception:
         pass
     return False
+
 
 
 class CosmicAutopilotEngine:
