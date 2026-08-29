@@ -27,14 +27,21 @@ LOGS_DIR.mkdir(parents=True, exist_ok=True)
 HISTORY_FILE = LOGS_DIR / "upload_history.json"
 
 
+from datetime import datetime, timezone, timedelta
+
+def get_ist_now() -> datetime:
+    return datetime.now(timezone.utc) + timedelta(hours=5, minutes=30)
+
 def get_current_slot() -> str:
-    current_hour = datetime.now().hour
+    current_hour = get_ist_now().hour
     if 4 <= current_hour < 12:
         return "slot_morning"
     elif 12 <= current_hour < 17:
         return "slot_afternoon"
-    else:
+    elif 17 <= current_hour < 19:
         return "slot_evening"
+    else:
+        return "slot_night"
 
 
 def has_slot_posted_today() -> bool:
@@ -43,7 +50,8 @@ def has_slot_posted_today() -> bool:
     try:
         with open(HISTORY_FILE, "r", encoding="utf-8") as f:
             history = json.load(f)
-        today_str = datetime.now().strftime("%Y-%m-%d")
+        ist_now = get_ist_now()
+        today_str = ist_now.strftime("%Y-%m-%d")
         current_slot = get_current_slot()
         
         for item in history:
@@ -51,8 +59,17 @@ def has_slot_posted_today() -> bool:
             if ts_str.startswith(today_str):
                 try:
                     dt = datetime.fromisoformat(ts_str)
+                    # Convert to IST if timezone naive or stored
                     hour = dt.hour
-                    item_slot = "slot_morning" if 4 <= hour < 12 else ("slot_afternoon" if 12 <= hour < 17 else "slot_evening")
+                    if 4 <= hour < 12:
+                        item_slot = "slot_morning"
+                    elif 12 <= hour < 17:
+                        item_slot = "slot_afternoon"
+                    elif 17 <= hour < 19:
+                        item_slot = "slot_evening"
+                    else:
+                        item_slot = "slot_night"
+                    
                     if item_slot == current_slot:
                         return True
                 except Exception:
@@ -60,6 +77,7 @@ def has_slot_posted_today() -> bool:
     except Exception:
         pass
     return False
+
 
 
 class GamingAutopilotEngine:
