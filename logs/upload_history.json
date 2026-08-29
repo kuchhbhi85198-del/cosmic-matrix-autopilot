@@ -699,5 +699,34 @@
         "message": "Facebook API credentials not configured / disabled"
       }
     }
+  },
+  {
+    "timestamp": "2026-08-29T04:34:29.882229",
+    "hook": "Is Reality a Computer Simulation? \ud83d\udda5\ufe0f",
+    "topic": "Simulation Theory",
+    "results": {
+      "youtube": {
+        "status": "success",
+        "video_id": "sVgAS_jKSKI",
+        "url": "https://youtu.be/sVgAS_jKSKI"
+      },
+      "instagram": {
+        "status": "success",
+        "media_pk": "3974169938464312069",
+        "media_id": "3974169938464312069_48561087873"
+      },
+      "linkedin": {
+        "status": "success",
+        "post_id": "urn:li:ugcPost:7499323568187555840"
+      },
+      "x_twitter": {
+        "status": "skipped",
+        "message": "X (Twitter) API keys not configured in .env"
+      },
+      "facebook": {
+        "status": "skipped",
+        "message": "Facebook API credentials not configured / disabled"
+      }
+    }
   }
 ]
