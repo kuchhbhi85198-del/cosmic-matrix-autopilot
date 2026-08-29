@@ -757,5 +757,34 @@
         "message": "Facebook API credentials not configured / disabled"
       }
     }
+  },
+  {
+    "timestamp": "2026-08-29T12:34:08.666287",
+    "hook": "Why Empty Space Is Never Truly Empty! \u26a1",
+    "topic": "Why Empty Space Is Never Truly Empty",
+    "results": {
+      "youtube": {
+        "status": "success",
+        "video_id": "NoW1hZIYGnQ",
+        "url": "https://youtu.be/NoW1hZIYGnQ"
+      },
+      "instagram": {
+        "status": "success",
+        "media_pk": "3974411509503738313",
+        "media_id": "3974411509503738313_48561087873"
+      },
+      "linkedin": {
+        "status": "success",
+        "post_id": "urn:li:ugcPost:7499444274200051713"
+      },
+      "x_twitter": {
+        "status": "skipped",
+        "message": "X (Twitter) API keys not configured in .env"
+      },
+      "facebook": {
+        "status": "skipped",
+        "message": "Facebook API credentials not configured / disabled"
+      }
+    }
   }
 ]
