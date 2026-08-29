@@ -120,13 +120,15 @@ class CosmicAutopilotEngine:
 
 
 
-        # 5. Immediate Auto-Purge (Zero Storage - Never Save Rendered Videos)
+        # 5. Permanent Physical Deletion from 5TB Google Drive & Local Purge
+        self.cutter.mark_as_posted(clip_data)
         try:
             if rendered_short.exists():
                 rendered_short.unlink()
                 print(f"      [CLEANUP] Deleted {rendered_short.name} immediately after upload! (Zero storage used)")
         except Exception:
             pass
+
 
         record = {
             "timestamp": datetime.now().isoformat(),
