@@ -1,14 +1,17 @@
-import json
-import random
+import os
 import re
 import sys
+import json
+import random
+import io
+import pickle
 import subprocess
 from pathlib import Path
+from typing import Dict, Any, Optional
 import imageio_ffmpeg
-
-BASE_DIR = Path(__file__).resolve().parent.parent
-if str(BASE_DIR) not in sys.path:
-    sys.path.insert(0, str(BASE_DIR))
+from googleapiclient.discovery import build
+from googleapiclient.http import MediaIoBaseDownload
+from google.auth.transport.requests import Request
 
 if sys.platform == "win32":
     try:
@@ -17,143 +20,150 @@ if sys.platform == "win32":
     except Exception:
         pass
 
-from config import SOURCE_VIDEOS_DIR, LOGS_DIR
-from modules.gdrive_manager import GoogleDriveManager
+BASE_DIR = Path(__file__).resolve().parent.parent
+LOGS_DIR = BASE_DIR / "logs"
+OUTPUT_DIR = BASE_DIR / "assets" / "output"
+USED_COSMIC_LOG = LOGS_DIR / "used_cosmic_reels.json"
+GDRIVE_TOKEN_FILE = BASE_DIR / "gdrive_token.pickle"
 
-SEGMENT_LOG = LOGS_DIR / "extracted_segments.json"
-CLIPS_DIR = BASE_DIR / "assets" / "clips"
+LOGS_DIR.mkdir(parents=True, exist_ok=True)
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-# Permanent Cloud Clip Mapping in 5TB Google Drive (20 MB each, loads in 2s)
-GDRIVE_CLIP_MAP = {
-    "clip_Hq5otSp5DCs_12.mp4": "1C_6AjsKrOcA33QGs-xetId1oHla1-P4p",
-    "clip_Hq5otSp5DCs_180.mp4": "1Jom0zAtMto-HmbLvw7mqJ2Z-45a35Y7V",
-    "clip_Hq5otSp5DCs_320.mp4": "1l7RJEHPnIJoEEZ_Bqwbl7hlHFGUxnjAV",
-    "clip_Hq5otSp5DCs_420.mp4": "1Hu4cK7grvsxa7s_ETHXHYoE71PUm927b",
-    "clip_Hq5otSp5DCs_560.mp4": "1JzSWQCRZydrbRT-poTVtSXOhHghHC_XX",
-    "clip_OnIRUHEFiSs_18.mp4": "11N5iirubGN7Ur0nB4OEgulnwjgLRkNLr",
-    "clip_OnIRUHEFiSs_140.mp4": "1FCBlOmdBZrJZv54sdapQmGwk9-nWnaq3",
-    "clip_OnIRUHEFiSs_260.mp4": "1n9KKH2J7uW_aeStiw19iMGaTfqcnDntp",
-    "clip_OnIRUHEFiSs_360.mp4": "1ZT9oEqbjTV1tT-4AmMpqVt6aiJmpE0J5",
-    "clip_OnIRUHEFiSs_490.mp4": "1MN_G6ApVzWmo6P_ufF1f0uyvauRlHnhf",
-    "clip_OnIRUHEFiSs_620.mp4": "1VCUAF2ZvVITaMxN0dJJSIhbVGU0t6es9",
-    "clip_Ft-ZkvWwfUo_15.mp4": "1a4k6wq6Tx7H0DyFi1_aJ4rYopKMfgCaZ",
-    "clip_Ft-ZkvWwfUo_160.mp4": "1I5xdX2kF3aIyQppySQdwcf3kcmj8FQnb",
-    "clip_Ft-ZkvWwfUo_290.mp4": "11E-UYmpFgHMh0mhe0fHu5tgCiUWL7ffl",
-    "clip_Ft-ZkvWwfUo_410.mp4": "1xNM6fdaUaGzIT-N_r9w7mJ3vCLs_0VXM",
-    "clip_Ft-ZkvWwfUo_540.mp4": "13zMphywWebs3goe88xZO2Cj6PuKz4zvQ",
-    "clip_Ft-ZkvWwfUo_680.mp4": "1V4ZLNdfUAmuzGyZEtBWwAbNGpdf0cl3l"
-}
-
-# Master List of 17 Curated Moments
-CURATED_MOMENTS = [
-    # Master Episode 1: The Mind Matrix & Frequency Tuning
-    {"vid_id": "Hq5otSp5DCs", "start": 12, "duration": 36, "hook": "Brain Is Just a TV Receiver! 📺", "topic": "Brain as Receiver"},
-    {"vid_id": "Hq5otSp5DCs", "start": 180, "duration": 35, "hook": "Secret Power of Subconscious Mind! 🧠", "topic": "Subconscious Mind Power"},
-    {"vid_id": "Hq5otSp5DCs", "start": 320, "duration": 38, "hook": "Are Dreams Portals to Another Dimension? 🚪", "topic": "Dreams as Portals"},
-    {"vid_id": "Hq5otSp5DCs", "start": 420, "duration": 38, "hook": "Frequency Is Your True Cosmic Address! ⚡", "topic": "Cosmic Frequency"},
-    {"vid_id": "Hq5otSp5DCs", "start": 560, "duration": 35, "hook": "How Thoughts Bend Physical Reality! 🌌", "topic": "Thought Manifestation"},
-
-    # Master Episode 2: Is Reality Scripted & Cosmic Simulation
-    {"vid_id": "OnIRUHEFiSs", "start": 18, "duration": 40, "hook": "Is Reality a Computer Simulation? 🖥️", "topic": "Simulation Theory"},
-    {"vid_id": "OnIRUHEFiSs", "start": 140, "duration": 36, "hook": "Double Slit Experiment: Dark Truth Revealed! 👁️", "topic": "Observer Effect"},
-    {"vid_id": "OnIRUHEFiSs", "start": 260, "duration": 38, "hook": "Glitch in The Matrix: Why Deja Vu Happens! 🌀", "topic": "Glitch in the Matrix"},
-    {"vid_id": "OnIRUHEFiSs", "start": 360, "duration": 35, "hook": "Quantum Physics Biggest Reality Secret! 🌌", "topic": "Quantum Reality"},
-    {"vid_id": "OnIRUHEFiSs", "start": 490, "duration": 37, "hook": "Is Our Universe a 3D Hologram? 🔮", "topic": "Holographic Universe"},
-    {"vid_id": "OnIRUHEFiSs", "start": 620, "duration": 35, "hook": "Quantum Entanglement: Spooky Physics Action! 👻", "topic": "Quantum Entanglement"},
-
-    # Master Episode 3: Block Universe & Frozen Time Frames
-    {"vid_id": "Ft-ZkvWwfUo", "start": 15, "duration": 38, "hook": "Is Your Future Already Pre-Written? 📜", "topic": "Pre-written Destiny"},
-    {"vid_id": "Ft-ZkvWwfUo", "start": 160, "duration": 36, "hook": "Block Universe: Time Is a Frozen Iceberg! 🧊", "topic": "Block Universe Concept"},
-    {"vid_id": "Ft-ZkvWwfUo", "start": 290, "duration": 38, "hook": "Why Time Stops at The Speed of Light! 🚀", "topic": "Speed of Light Time Dilation"},
-    {"vid_id": "Ft-ZkvWwfUo", "start": 410, "duration": 42, "hook": "Time Is Nothing but a Pure Illusion! ⏱️", "topic": "Illusion of Time"},
-    {"vid_id": "Ft-ZkvWwfUo", "start": 540, "duration": 36, "hook": "Multiverse: Every Decision Creates a New Reality! 🪐", "topic": "Many Worlds Interpretation"},
-    {"vid_id": "Ft-ZkvWwfUo", "start": 680, "duration": 38, "hook": "What Actually Happens Inside a Black Hole? 🕳️", "topic": "Black Hole Time Singularity"}
+# High-CTR Dynamic Cosmic Science Hooks
+COSMIC_HOOK_TEMPLATES = [
+    "Quantum Physics Biggest Reality Secret! 🌌",
+    "Why Time Stops at The Speed of Light! 🚀",
+    "Are Dreams Portals to Another Dimension? 🚪",
+    "Multiverse: Every Decision Creates a New Reality! 🪐",
+    "What Actually Happens Inside a Black Hole? 🕳️",
+    "Is Our Universe a 3D Hologram? 🔮",
+    "Brain Is Just a TV Receiver! 📺",
+    "How Thoughts Bend Physical Reality! 🌌",
+    "Quantum Entanglement: Spooky Physics Action! 👻",
+    "Block Universe: Time Is a Frozen Iceberg! 🧊",
+    "The 4th Dimension: Can Humans Ever See It? 👁️",
+    "Parallel Universes Are Real & Right Next to Us! 🪐",
+    "Why Empty Space Is Never Truly Empty! ⚡",
+    "The Observer Effect: Reality Changes When You Look! 👁️",
+    "Is Consciousness The Fundamental Code of Universe? 🧠"
 ]
 
 
-class VideoCutter:
+class CosmicVideoCutter:
+    """
+    100% Zero-Repeat Cosmic Video Engine:
+    Streams fresh master clips from 5TB Google Drive and permanently deletes
+    each source clip from Google Drive immediately after upload!
+    """
     def __init__(self):
-        CLIPS_DIR.mkdir(parents=True, exist_ok=True)
-        LOGS_DIR.mkdir(parents=True, exist_ok=True)
-        self.used_moments = self._load_used_moments()
         self.ffmpeg_exe = imageio_ffmpeg.get_ffmpeg_exe()
-        try:
-            self.gdrive = GoogleDriveManager()
-        except Exception:
-            self.gdrive = None
+        self.used_clips = self._load_used()
+        self.drive_service = self._init_drive_service()
 
-    def _load_used_moments(self) -> set:
-        if SEGMENT_LOG.exists():
+    def _init_drive_service(self):
+        if not GDRIVE_TOKEN_FILE.exists():
+            return None
+        try:
+            with open(GDRIVE_TOKEN_FILE, "rb") as token:
+                creds = pickle.load(token)
+            if creds and creds.expired and creds.refresh_token:
+                creds.refresh(Request())
+            return build("drive", "v3", credentials=creds)
+        except Exception:
+            return None
+
+    def _load_used(self) -> set:
+        if USED_COSMIC_LOG.exists():
             try:
-                with open(SEGMENT_LOG, "r", encoding="utf-8") as f:
+                with open(USED_COSMIC_LOG, "r", encoding="utf-8") as f:
                     data = json.load(f)
                     return set(data) if isinstance(data, list) else set()
             except Exception:
                 return set()
         return set()
 
-    def _save_used_moment(self, moment_key: str):
-        self.used_moments.add(moment_key)
-        with open(SEGMENT_LOG, "w", encoding="utf-8") as f:
-            json.dump(list(self.used_moments), f, indent=2)
+    def _save_used(self, identifier: str):
+        self.used_clips.add(identifier)
+        with open(USED_COSMIC_LOG, "w", encoding="utf-8") as f:
+            json.dump(list(self.used_clips), f, indent=2)
+
+    def get_fresh_drive_clips(self) -> list:
+        if not self.drive_service:
+            return []
+        
+        # Look for fresh clips in Viral_Reels_HD_Vault in 5TB Google Drive
+        q = "name = 'Viral_Reels_HD_Vault' and mimeType = 'application/vnd.google-apps.folder' and trashed = false"
+        res = self.drive_service.files().list(q=q, fields="files(id, name)").execute()
+        if not res.get("files"):
+            return []
+        
+        folder_id = res["files"][0]["id"]
+        cq = f"'{folder_id}' in parents and trashed = false"
+        cres = self.drive_service.files().list(q=cq, fields="files(id, name, size)", pageSize=1000).execute()
+        files = cres.get("files", [])
+        
+        fresh = [f for f in files if f["name"] not in self.used_clips]
+        return fresh
+
+    def download_from_gdrive(self, file_id: str, destination: Path):
+        request = self.drive_service.files().get_media(fileId=file_id)
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        fh = io.FileIO(str(destination), "wb")
+        downloader = MediaIoBaseDownload(fh, request, chunksize=1024*1024*10)
+        done = False
+        while not done:
+            status, done = downloader.next_chunk()
+        print("  [GDrive 5TB Sync] Download Complete!")
 
     def extract_next_clip(self) -> dict:
-        available = [m for m in CURATED_MOMENTS if f"{m['vid_id']}_{m['start']}" not in self.used_moments and m['hook'] not in self.used_moments]
+        fresh_files = self.get_fresh_drive_clips()
+        if not fresh_files:
+            raise RuntimeError("No fresh unposted master reels found in 5TB Google Drive!")
+
+        selected = random.choice(fresh_files)
+        file_id = selected["id"]
+        filename = selected["name"]
         
-        if not available:
-            print("[*] All 17 master cosmic moments already posted! Locking library to prevent any duplicate repeats.")
-            # Pick the least recently used or safely hold
-            available = CURATED_MOMENTS
-
-        moment = random.choice(available)
-        moment_key = f"{moment['vid_id']}_{moment['start']}"
-        clip_filename = f"clip_{moment_key}.mp4"
-        pre_clipped = CLIPS_DIR / clip_filename
-
-        # Priority 1: Check Local Clip Cache
-        if pre_clipped.exists() and pre_clipped.stat().st_size > 1_000_000:
-            print(f"[*] Slicing from Local Vault: {pre_clipped.name}")
-            self._save_used_moment(moment_key)
-            self._save_used_moment(moment["hook"])
-            return {
-                "clip_path": pre_clipped,
-                "hook": moment["hook"],
-                "topic": moment["topic"],
-                "vid_id": moment["vid_id"],
-                "duration": moment["duration"]
-            }
-
-        # Priority 2: Direct 20MB Google Drive Stream (Fast 2s download)
-        gdrive_file_id = GDRIVE_CLIP_MAP.get(clip_filename)
-        if self.gdrive and gdrive_file_id:
-            print(f"[*] ☁️ Fast-downloading 20MB clip from 5TB Google Drive (ID: {gdrive_file_id})...")
-            try:
-                self.gdrive.download_file(gdrive_file_id, pre_clipped)
-                if pre_clipped.exists() and pre_clipped.stat().st_size > 1_000_000:
-                    print(f"[*] [SUCCESS] Loaded clip from 5TB Google Drive in seconds!")
-                    self._save_used_moment(moment_key)
-                    self._save_used_moment(moment["hook"])
-                    return {
-                        "clip_path": pre_clipped,
-                        "hook": moment["hook"],
-                        "topic": moment["topic"],
-                        "vid_id": moment["vid_id"],
-                        "duration": moment["duration"]
-                    }
-            except Exception as e:
-                print(f"[!] GDrive clip sync notice: {e}")
-
-        self._save_used_moment(moment_key)
-        self._save_used_moment(moment["hook"])
+        temp_raw = OUTPUT_DIR / f"raw_cosmic_{filename}"
+        print(f"[*] ☁️ Fast-downloading fresh clip from 5TB Google Drive: {filename} (ID: {file_id})...")
+        self.download_from_gdrive(file_id, temp_raw)
+        
+        hook = random.choice(COSMIC_HOOK_TEMPLATES)
+        topic = hook.split("!")[0].split("?")[0].strip()
+        
         return {
-            "clip_path": pre_clipped,
-            "hook": moment["hook"],
-            "topic": moment["topic"],
-            "vid_id": moment["vid_id"],
-            "duration": moment["duration"]
+            "clip_path": temp_raw,
+            "hook": hook,
+            "topic": topic,
+            "gdrive_file_id": file_id,
+            "filename": filename,
+            "duration": 35
         }
 
+    def mark_as_posted(self, clip_data: dict):
+        filename = clip_data.get("filename", "")
+        file_id = clip_data.get("gdrive_file_id", "")
+        
+        # 1. Save in used database
+        if filename:
+            self._save_used(filename)
+        
+        # 2. PERMANENT PHYSICAL DELETION from 5TB Google Drive
+        if self.drive_service and file_id:
+            try:
+                self.drive_service.files().delete(fileId=file_id).execute()
+                print(f"[*] 🗑️ [PERMANENT PURGE] Deleted {filename} from 5TB Google Drive! (Zero repeat guarantee)")
+            except Exception as e:
+                print(f"[!] Drive delete notice: {e}")
+        
+        # 3. Clean up local raw temp file
+        raw_path = clip_data.get("clip_path")
+        if raw_path and isinstance(raw_path, Path) and raw_path.exists():
+            try:
+                raw_path.unlink()
+            except Exception:
+                pass
 
-if __name__ == "__main__":
-    cutter = VideoCutter()
-    print(f"Video Cutter connected with {len(CURATED_MOMENTS)} unique scenes.")
+
+# Backward compatibility
+VideoCutter = CosmicVideoCutter
