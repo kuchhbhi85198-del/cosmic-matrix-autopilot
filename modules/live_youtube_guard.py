@@ -45,17 +45,16 @@ def has_channel_posted_in_slot(token_path: Path, slot_type: str) -> bool:
 
         ist_now = get_ist_now()
         today_date = ist_now.date()
-        current_hour = ist_now.hour
 
-        # Determine slot start and end hours in IST
+        # Strict Matching Windows in IST
         if slot_type == "morning":
-            slot_start_h, slot_end_h = 4, 12
+            slot_start_h, slot_end_h = 8, 12
         elif slot_type == "afternoon":
-            slot_start_h, slot_end_h = 12, 17
+            slot_start_h, slot_end_h = 13, 17
         elif slot_type == "evening":
             slot_start_h, slot_end_h = 17, 19
         elif slot_type == "night":
-            slot_start_h, slot_end_h = 19, 24
+            slot_start_h, slot_end_h = 19, 23
         else:
             slot_start_h, slot_end_h = 0, 24
 
@@ -71,7 +70,7 @@ def has_channel_posted_in_slot(token_path: Path, slot_type: str) -> bool:
                 title = item["snippet"].get("title", "")
                 vid = item["id"].get("videoId", "")
                 print(f"🛑 [LIVE YOUTUBE GUARD] Found video already live on channel for today's {slot_type.upper()} slot!")
-                print(f"   -> Live Video: https://youtu.content/{vid} | '{title}' at {pub_ist.strftime('%I:%M %p IST')}")
+                print(f"   -> Live Video: https://youtu.be/{vid} | '{title}' at {pub_ist.strftime('%I:%M %p IST')}")
                 print(f"   -> BLOCKING ANY DUPLICATE UPLOAD. Strictly 1 video per slot!")
                 return True
 
@@ -79,12 +78,3 @@ def has_channel_posted_in_slot(token_path: Path, slot_type: str) -> bool:
     except Exception as e:
         print(f"[!] Live YouTube Guard API Check notice: {e}")
         return False
-
-
-if __name__ == "__main__":
-    base = Path(__file__).resolve().parent.parent
-    c_token = base / "token.pickle"
-    g_token = base / "gaming_bot" / "token.pickle"
-    
-    print("Cosmic Posted Morning?", has_channel_posted_in_slot(c_token, "morning"))
-    print("Gaming Posted Afternoon?", has_channel_posted_in_slot(g_token, "afternoon"))
