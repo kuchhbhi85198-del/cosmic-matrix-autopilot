@@ -815,5 +815,34 @@
         "message": "Facebook API credentials not configured / disabled"
       }
     }
+  },
+  {
+    "timestamp": "2026-08-30T13:05:16.570013",
+    "hook": "Parallel Universes Splitting Every Microsecond! \ud83c\udf0c",
+    "topic": "Parallel Universes Splitting Every Microsecond",
+    "results": {
+      "youtube": {
+        "status": "success",
+        "video_id": "l2vygCeO6ro",
+        "url": "https://youtu.be/l2vygCeO6ro"
+      },
+      "instagram": {
+        "status": "success",
+        "media_pk": "3975151708101733040",
+        "media_id": "3975151708101733040_48561087873"
+      },
+      "linkedin": {
+        "status": "success",
+        "post_id": "urn:li:ugcPost:7499814496656453633"
+      },
+      "x_twitter": {
+        "status": "skipped",
+        "message": "X (Twitter) API keys not configured in .env"
+      },
+      "facebook": {
+        "status": "skipped",
+        "message": "Facebook API credentials not configured / disabled"
+      }
+    }
   }
 ]
