@@ -786,5 +786,34 @@
         "message": "Facebook API credentials not configured / disabled"
       }
     }
+  },
+  {
+    "timestamp": "2026-08-30T11:32:11.957926",
+    "hook": "Gravity Is Not A Force Curved Spacetime! \ud83c\udf0c",
+    "topic": "Gravity Is Not A Force Curved Spacetime",
+    "results": {
+      "youtube": {
+        "status": "success",
+        "video_id": "REDgJMAai9U",
+        "url": "https://youtu.be/REDgJMAai9U"
+      },
+      "instagram": {
+        "status": "success",
+        "media_pk": "3975105294235733471",
+        "media_id": "3975105294235733471_48561087873"
+      },
+      "linkedin": {
+        "status": "success",
+        "post_id": "urn:li:ugcPost:7499791071829426177"
+      },
+      "x_twitter": {
+        "status": "skipped",
+        "message": "X (Twitter) API keys not configured in .env"
+      },
+      "facebook": {
+        "status": "skipped",
+        "message": "Facebook API credentials not configured / disabled"
+      }
+    }
   }
 ]
