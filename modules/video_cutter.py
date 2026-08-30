@@ -101,11 +101,43 @@ class CosmicVideoCutter:
     def extract_next_clip(self) -> dict:
         fresh_files = self.get_fresh_drive_clips()
         if not fresh_files:
-            raise RuntimeError("No fresh unposted 4K master clips found in Cosmic_4K_Master_Clips in 5TB GDrive!")
+            # Fallback directly to 3 Master 4K Podcasts stream
+            print("[*] 🌌 [FALLBACK] Slicing directly from 4K Master Podcasts...")
+            from modules.timestamp_registry import timestamp_registry
+            MASTER_FALLBACKS = [
+                {"vid": "Hq5otSp5DCs", "start": 800, "dur": 38, "topic": "Brain Reality Hallucination", "hook": "Why Your Brain Hallucinates Reality! 🧠 🌌"},
+                {"vid": "OnIRUHEFiSs", "start": 740, "dur": 38, "topic": "Planck Time Frame Rate", "hook": "The Universal Frame Rate: 10^43 FPS! ⏱️ 🌌"},
+                {"vid": "Ft-ZkvWwfUo", "start": 840, "dur": 38, "topic": "Event Horizon Singularity", "hook": "What Happens Past The Event Horizon? 🕳️ 🌌"}
+            ]
+            cand = random.choice(MASTER_FALLBACKS)
+            out_clip = OUTPUT_DIR / f"fallback_{cand['vid']}_{cand['start']}.mp4"
+            cmd = [sys.executable, "-m", "yt_dlp", "-g", f"https://youtu.be/{cand['vid']}", "-f", "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best"]
+            urls = subprocess.check_output(cmd, text=True).strip().splitlines()
+            v_url = urls[0]
+            a_url = urls[1] if len(urls) > 1 else v_url
+            cut_cmd = [
+                self.ffmpeg_exe, "-y",
+                "-ss", str(cand["start"]), "-i", v_url,
+                "-ss", str(cand["start"]), "-i", a_url,
+                "-t", str(cand["dur"]),
+                "-c:v", "libx264", "-preset", "veryfast", "-crf", "18",
+                "-c:a", "aac", "-b:a", "192k",
+                str(out_clip)
+            ]
+            subprocess.run(cut_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True)
+            return {
+                "clip_path": out_clip,
+                "hook": cand["hook"],
+                "topic": cand["topic"],
+                "gdrive_file_id": None,
+                "filename": out_clip.name,
+                "duration": cand["dur"]
+            }
 
         selected = random.choice(fresh_files)
         file_id = selected["id"]
         filename = selected["name"]
+
         
         temp_raw = OUTPUT_DIR / f"raw_cosmic_{filename}"
         print(f"[*] 🌌 [5TB GDRIVE MASTER 4K STREAM] Downloading: {filename} (ID: {file_id})...")
