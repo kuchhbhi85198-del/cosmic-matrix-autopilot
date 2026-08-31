@@ -51,15 +51,15 @@ def has_channel_posted_in_slot(token_path: Path, slot_type: str) -> bool:
         ist_now = get_ist_now()
         today_date = ist_now.date()
 
-        # Strict Matching Windows in IST
+        # Target Slot Matching Windows in IST
         if slot_type == "morning":
-            slot_start_h, slot_end_h = 7, 12   # Morning: 07:00 AM - 11:59 AM
+            slot_start_h, slot_end_h = 8, 12   # Morning target: 09:00 AM
         elif slot_type == "afternoon":
-            slot_start_h, slot_end_h = 12, 17  # Afternoon: 12:00 PM - 04:59 PM
+            slot_start_h, slot_end_h = 13, 16  # Afternoon target: 02:00 PM
         elif slot_type == "evening":
-            slot_start_h, slot_end_h = 17, 19  # Evening: 05:00 PM - 06:59 PM
+            slot_start_h, slot_end_h = 17, 19  # Evening target: 06:00 PM
         elif slot_type == "night":
-            slot_start_h, slot_end_h = 19, 23  # Night: 07:00 PM - 10:59 PM
+            slot_start_h, slot_end_h = 19, 21  # Night target: 07:00 PM
         else:
             slot_start_h, slot_end_h = 0, 24
 
