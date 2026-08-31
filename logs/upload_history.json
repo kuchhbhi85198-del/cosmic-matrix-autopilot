@@ -873,5 +873,34 @@
         "message": "Facebook API credentials not configured / disabled"
       }
     }
+  },
+  {
+    "timestamp": "2026-08-31T11:34:26.261308",
+    "hook": "Universal Frame Rate 10 43 FPS! \ud83c\udf0c",
+    "topic": "Universal Frame Rate 10 43 FPS",
+    "results": {
+      "youtube": {
+        "status": "success",
+        "video_id": "bOyoh7HwQAk",
+        "url": "https://youtu.be/bOyoh7HwQAk"
+      },
+      "instagram": {
+        "status": "success",
+        "media_pk": "3975830921511266053",
+        "media_id": "3975830921511266053_48561087873"
+      },
+      "linkedin": {
+        "status": "success",
+        "post_id": "urn:li:ugcPost:7500154022847504384"
+      },
+      "x_twitter": {
+        "status": "skipped",
+        "message": "X (Twitter) API keys not configured in .env"
+      },
+      "facebook": {
+        "status": "skipped",
+        "message": "Facebook API credentials not configured / disabled"
+      }
+    }
   }
 ]
