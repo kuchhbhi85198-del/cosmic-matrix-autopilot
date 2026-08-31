@@ -844,5 +844,34 @@
         "message": "Facebook API credentials not configured / disabled"
       }
     }
+  },
+  {
+    "timestamp": "2026-08-31T03:04:04.712552",
+    "hook": "Quantum Superposition Infinite Realities! \ud83c\udf0c",
+    "topic": "Quantum Superposition Infinite Realities",
+    "results": {
+      "youtube": {
+        "status": "success",
+        "video_id": "urrbUS7_IFs",
+        "url": "https://youtu.be/urrbUS7_IFs"
+      },
+      "instagram": {
+        "status": "success",
+        "media_pk": "3975574225257835724",
+        "media_id": "3975574225257835724_48561087873"
+      },
+      "linkedin": {
+        "status": "success",
+        "post_id": "urn:li:ugcPost:7500025588221390848"
+      },
+      "x_twitter": {
+        "status": "skipped",
+        "message": "X (Twitter) API keys not configured in .env"
+      },
+      "facebook": {
+        "status": "skipped",
+        "message": "Facebook API credentials not configured / disabled"
+      }
+    }
   }
 ]
