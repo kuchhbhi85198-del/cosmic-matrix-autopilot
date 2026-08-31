@@ -25,7 +25,7 @@ current_hour_ist = ist_now.hour
 current_minute_ist = ist_now.minute
 
 print("=" * 70)
-print(f"🌟 [UNIFIED 24/7 MASTER CLOUD AUTOPILOT] IST Time: {ist_now.strftime('%Y-%m-%d %H:%M:%S')} (Hour: {current_hour_ist})")
+print(f"🌟 [EXACT-HOUR CLOUD AUTOPILOT] IST Time: {ist_now.strftime('%Y-%m-%d %H:%M:%S')} (Hour: {current_hour_ist})")
 print("=" * 70)
 
 COSMIC_TOKEN = BASE_DIR / "token.pickle"
@@ -34,7 +34,7 @@ GAMING_TOKEN = BASE_DIR / "gaming_bot" / "token.pickle"
 
 def run_cosmic_cycle(slot_name: str):
     if has_channel_posted_in_slot(COSMIC_TOKEN, slot_name):
-        print(f"[*] 🛑 [SLOT GUARD] Cosmic Channel already has today's {slot_name.upper()} video live! Exiting cleanly.")
+        print(f"[*] 🛑 [SLOT GUARD] Cosmic Channel already has today's {slot_name.upper()} video live! Exiting cleanly in 1s.")
         return
 
     print(f"\n🚀 [TRIGGERING COSMIC MATRIX BOT for {slot_name.upper()}]...")
@@ -48,7 +48,7 @@ def run_cosmic_cycle(slot_name: str):
 
 def run_gaming_cycle(slot_name: str):
     if has_channel_posted_in_slot(GAMING_TOKEN, slot_name):
-        print(f"[*] 🛑 [SLOT GUARD] Gaming Channel already has today's {slot_name.upper()} video live! Exiting cleanly.")
+        print(f"[*] 🛑 [SLOT GUARD] Gaming Channel already has today's {slot_name.upper()} video live! Exiting cleanly in 1s.")
         return
 
     print(f"\n🎮 [TRIGGERING GAMING/VIRAL REELS BOT for {slot_name.upper()}]...")
@@ -63,33 +63,37 @@ def run_gaming_cycle(slot_name: str):
 
 
 def main():
-    # Slot 1: Morning Window (08:00 - 11:59 IST) -> Target 09:00 AM IST (Cosmic 1 + Gaming 1)
-    if 8 <= current_hour_ist < 12:
-        print("[SLOT DETECTED: MORNING WINDOW (09:00 AM IST)] -> Running Cosmic 1 + Gaming 1")
+    # =========================================================================
+    # EXACT 4 SCHEDULED DAILY POSTING SLOTS (STRICT IST TIME)
+    # =========================================================================
+    
+    # 1. MORNING SLOT: Exactly 09:00 AM IST (Hour 9) -> Cosmic 1 + Gaming 1
+    if current_hour_ist == 9:
+        print("[SLOT 1: EXACT 09:00 AM IST] -> Running Cosmic 1 + Gaming 1")
         run_cosmic_cycle("morning")
         run_gaming_cycle("morning")
 
-    # Slot 2: Afternoon Window (13:00 - 16:59 IST) -> Target 02:00 PM IST (Gaming 2)
-    elif 13 <= current_hour_ist < 17:
-        print("[SLOT DETECTED: AFTERNOON WINDOW (02:00 PM IST)] -> Running Gaming 2")
+    # 2. AFTERNOON SLOT: Exactly 02:00 PM IST (Hour 14) -> Gaming 2
+    elif current_hour_ist == 14:
+        print("[SLOT 2: EXACT 02:00 PM IST] -> Running Gaming 2")
         run_gaming_cycle("afternoon")
 
-    # Slot 3: Evening Prime (17:00 - 18:59 IST) -> Target 06:00 PM IST (Cosmic 2)
-    elif 17 <= current_hour_ist < 19:
-        print("[SLOT DETECTED: EVENING PRIME WINDOW (06:00 PM IST)] -> Running Cosmic 2")
+    # 3. EVENING SLOT: Exactly 06:00 PM IST (Hour 18) -> Cosmic 2
+    elif current_hour_ist == 18:
+        print("[SLOT 3: EXACT 06:00 PM IST] -> Running Cosmic 2")
         run_cosmic_cycle("evening")
 
-    # Slot 4: Night Prime (19:00 - 22:00 IST) -> Target 07:00 PM IST (Gaming 3)
-    elif 19 <= current_hour_ist <= 22:
-        print("[SLOT DETECTED: NIGHT PRIME WINDOW (07:00 PM IST)] -> Running Gaming 3")
+    # 4. NIGHT SLOT: Exactly 07:00 PM IST (Hour 19) -> Gaming 3
+    elif current_hour_ist == 19:
+        print("[SLOT 4: EXACT 07:00 PM IST] -> Running Gaming 3")
         run_gaming_cycle("night")
 
-    # Outside Active Slots: SLEEP / DO NOTHING (Late night 22:00 - 08:00 AM IST)
+    # ALL OTHER HOURS: 100% SLEEP / IDLE (Zero Posts)
     else:
-        print(f"[*] 🌙 [OFF-HOURS SLEEP] Current IST Hour {current_hour_ist}:00 is Outside Posting Windows. Sleeping safely!")
+        print(f"[*] 🌙 [OFF-SCHEDULE SLEEP] Current IST Hour {current_hour_ist}:00 is NOT a scheduled posting hour. Sleeping safely!")
 
     print("\n" + "=" * 70)
-    print("✅ [MASTER CLOUD AUTOPILOT CYCLE COMPLETE]")
+    print("✅ [EXACT-HOUR CLOUD AUTOPILOT CYCLE COMPLETE]")
     print("=" * 70)
 
 
