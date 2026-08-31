@@ -19,10 +19,9 @@ def get_ist_now() -> datetime:
 
 def has_channel_posted_in_slot(token_path: Path, slot_type: str) -> bool:
     """
-    Direct Live YouTube API Check:
-    Queries the actual YouTube Channel directly to see if any video was already
-    published in the specified slot window today.
-    Zero dependency on local files or git logs!
+    Direct Live YouTube API Check via Instant Uploads Playlist:
+    Queries the actual YouTube Channel's uploads playlist directly (0ms indexing latency)
+    to see if any video was already published in the specified slot window today.
     """
     if not token_path.exists():
         print(f"[!] Warning: Token file {token_path} not found for live channel check.")
@@ -35,11 +34,17 @@ def has_channel_posted_in_slot(token_path: Path, slot_type: str) -> bool:
             creds.refresh(Request())
         
         yt = build("youtube", "v3", credentials=creds)
-        res = yt.search().list(
-            part="snippet",
-            forMine=True,
-            type="video",
-            order="date",
+        
+        # 1. Get Instant Uploads Playlist ID
+        ch_res = yt.channels().list(part="contentDetails", mine=True).execute()
+        if not ch_res.get("items"):
+            return False
+        uploads_playlist_id = ch_res["items"][0]["contentDetails"]["relatedPlaylists"]["uploads"]
+        
+        # 2. Get latest 10 uploads instantly
+        pl_res = yt.playlistItems().list(
+            part="snippet,contentDetails",
+            playlistId=uploads_playlist_id,
             maxResults=10
         ).execute()
 
@@ -48,18 +53,18 @@ def has_channel_posted_in_slot(token_path: Path, slot_type: str) -> bool:
 
         # Strict Matching Windows in IST
         if slot_type == "morning":
-            slot_start_h, slot_end_h = 8, 12
+            slot_start_h, slot_end_h = 7, 12   # Morning: 07:00 AM - 11:59 AM
         elif slot_type == "afternoon":
-            slot_start_h, slot_end_h = 13, 17
+            slot_start_h, slot_end_h = 12, 17  # Afternoon: 12:00 PM - 04:59 PM
         elif slot_type == "evening":
-            slot_start_h, slot_end_h = 17, 19
+            slot_start_h, slot_end_h = 17, 19  # Evening: 05:00 PM - 06:59 PM
         elif slot_type == "night":
-            slot_start_h, slot_end_h = 19, 23
+            slot_start_h, slot_end_h = 19, 23  # Night: 07:00 PM - 10:59 PM
         else:
             slot_start_h, slot_end_h = 0, 24
 
-        for item in res.get("items", []):
-            pub_raw = item["snippet"].get("publishedAt")
+        for item in pl_res.get("items", []):
+            pub_raw = item["contentDetails"].get("videoPublishedAt") or item["snippet"].get("publishedAt")
             if not pub_raw:
                 continue
             pub_utc = datetime.fromisoformat(pub_raw.replace("Z", "+00:00"))
@@ -68,13 +73,13 @@ def has_channel_posted_in_slot(token_path: Path, slot_type: str) -> bool:
             # If video was published TODAY in this exact slot window
             if pub_ist.date() == today_date and slot_start_h <= pub_ist.hour < slot_end_h:
                 title = item["snippet"].get("title", "")
-                vid = item["id"].get("videoId", "")
-                print(f"🛑 [LIVE YOUTUBE GUARD] Found video already live on channel for today's {slot_type.upper()} slot!")
+                vid = item["contentDetails"].get("videoId", "")
+                print(f"🛑 [LIVE YOUTUBE SHIELD] Found video already live on channel for today's {slot_type.upper()} slot!")
                 print(f"   -> Live Video: https://youtu.be/{vid} | '{title}' at {pub_ist.strftime('%I:%M %p IST')}")
-                print(f"   -> BLOCKING ANY DUPLICATE UPLOAD. Strictly 1 video per slot!")
+                print(f"   -> STRICTLY 1 VIDEO PER SLOT ENFORCED. Blocking duplicate upload.")
                 return True
 
         return False
     except Exception as e:
-        print(f"[!] Live YouTube Guard API Check notice: {e}")
+        print(f"[!] Live YouTube Shield Check notice: {e}")
         return False
