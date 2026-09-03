@@ -1044,5 +1044,28 @@
     ],
     "uploaded_youtube": true,
     "uploaded_instagram": false
+  },
+  {
+    "timestamp": "2026-09-03T08:31:48.180909",
+    "slot": "slot_afternoon",
+    "category": "general",
+    "source_clip": "038_Gen Gutter Row\uff1a Baba Ramdev \u0915\u093e \u092a\u0932\u091f\u0935\u093e\u0930, Kangana Ran_YJT9lIP4ik8.mp4",
+    "title": "038 Gen Gutter Row\uff1a Baba Ramdev \u0915\u093e \u092a\u0932\u091f\u0935\u093e\u0930, Kangana Ran \ud83e\udd2f #shorts #viral #trending",
+    "description": "\u26a1 038 Gen Gutter Row\uff1a Baba Ramdev \u0915\u093e \u092a\u0932\u091f\u0935\u093e\u0930, Kangana Ran \ud83e\udd2f\n\n\ud83c\udfac Watch till the very end! You won't believe what happens next!\n\n\ud83d\udd14 Hit that Subscribe button & turn on notifications for daily viral 4K shorts!\n\ud83d\udcac Drop your reaction in the comments below!\n\n\ud83d\udccc Trending Keywords:\nviral shorts, trending shorts, must watch, satisfying video, amazing facts, epic moments, shorts algorithm, viral video",
+    "tags": [
+      "viral shorts",
+      "trending shorts",
+      "must watch",
+      "satisfying video",
+      "amazing facts",
+      "epic moments",
+      "shorts algorithm",
+      "viral video"
+    ],
+    "uploaded_youtube": true,
+    "uploaded_instagram": {
+      "status": "error",
+      "message": "Clip upload failed during upload_settings: HTTP 400: {\"message\":\"This user is inactive so they cannot upload.\",\"status\":\"fail\"}"
+    }
   }
 ]
