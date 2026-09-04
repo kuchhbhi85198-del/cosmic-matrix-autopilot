@@ -902,5 +902,34 @@
         "message": "Facebook API credentials not configured / disabled"
       }
     }
+  },
+  {
+    "timestamp": "2026-09-04T03:34:39.012136",
+    "hook": "Holographic Boundary Of Deep Space! \ud83c\udf0c",
+    "topic": "Holographic Boundary Of Deep Space",
+    "results": {
+      "youtube": {
+        "status": "success",
+        "video_id": "bVt4V05Nxtw",
+        "url": "https://youtu.be/bVt4V05Nxtw"
+      },
+      "instagram": {
+        "status": "success",
+        "media_pk": "3978488535336498313",
+        "media_id": "3978488535336498313_48561087873"
+      },
+      "linkedin": {
+        "status": "success",
+        "post_id": "urn:li:ugcPost:7501482831261523968"
+      },
+      "x_twitter": {
+        "status": "skipped",
+        "message": "X (Twitter) API keys not configured in .env"
+      },
+      "facebook": {
+        "status": "skipped",
+        "message": "Facebook API credentials not configured / disabled"
+      }
+    }
   }
 ]

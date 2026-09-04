@@ -1090,5 +1090,33 @@
       "status": "error",
       "message": "Clip upload failed during upload_settings: HTTP 400: {\"message\":\"This user is inactive so they cannot upload.\",\"status\":\"fail\"}"
     }
+  },
+  {
+    "timestamp": "2026-09-04T03:35:42.822757",
+    "slot": "slot_morning",
+    "category": "challenge",
+    "source_clip": "017_NA_views_Winner Picks Our Honeymoon_yy-Nt0dRhNI.mp4",
+    "title": "Winner Picks Our Honeymoon \u2728 #shorts #viral #trending",
+    "description": "\u26a1 Winner Picks Our Honeymoon \u2728\n\n\ud83c\udfac Watch till the very end! You won't believe what happens next!\n\n\ud83d\udd14 Hit that Subscribe button & turn on notifications for daily viral 4K shorts!\n\ud83d\udcac Drop your reaction in the comments below!\n\n\ud83d\udccc Trending Keywords:\nmrbeast challenge, viral shorts, insane challenge, trending shorts, impossible challenge, entertainment, funny moments, world record, crazy stunts, best shorts, viral video, shorts feed, explore page",
+    "tags": [
+      "mrbeast challenge",
+      "viral shorts",
+      "insane challenge",
+      "trending shorts",
+      "impossible challenge",
+      "entertainment",
+      "funny moments",
+      "world record",
+      "crazy stunts",
+      "best shorts",
+      "viral video",
+      "shorts feed",
+      "explore page"
+    ],
+    "uploaded_youtube": true,
+    "uploaded_instagram": {
+      "status": "error",
+      "message": "Clip upload failed during upload_settings: HTTP 400: {\"message\":\"This user is inactive so they cannot upload.\",\"status\":\"fail\"}"
+    }
   }
 ]
