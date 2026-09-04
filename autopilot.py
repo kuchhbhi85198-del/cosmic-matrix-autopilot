@@ -33,17 +33,27 @@ from datetime import datetime, timezone, timedelta
 def get_ist_now() -> datetime:
     return datetime.now(timezone.utc) + timedelta(hours=5, minutes=30)
 
+from modules.live_youtube_guard import has_channel_posted_in_slot
+
 def has_slot_posted_today() -> bool:
-    """Checks if current time slot (morning 4-14, evening 14-23 IST) was already posted today."""
+    """Checks if current time slot (morning 7-14, evening 14-23 IST) was already posted today via Live YouTube API & local logs."""
+    ist_now = get_ist_now()
+    current_hour = ist_now.hour
+    slot_type = "morning" if current_hour < 14 else "evening"
+
+    # 1. Direct Live Channel Check (Single Source of Truth)
+    token_file = BASE_DIR / "token.pickle"
+    if has_channel_posted_in_slot(token_file, slot_type):
+        print(f"🛑 [LIVE CHANNEL GUARD] Slot {slot_type.upper()} already has a live video today on YouTube! Blocking upload.")
+        return True
+
+    # 2. Local History Check
     if not HISTORY_LOG.exists():
         return False
     try:
         with open(HISTORY_LOG, "r", encoding="utf-8") as f:
             history = json.load(f)
-        ist_now = get_ist_now()
         today_str = ist_now.strftime("%Y-%m-%d")
-        current_hour = ist_now.hour
-        slot_type = "morning" if current_hour < 14 else "evening"
         for item in history:
             ts_str = item.get("timestamp", "")
             if ts_str.startswith(today_str):
@@ -58,6 +68,7 @@ def has_slot_posted_today() -> bool:
     except Exception:
         pass
     return False
+
 
 
 
