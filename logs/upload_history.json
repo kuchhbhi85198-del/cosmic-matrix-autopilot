@@ -931,5 +931,34 @@
         "message": "Facebook API credentials not configured / disabled"
       }
     }
+  },
+  {
+    "timestamp": "2026-09-05T03:41:01.442068",
+    "hook": "Frequency Tuning Radio Signal Thoughts! \ud83c\udf0c",
+    "topic": "Frequency Tuning Radio Signal Thoughts",
+    "results": {
+      "youtube": {
+        "status": "success",
+        "video_id": "5UTj5aFxRi8",
+        "url": "https://youtu.be/5UTj5aFxRi8"
+      },
+      "instagram": {
+        "status": "success",
+        "media_pk": "3979216479327425869",
+        "media_id": "3979216479327425869_48561087873"
+      },
+      "linkedin": {
+        "status": "success",
+        "post_id": "urn:li:ugcPost:7501846824056578048"
+      },
+      "x_twitter": {
+        "status": "skipped",
+        "message": "X (Twitter) API keys not configured in .env"
+      },
+      "facebook": {
+        "status": "skipped",
+        "message": "Facebook API credentials not configured / disabled"
+      }
+    }
   }
 ]
