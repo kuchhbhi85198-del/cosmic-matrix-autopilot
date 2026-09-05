@@ -1,15 +1,6 @@
 name: 🌌 Master 24/7 Autopilot (Cosmic Matrix + Viral Gaming)
 
 on:
-  schedule:
-    # Slot 1: Morning 09:00 AM IST (03:30 UTC) - Cosmic 1 + Gaming 1
-    - cron: '30 3 * * *'
-    # Slot 2: Afternoon 02:00 PM IST (08:30 UTC) - Gaming 2
-    - cron: '30 8 * * *'
-    # Slot 3: Evening 06:00 PM IST (12:30 UTC) - Cosmic 2
-    - cron: '30 12 * * *'
-    # Slot 4: Night 07:00 PM IST (13:30 UTC) - Gaming 3
-    - cron: '30 13 * * *'
   workflow_dispatch:
 
 # STRICT SINGLETON CONCURRENCY LOCK (Zero overlapping runs allowed!)
