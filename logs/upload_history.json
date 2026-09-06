@@ -960,5 +960,33 @@
         "message": "Facebook API credentials not configured / disabled"
       }
     }
+  },
+  {
+    "timestamp": "2026-09-06T03:34:02.778813",
+    "hook": "Quantum Observer Consciousness Matter! \ud83c\udf0c",
+    "topic": "Quantum Observer Consciousness Matter",
+    "results": {
+      "youtube": {
+        "status": "success",
+        "video_id": "lJu8oZqzAUc",
+        "url": "https://youtu.be/lJu8oZqzAUc"
+      },
+      "instagram": {
+        "status": "error",
+        "message": "Clip upload failed during upload_settings: HTTP 403: {\"message\":\"login_required\",\"status\":\"fail\"}"
+      },
+      "linkedin": {
+        "status": "success",
+        "post_id": "urn:li:ugcPost:7502207455691632640"
+      },
+      "x_twitter": {
+        "status": "skipped",
+        "message": "X (Twitter) API keys not configured in .env"
+      },
+      "facebook": {
+        "status": "skipped",
+        "message": "Facebook API credentials not configured / disabled"
+      }
+    }
   }
 ]
