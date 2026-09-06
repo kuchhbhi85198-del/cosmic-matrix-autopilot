@@ -988,5 +988,33 @@
         "message": "Facebook API credentials not configured / disabled"
       }
     }
+  },
+  {
+    "timestamp": "2026-09-06T12:34:11.167018",
+    "hook": "Einsteins Eternal Now Past Still Exists! \ud83c\udf0c",
+    "topic": "Einsteins Eternal Now Past Still Exists",
+    "results": {
+      "youtube": {
+        "status": "success",
+        "video_id": "Mq8BKYaQNAg",
+        "url": "https://youtu.be/Mq8BKYaQNAg"
+      },
+      "instagram": {
+        "status": "skipped",
+        "message": "Duplicate reel already live on Instagram"
+      },
+      "linkedin": {
+        "status": "success",
+        "post_id": "urn:li:ugcPost:7502343386327281664"
+      },
+      "x_twitter": {
+        "status": "skipped",
+        "message": "X (Twitter) API keys not configured in .env"
+      },
+      "facebook": {
+        "status": "skipped",
+        "message": "Facebook API credentials not configured / disabled"
+      }
+    }
   }
 ]
