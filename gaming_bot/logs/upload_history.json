@@ -1625,5 +1625,28 @@
       "status": "error",
       "message": "Clip upload failed during upload_settings: HTTP 403: {\"message\":\"login_required\",\"status\":\"fail\"}"
     }
+  },
+  {
+    "timestamp": "2026-09-07T09:02:50.820432",
+    "slot": "slot_afternoon",
+    "category": "general",
+    "source_clip": "031_President \u0915\u0947 1950 Order \u0915\u0940 \u0915\u0939\u093e\u0928\u0940, \u091c\u200d\u093f\u0938\u0915\u0947 \u092c\u093e\u0926 SC St_9sO5j-cSYXM.mp4",
+    "title": "031 President \u0915\u0947 1950 Order \u0915\u0940 \u0915\u0939\u093e\u0928\u0940, \u091c\u200d\u093f\u0938\u0915\u0947 \u092c\u093e\u0926 SC St \ud83d\udc80 #shorts #viral #trending",
+    "description": "\u26a1 031 President \u0915\u0947 1950 Order \u0915\u0940 \u0915\u0939\u093e\u0928\u0940, \u091c\u200d\u093f\u0938\u0915\u0947 \u092c\u093e\u0926 SC St \ud83d\udc80\n\n\ud83c\udfac Watch till the very end! You won't believe what happens next!\n\n\ud83d\udd14 Hit that Subscribe button & turn on notifications for daily viral 4K shorts!\n\ud83d\udcac Drop your reaction in the comments below!\n\n\ud83d\udccc Trending Keywords:\nviral shorts, trending shorts, must watch, satisfying video, amazing facts, epic moments, shorts algorithm, viral video",
+    "tags": [
+      "viral shorts",
+      "trending shorts",
+      "must watch",
+      "satisfying video",
+      "amazing facts",
+      "epic moments",
+      "shorts algorithm",
+      "viral video"
+    ],
+    "uploaded_youtube": false,
+    "uploaded_instagram": {
+      "status": "error",
+      "message": "Clip upload failed during upload_settings: HTTP 403: {\"message\":\"login_required\",\"status\":\"fail\"}"
+    }
   }
 ]
