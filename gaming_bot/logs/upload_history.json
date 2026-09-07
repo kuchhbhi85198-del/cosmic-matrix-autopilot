@@ -1554,5 +1554,29 @@
       "status": "error",
       "message": "Clip upload failed during upload_settings: HTTP 403: {\"message\":\"login_required\",\"status\":\"fail\"}"
     }
+  },
+  {
+    "timestamp": "2026-09-07T04:02:59.836628",
+    "slot": "slot_morning",
+    "category": "finance",
+    "source_clip": "025_NA_views_I Hid $1,000,000 In This Vault_jCE1Ol3PYDs.mp4",
+    "title": "I Hid $1,000,000 In This Vault \ud83d\udca5 #shorts #viral #trending",
+    "description": "\u26a1 I Hid $1,000,000 In This Vault \ud83d\udca5\n\n\ud83c\udfac Watch till the very end! You won't believe what happens next!\n\n\ud83d\udd14 Hit that Subscribe button & turn on notifications for daily viral 4K shorts!\n\ud83d\udcac Drop your reaction in the comments below!\n\n\ud83d\udccc Trending Keywords:\nmoney challenge, billionaire mindset, rich vs poor, luxury lifestyle, financial freedom, business secrets, cash giveaway, wealth, motivation",
+    "tags": [
+      "money challenge",
+      "billionaire mindset",
+      "rich vs poor",
+      "luxury lifestyle",
+      "financial freedom",
+      "business secrets",
+      "cash giveaway",
+      "wealth",
+      "motivation"
+    ],
+    "uploaded_youtube": false,
+    "uploaded_instagram": {
+      "status": "error",
+      "message": "Clip upload failed during upload_settings: HTTP 403: {\"message\":\"login_required\",\"status\":\"fail\"}"
+    }
   }
 ]
