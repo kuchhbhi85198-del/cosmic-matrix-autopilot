@@ -1016,5 +1016,33 @@
         "message": "Facebook API credentials not configured / disabled"
       }
     }
+  },
+  {
+    "timestamp": "2026-09-07T13:04:02.474919",
+    "hook": "Speed Of Light Graphics Card Limit! \ud83c\udf0c",
+    "topic": "Speed Of Light Graphics Card Limit",
+    "results": {
+      "youtube": {
+        "status": "success",
+        "video_id": "n1krWPYqRGY",
+        "url": "https://youtu.be/n1krWPYqRGY"
+      },
+      "instagram": {
+        "status": "skipped",
+        "message": "Duplicate reel already live on Instagram"
+      },
+      "linkedin": {
+        "status": "success",
+        "post_id": "urn:li:ugcPost:7502713286745026561"
+      },
+      "x_twitter": {
+        "status": "skipped",
+        "message": "X (Twitter) API keys not configured in .env"
+      },
+      "facebook": {
+        "status": "skipped",
+        "message": "Facebook API credentials not configured / disabled"
+      }
+    }
   }
 ]
