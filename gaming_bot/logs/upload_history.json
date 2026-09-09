@@ -1931,5 +1931,28 @@
       "status": "error",
       "message": "Clip upload failed during upload_settings: HTTP 403: {\"message\":\"login_required\",\"status\":\"fail\"}"
     }
+  },
+  {
+    "timestamp": "2026-09-09T08:47:37.533706",
+    "slot": "slot_afternoon",
+    "category": "general",
+    "source_clip": "033_Scheduled Caste Status \u0914\u0930 \u0927\u0930\u094d\u092e \u0915\u093e \u0915\u094d\u092f\u093e \u0915\u0928\u0947\u0915\u094d\u0936\u0928\uff1f Ch_OqmqLn72Qv0.mp4",
+    "title": "033 Scheduled Caste Status \u0914\u0930 \u0927\u0930\u094d\u092e \u0915\u093e \u0915\u094d\u092f\u093e \u0915\u0928\u0947\u0915\u094d\u0936\u0928? Ch \ud83c\udf1f #shorts #viral #trending",
+    "description": "\u26a1 033 Scheduled Caste Status \u0914\u0930 \u0927\u0930\u094d\u092e \u0915\u093e \u0915\u094d\u092f\u093e \u0915\u0928\u0947\u0915\u094d\u0936\u0928? Ch \ud83c\udf1f\n\n\ud83c\udfac Watch till the very end! You won't believe what happens next!\n\n\ud83d\udd14 Hit that Subscribe button & turn on notifications for daily viral 4K shorts!\n\ud83d\udcac Drop your reaction in the comments below!\n\n\ud83d\udccc Trending Keywords:\nviral shorts, trending shorts, must watch, satisfying video, amazing facts, epic moments, shorts algorithm, viral video",
+    "tags": [
+      "viral shorts",
+      "trending shorts",
+      "must watch",
+      "satisfying video",
+      "amazing facts",
+      "epic moments",
+      "shorts algorithm",
+      "viral video"
+    ],
+    "uploaded_youtube": false,
+    "uploaded_instagram": {
+      "status": "error",
+      "message": "Clip upload failed during upload_settings: HTTP 403: {\"message\":\"login_required\",\"status\":\"fail\"}"
+    }
   }
 ]
