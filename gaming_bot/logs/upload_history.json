@@ -1907,5 +1907,29 @@
       "status": "error",
       "message": "Clip upload failed during upload_settings: HTTP 403: {\"message\":\"login_required\",\"status\":\"fail\"}"
     }
+  },
+  {
+    "timestamp": "2026-09-09T08:31:59.165237",
+    "slot": "slot_afternoon",
+    "category": "finance",
+    "source_clip": "026_NA_views_Pop The Balloons, Win $10,000_IqL-ZunFfpk.mp4",
+    "title": "Pop The Balloons, Win $10,000 \ud83d\udc40 #shorts #viral #trending",
+    "description": "\u26a1 Pop The Balloons, Win $10,000 \ud83d\udc40\n\n\ud83c\udfac Watch till the very end! You won't believe what happens next!\n\n\ud83d\udd14 Hit that Subscribe button & turn on notifications for daily viral 4K shorts!\n\ud83d\udcac Drop your reaction in the comments below!\n\n\ud83d\udccc Trending Keywords:\nmoney challenge, billionaire mindset, rich vs poor, luxury lifestyle, financial freedom, business secrets, cash giveaway, wealth, motivation",
+    "tags": [
+      "money challenge",
+      "billionaire mindset",
+      "rich vs poor",
+      "luxury lifestyle",
+      "financial freedom",
+      "business secrets",
+      "cash giveaway",
+      "wealth",
+      "motivation"
+    ],
+    "uploaded_youtube": false,
+    "uploaded_instagram": {
+      "status": "error",
+      "message": "Clip upload failed during upload_settings: HTTP 403: {\"message\":\"login_required\",\"status\":\"fail\"}"
+    }
   }
 ]
