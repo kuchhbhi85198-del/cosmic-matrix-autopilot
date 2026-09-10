@@ -2069,5 +2069,53 @@
       "status": "error",
       "message": "Clip upload failed during upload_settings: HTTP 403: {\"message\":\"login_required\",\"status\":\"fail\"}"
     }
+  },
+  {
+    "timestamp": "2026-09-10T23:11:48.839498",
+    "slot": "slot_night",
+    "category": "general",
+    "source_clip": "D:\\WORKING\\AI VIDEO\\3 ai\\\u0935\u0940\u0921\u093f\u092f\u094b_\u092c\u0928\u093e\u0928\u093e_\u0939\u0948\u00a0_\u091c\u093f\u0938\u092e\u0947\u0902_\u0915\u0941\u091b_\u092d\u0940 (3).mp4",
+    "title": "\u0935\u0940\u0921\u093f\u092f\u094b \u092c\u0928\u093e\u0928\u093e \u0939\u0948 \u091c\u093f\u0938\u092e\u0947\u0902 \u0915\u0941\u091b \u092d\u0940 (3) \ud83d\udc40 #shorts #viral #facts",
+    "description": "\u26a1 \u0935\u0940\u0921\u093f\u092f\u094b \u092c\u0928\u093e\u0928\u093e \u0939\u0948 \u091c\u093f\u0938\u092e\u0947\u0902 \u0915\u0941\u091b \u092d\u0940 (3) \ud83d\udc40\n\n\ud83c\udfac Watch till the very end! You won't believe what happens next!\n\n\ud83d\udd14 Hit that Subscribe button & turn on notifications for daily viral 4K shorts!\n\ud83d\udcac Drop your reaction in the comments below!\n\n\ud83d\udccc Trending Keywords:\nviral shorts, trending shorts, must watch, satisfying video, amazing facts, epic moments, shorts algorithm, viral video",
+    "tags": [
+      "viral shorts",
+      "trending shorts",
+      "must watch",
+      "satisfying video",
+      "amazing facts",
+      "epic moments",
+      "shorts algorithm",
+      "viral video"
+    ],
+    "uploaded_youtube": true,
+    "youtube_url": "https://youtu.be/pwZWrLfgqu0",
+    "uploaded_instagram": false,
+    "instagram_url": "",
+    "uploaded_facebook": true,
+    "facebook_url": "https://www.facebook.com/reel/2540439299789563"
+  },
+  {
+    "timestamp": "2026-09-10T23:13:28.151154",
+    "slot": "slot_night",
+    "category": "general",
+    "source_clip": "D:\\WORKING\\AI VIDEO\\AI VIDEOS\\Scientist_watches_wave-particle_\u2026_202606202353.mp4",
+    "title": "Scientist watches wave-particle \u2026 202606202353 \ud83e\udd2f #shorts #viral #facts",
+    "description": "\u26a1 Scientist watches wave-particle \u2026 202606202353 \ud83e\udd2f\n\n\ud83c\udfac Watch till the very end! You won't believe what happens next!\n\n\ud83d\udd14 Hit that Subscribe button & turn on notifications for daily viral 4K shorts!\n\ud83d\udcac Drop your reaction in the comments below!\n\n\ud83d\udccc Trending Keywords:\nviral shorts, trending shorts, must watch, satisfying video, amazing facts, epic moments, shorts algorithm, viral video",
+    "tags": [
+      "viral shorts",
+      "trending shorts",
+      "must watch",
+      "satisfying video",
+      "amazing facts",
+      "epic moments",
+      "shorts algorithm",
+      "viral video"
+    ],
+    "uploaded_youtube": true,
+    "youtube_url": "https://youtu.be/IYDTjy_dgbs",
+    "uploaded_instagram": true,
+    "instagram_url": "https://www.instagram.com/reel/DdHZd1hCbo7/",
+    "uploaded_facebook": true,
+    "facebook_url": "https://www.facebook.com/reel/932826859882393"
   }
 ]

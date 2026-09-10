@@ -33,7 +33,8 @@ class InstagramUploader:
                     return {
                         "status": "success",
                         "media_id": res.get("media_id"),
-                        "media_pk": res.get("media_id")
+                        "media_pk": res.get("media_id"),
+                        "url": res.get("url", f"https://www.instagram.com/reel/{res.get('media_id')}/")
                     }
                 else:
                     print(f"[!] Meta API error: {res.get('error')}. Falling back to instagrapi...")

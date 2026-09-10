@@ -15,6 +15,12 @@ if sys.platform == "win32":
 GAMING_DIR = Path(__file__).resolve().parent
 BASE_DIR = GAMING_DIR.parent
 
+try:
+    from dotenv import load_dotenv
+    load_dotenv(GAMING_DIR / ".env")
+except Exception:
+    pass
+
 if str(GAMING_DIR) not in sys.path:
     sys.path.insert(0, str(GAMING_DIR))
 
@@ -111,25 +117,31 @@ class GamingAutopilotEngine:
                 print(f"      SEO Keywords: {', '.join(reel_data['yt_tags'][:8])}")
 
                 print(f"[3/5] Uploading to YouTube Shorts ({self.privacy_status})...")
-                yt_success = self.yt_uploader.upload_short(
+                yt_res = self.yt_uploader.upload_short(
                     video_path=video_path,
                     title=reel_data["yt_title"],
                     description=reel_data["description"],
                     tags=reel_data["yt_tags"],
                     privacy_status=self.privacy_status
                 )
+                yt_success = (yt_res.get("status") == "success") if isinstance(yt_res, dict) else bool(yt_res)
+                yt_url = yt_res.get("url", "") if isinstance(yt_res, dict) else ""
 
                 print(f"[4/5] Uploading to Instagram Reels (@gaming143vibes)...")
-                ig_success = self.ig_uploader.upload_reel(
+                ig_res = self.ig_uploader.upload_reel(
                     video_path=video_path,
                     caption=reel_data["ig_caption"]
                 )
+                ig_success = (ig_res.get("status") == "success") if isinstance(ig_res, dict) else bool(ig_res)
+                ig_url = ig_res.get("url", "") if isinstance(ig_res, dict) else ""
 
                 print(f"[5/5] Uploading to Facebook Page Reels (Amazing VIBES)...")
-                fb_success = self.fb_uploader.upload_reel(
+                fb_res = self.fb_uploader.upload_reel(
                     video_path=video_path,
                     caption=reel_data["ig_caption"]
                 )
+                fb_success = (fb_res.get("status") == "success") if isinstance(fb_res, dict) else bool(fb_res)
+                fb_url = fb_res.get("url", "") if isinstance(fb_res, dict) else ""
 
                 self.reels_mgr.mark_as_posted(raw_path.name)
 
@@ -142,8 +154,11 @@ class GamingAutopilotEngine:
                     "description": reel_data["description"],
                     "tags": reel_data["yt_tags"],
                     "uploaded_youtube": yt_success,
+                    "youtube_url": yt_url,
                     "uploaded_instagram": ig_success,
-                    "uploaded_facebook": fb_success
+                    "instagram_url": ig_url,
+                    "uploaded_facebook": fb_success,
+                    "facebook_url": fb_url
                 }
 
                 history = []
@@ -164,7 +179,14 @@ class GamingAutopilotEngine:
                     pass
 
                 print("=" * 65)
-                print(f"🎉 [VIRAL AUTOPILOT CYCLE COMPLETE] YouTube & Instagram LIVE!\n👉 Raw Reel: {raw_path.name}")
+                print(f"🎉 [VIRAL AUTOPILOT CYCLE COMPLETE] TRI-PLATFORM PUBLISHED!")
+                print(f"👉 Raw Reel: {raw_path.name}")
+                if yt_url:
+                    print(f"📺 YouTube Shorts : {yt_url}")
+                if ig_url:
+                    print(f"📸 Instagram Reel : {ig_url}")
+                if fb_url:
+                    print(f"📘 Facebook Reel  : {fb_url}")
                 print("=" * 65 + "\n")
                 return record
 

@@ -61,8 +61,8 @@ class YouTubeUploader:
                 "snippet": {
                     "title": title[:100],
                     "description": description,
-                    "tags": tags or ["Shorts", "GTA6", "Gaming"],
-                    "categoryId": "20"  # 20 = Gaming
+                    "tags": tags or ["Shorts", "Viral", "Facts", "AmazingFacts"],
+                    "categoryId": "24"  # 24 = Entertainment (Viral Facts, Curiosities & Stories)
                 },
                 "status": {
                     "privacyStatus": privacy_status,
@@ -85,12 +85,13 @@ class YouTubeUploader:
             )
             response = request.execute()
             video_id = response.get("id")
-            print(f"[SUCCESS] Uploaded to YouTube! URL: https://youtu.be/{video_id}")
-            return True
+            video_url = f"https://youtu.be/{video_id}"
+            print(f"[SUCCESS] Uploaded to YouTube! URL: {video_url}")
+            return {"status": "success", "video_id": video_id, "url": video_url}
 
         except Exception as e:
             print(f"[Error] YouTube upload failed: {e}")
-            return False
+            return {"status": "error", "message": str(e)}
 
 
 if __name__ == "__main__":

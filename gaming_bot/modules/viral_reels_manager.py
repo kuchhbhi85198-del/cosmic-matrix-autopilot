@@ -217,6 +217,7 @@ class ViralReelsManager:
         cleaned = re.sub(r"^\d+_[^_]+_views_", "", stem, flags=re.IGNORECASE)
         cleaned = re.sub(r"_[a-zA-Z0-9_-]{11}$", "", cleaned)
         cleaned = cleaned.replace("_", " ").strip()
+        cleaned = re.sub(r"^\d+\s*", "", cleaned) # Strip leading bot numbers like 005, 042, 02
         cleaned = re.sub(r"\s+", " ", cleaned)
         cleaned = cleaned.replace("？", "?")
         
@@ -241,7 +242,7 @@ class ViralReelsManager:
         pool = SEO_KEYWORD_POOLS.get(cat, SEO_KEYWORD_POOLS["general"])
         emoji = random.choice(EMOJIS)
         
-        yt_title = f"{cleaned} {emoji} #shorts #viral #trending"[:100]
+        yt_title = f"{cleaned} {emoji} #shorts #viral #facts"[:100]
         yt_tags = pool["yt_tags"]
         description = (
             f"⚡ {cleaned} {emoji}\n\n"
@@ -254,7 +255,7 @@ class ViralReelsManager:
         ig_tags = pool["ig_tags"]
         ig_caption = (
             f"⚡ {cleaned} {emoji}\n\n"
-            f"👉 Follow @gaming143vibes for daily high-voltage viral reels! 🚀\n"
+            f"👉 Follow @gaming143vibes for daily mind-blowing viral facts & stories! 🚀\n"
             f"💬 Tell us what you think in the comments!\n\n"
             f"{' '.join(ig_tags)}"
         )

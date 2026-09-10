@@ -3,14 +3,19 @@ import requests
 from pathlib import Path
 from typing import Dict, Any
 
+from dotenv import load_dotenv
+
+GAMING_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(GAMING_DIR / ".env")
+
 class FacebookUploader:
     """
     Publishes Reels directly to Facebook Page (Amazing VIBES)
     using Official Meta Facebook Reels API (3-phase resumable upload).
     """
     def __init__(self):
-        self.page_id = os.getenv("FACEBOOK_PAGE_ID", "1245284252009574")
-        self.access_token = os.getenv("FACEBOOK_ACCESS_TOKEN", "EAAZAFK0ek1FoBST24YBel9jGbdL8e1bLVzTkScsyB8FqZCRSQT2VZAKjZCHjuZBVV6k4cwf5vZB0lm2F7NFH9ZAKx9TghGuuqIUYKmbkfsQN16DZCHfvfApdlnPUovAMle87MdndMdSkOwLuwMYadMgxIo59BMGDWoCVx8H3REALsXnDm2jBPNF4QbwQeKujspVuVcZAHPLa5")
+        self.page_id = os.getenv("FACEBOOK_PAGE_ID")
+        self.access_token = os.getenv("FACEBOOK_ACCESS_TOKEN")
 
     def upload_reel(self, video_path: Path, caption: str) -> Dict[str, Any]:
         if not self.page_id or not self.access_token:
@@ -54,8 +59,9 @@ class FacebookUploader:
             fin_json = fin_res.json()
 
             if fin_json.get("success"):
-                print(f"🎉 [FB REEL SUCCESS] Reel LIVE on Facebook Page Amazing VIBES! Video ID: {video_id}")
-                return {"status": "success", "video_id": video_id}
+                fb_url = f"https://www.facebook.com/reel/{video_id}"
+                print(f"🎉 [FB REEL SUCCESS] Reel LIVE on Facebook Page Amazing VIBES! URL: {fb_url}")
+                return {"status": "success", "video_id": video_id, "url": fb_url}
             else:
                 return {"status": "failed", "error": fin_json}
         except Exception as e:
