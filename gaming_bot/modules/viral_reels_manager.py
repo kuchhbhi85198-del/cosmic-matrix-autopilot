@@ -171,18 +171,27 @@ class ViralReelsManager:
             json.dump(list(self.used_reels), f, indent=2)
 
     def scan_all_reels(self) -> list:
-        # Priority 1: Check Local Folder if exists
-        if self.reels_dir.exists():
-            valid_extensions = [".mp4", ".mov", ".mkv", ".webm"]
-            videos = []
-            for file in self.reels_dir.rglob("*"):
-                if file.is_file() and file.suffix.lower() in valid_extensions and file.stat().st_size > 1_000_000:
-                    if file.name not in self.used_reels:
-                        videos.append(file)
-            if videos:
-                return sorted(videos, key=lambda x: x.name)
+        # Priority 1: Check All Local Video Pools
+        local_dirs = [
+            BASE_DIR / "assets" / "clips",
+            Path(r"D:\WORKING\AI VIDEO"),
+            BASE_DIR.parent / "ai_shorts_automation_bot" / "assets" / "clips",
+            self.reels_dir
+        ]
+        
+        valid_extensions = [".mp4", ".mov", ".mkv", ".webm"]
+        videos = []
+        for ldir in local_dirs:
+            if ldir.exists():
+                for file in ldir.rglob("*"):
+                    if file.is_file() and file.suffix.lower() in valid_extensions and file.stat().st_size > 1_000_000:
+                        if file.name not in self.used_reels:
+                            videos.append(file)
 
-        # Priority 2: 5TB Google Drive Cloud Map (Fresh unposted reels only)
+        if videos:
+            return sorted(videos, key=lambda x: x.name)
+
+        # Priority 2: 5TB Google Drive Cloud Map
         if self.gdrive_map:
             available = [Path(name) for name in sorted(self.gdrive_map.keys()) if name not in self.used_reels]
             return available
