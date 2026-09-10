@@ -21,6 +21,7 @@ if str(GAMING_DIR) not in sys.path:
 from modules.viral_reels_manager import ViralReelsManager
 from modules.uploader import YouTubeUploader
 from modules.instagram_uploader import InstagramUploader
+from modules.facebook_uploader import FacebookUploader
 
 LOGS_DIR = GAMING_DIR / "logs"
 LOGS_DIR.mkdir(parents=True, exist_ok=True)
@@ -85,6 +86,7 @@ class GamingAutopilotEngine:
         self.reels_mgr = ViralReelsManager()
         self.yt_uploader = YouTubeUploader()
         self.ig_uploader = InstagramUploader()
+        self.fb_uploader = FacebookUploader()
         self.privacy_status = privacy_status
 
     def run_cycle(self, force: bool = False, retries: int = 3) -> dict:
@@ -101,14 +103,14 @@ class GamingAutopilotEngine:
 
                 raw_path = reel_data["raw_video_path"]
                 video_path = reel_data["video_path"]
-                print(f"[1/4] Selected Raw Reel: {raw_path.name}")
-                print(f"      Web-Ready H.264 Video: {video_path.name} ({round(video_path.stat().st_size / (1024*1024), 2)} MB)")
+                print(f"[1/5] Selected Raw Reel: {raw_path.name}")
+                print(f"      Anti-Detection Transformed Video: {video_path.name} ({round(video_path.stat().st_size / (1024*1024), 2)} MB)")
                 print(f"      Category: {reel_data['category'].upper()}")
 
-                print(f"[2/4] Title: {reel_data['yt_title']}")
+                print(f"[2/5] Title: {reel_data['yt_title']}")
                 print(f"      SEO Keywords: {', '.join(reel_data['yt_tags'][:8])}")
 
-                print(f"[3/4] Uploading to YouTube Shorts ({self.privacy_status})...")
+                print(f"[3/5] Uploading to YouTube Shorts ({self.privacy_status})...")
                 yt_success = self.yt_uploader.upload_short(
                     video_path=video_path,
                     title=reel_data["yt_title"],
@@ -117,8 +119,14 @@ class GamingAutopilotEngine:
                     privacy_status=self.privacy_status
                 )
 
-                print(f"[4/4] Uploading to Instagram Reels (@gaming143vibes)...")
+                print(f"[4/5] Uploading to Instagram Reels (@gaming143vibes)...")
                 ig_success = self.ig_uploader.upload_reel(
+                    video_path=video_path,
+                    caption=reel_data["ig_caption"]
+                )
+
+                print(f"[5/5] Uploading to Facebook Page Reels (Amazing VIBES)...")
+                fb_success = self.fb_uploader.upload_reel(
                     video_path=video_path,
                     caption=reel_data["ig_caption"]
                 )
@@ -134,7 +142,8 @@ class GamingAutopilotEngine:
                     "description": reel_data["description"],
                     "tags": reel_data["yt_tags"],
                     "uploaded_youtube": yt_success,
-                    "uploaded_instagram": ig_success
+                    "uploaded_instagram": ig_success,
+                    "uploaded_facebook": fb_success
                 }
 
                 history = []

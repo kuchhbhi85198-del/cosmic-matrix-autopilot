@@ -262,12 +262,26 @@ class ViralReelsManager:
 
     def prepare_web_ready_video(self, source_path: Path) -> Path:
         timestamp = int(random.random() * 1000000)
-        output_file = OUTPUT_DIR / f"web_ready_{timestamp}.mp4"
+        output_file = OUTPUT_DIR / f"anti_detect_{timestamp}.mp4"
+        
+        # 100% Anti-Detection Transformative Filter:
+        # 1. 7% zoom-in crop (cuts off edge watermarks, signatures & shifts spatial hash)
+        # 2. Scale 1080x1920 full-bleed vertical
+        # 3. Saturation + Contrast boost (shifts pixel RGB histogram)
+        # 4. Unsharp mask (shifts edge frequencies)
+        vf_pipeline = (
+            "crop=in_w*0.93:in_h*0.93,"
+            "scale=1080:1920:force_original_aspect_ratio=increase,"
+            "crop=1080:1920,"
+            "eq=contrast=1.08:saturation=1.22:brightness=0.02,"
+            "unsharp=3:3:0.8:3:3:0.0"
+        )
         
         cmd = [
             self.ffmpeg_exe, "-y",
             "-i", str(source_path),
-            "-vf", "scale=1080:1920:force_original_aspect_ratio=decrease,pad=1080:1920:(ow-iw)/2:(oh-ih)/2:black",
+            "-vf", vf_pipeline,
+            "-map_metadata", "-1",
             "-c:v", "libx264",
             "-pix_fmt", "yuv420p",
             "-profile:v", "high",
@@ -281,7 +295,7 @@ class ViralReelsManager:
             str(output_file)
         ]
         
-        print(f"[*] 🎬 Transcoding {source_path.name} to 100% universal H.264 web standard...")
+        print(f"[*] 🛡️ [ANTI-DETECTION ENGINE] Applying 100% Transformative Edits to {source_path.name}...")
         subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True)
         return output_file
 
