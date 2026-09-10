@@ -60,6 +60,10 @@ jobs:
           GAMING_INSTAGRAM_SESSION: ${{ secrets.GAMING_INSTAGRAM_SESSION }}
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
           LINKEDIN_PERSON_URN: ${{ secrets.LINKEDIN_PERSON_URN }}
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
           META_INSTAGRAM_ACCESS_TOKEN: ${{ secrets.META_INSTAGRAM_ACCESS_TOKEN }}
           META_INSTAGRAM_USER_ID: ${{ secrets.META_INSTAGRAM_USER_ID }}
           FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
@@ -101,6 +105,12 @@ jobs:
           # Restore LinkedIn Environment Variables
           echo "LINKEDIN_ACCESS_TOKEN=$LINKEDIN_ACCESS_TOKEN" >> .env
           echo "LINKEDIN_PERSON_URN=$LINKEDIN_PERSON_URN" >> .env
+
+          # Restore X (Twitter) Environment Variables
+          echo "X_API_KEY=$X_API_KEY" >> .env
+          echo "X_API_SECRET=$X_API_SECRET" >> .env
+          echo "X_ACCESS_TOKEN=$X_ACCESS_TOKEN" >> .env
+          echo "X_ACCESS_TOKEN_SECRET=$X_ACCESS_TOKEN_SECRET" >> .env
 
           # Restore Cosmic Meta Official Zero-Strike Graph API Secrets
           echo "META_INSTAGRAM_ACCESS_TOKEN=$META_INSTAGRAM_ACCESS_TOKEN" >> .env
