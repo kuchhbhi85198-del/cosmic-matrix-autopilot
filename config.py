@@ -29,7 +29,7 @@ VIDEO_FPS = 60
 # Platform Activation Toggles
 ENABLE_YOUTUBE = True
 ENABLE_INSTAGRAM = True
-ENABLE_FACEBOOK = False
+ENABLE_FACEBOOK = True
 ENABLE_X_TWITTER = True    # Connected: @PRADEEP85198
 ENABLE_LINKEDIN = True     # Connected: KUCHH BHI (kuchhbhi85198@gmail.com)
 

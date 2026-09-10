@@ -39,14 +39,22 @@ MASTER_FALLBACKS_POOL = [
     {"vid": "Hq5otSp5DCs", "start": 1200, "dur": 38, "topic": "Sacred Cosmic Geometry", "hook": "The Secret Geometry of The Universe! 📐 🌌"},
     {"vid": "Hq5otSp5DCs", "start": 1360, "dur": 38, "topic": "Pineal Gland Dimension", "hook": "Gateway To 4D Hyper-Space! 👁️ 🌌"},
     {"vid": "Hq5otSp5DCs", "start": 1440, "dur": 38, "topic": "Tesla 369 Frequency", "hook": "Tesla's 3-6-9 Cosmic Frequency Key! ⚡ 🌌"},
+    {"vid": "Hq5otSp5DCs", "start": 1520, "dur": 38, "topic": "Consciousness Hologram", "hook": "Is Consciousness Projecting The Universe? 🧠 🌌"},
+    {"vid": "Hq5otSp5DCs", "start": 1600, "dur": 38, "topic": "Zero Point Energy Field", "hook": "Zero Point Field: Infinite Free Energy! 🔋 🌌"},
+    {"vid": "Hq5otSp5DCs", "start": 1680, "dur": 38, "topic": "Electromagnetic Human Aura", "hook": "Your Heart's Magnetic Field Touches Stars! 💖 🌌"},
+    {"vid": "Hq5otSp5DCs", "start": 1760, "dur": 38, "topic": "Quantum Entanglement Love", "hook": "Instant Telepathy Across Galaxies! 💫 🌌"},
     {"vid": "OnIRUHEFiSs", "start": 740, "dur": 38, "topic": "Planck Time Frame Rate", "hook": "The Universal Frame Rate: 10^43 FPS! ⏱️ 🌌"},
     {"vid": "OnIRUHEFiSs", "start": 820, "dur": 38, "topic": "Light Speed Rendering", "hook": "Speed of Light: The Universe's GPU Limit! 🖥️ 🌌"},
     {"vid": "OnIRUHEFiSs", "start": 900, "dur": 38, "topic": "Superposition Infinite", "hook": "Quantum Superposition: Infinite Realities! 🌌 🌌"},
     {"vid": "OnIRUHEFiSs", "start": 1060, "dur": 38, "topic": "Holographic Boundary", "hook": "Is Space Actually a 2D Hologram? 🌐 🌌"},
     {"vid": "OnIRUHEFiSs", "start": 1220, "dur": 38, "topic": "Cosmic NPCs Existence", "hook": "Why NPCs Exist In Cosmic Simulation! 🌌 🌌"},
     {"vid": "OnIRUHEFiSs", "start": 1300, "dur": 38, "topic": "Star Rendering Distance", "hook": "Rendering Distance of Deep Cosmic Stars! ⭐ 🌌"},
+    {"vid": "OnIRUHEFiSs", "start": 1380, "dur": 38, "topic": "Black Hole Data Storage", "hook": "Black Holes Are Massive Data Drives! 🕳️ 🌌"},
     {"vid": "OnIRUHEFiSs", "start": 1460, "dur": 38, "topic": "Mandela Quantum Timelines", "hook": "Mandela Effect: Merging Timelines! 🌀 🌌"},
+    {"vid": "OnIRUHEFiSs", "start": 1540, "dur": 38, "topic": "Simulation Glitches In Physics", "hook": "Physics Glitches Prove We Live In Code! 💻 🌌"},
     {"vid": "OnIRUHEFiSs", "start": 1620, "dur": 38, "topic": "Quantum Tunneling Teleport", "hook": "Quantum Tunneling: Teleporting Particles! 🚪 🌌"},
+    {"vid": "OnIRUHEFiSs", "start": 1700, "dur": 38, "topic": "Dark Matter The Cosmic Ghost", "hook": "85% of The Universe Is Completely Invisible! 👻 🌌"},
+    {"vid": "OnIRUHEFiSs", "start": 1780, "dur": 38, "topic": "The Great Cosmic Attractor", "hook": "Something Huge Is Pulling Our Galaxy! 🌌 🧲"},
     {"vid": "Ft-ZkvWwfUo", "start": 760, "dur": 38, "topic": "Eternal Now Einstein", "hook": "Einstein's Eternal Now: The Past Still Lives! ⏳ 🌌"},
     {"vid": "Ft-ZkvWwfUo", "start": 840, "dur": 38, "topic": "Event Horizon Singularity", "hook": "What Happens Past The Event Horizon? 🕳️ 🌌"},
     {"vid": "Ft-ZkvWwfUo", "start": 920, "dur": 38, "topic": "Arrow of Time Entropy", "hook": "Arrow of Time: Entropy Never Reverses! 🏹 🌌"},
@@ -55,7 +63,11 @@ MASTER_FALLBACKS_POOL = [
     {"vid": "Ft-ZkvWwfUo", "start": 1160, "dur": 38, "topic": "Tachyons Faster Light", "hook": "Tachyons: Traveling Faster Than Light! ⚡ 🌌"},
     {"vid": "Ft-ZkvWwfUo", "start": 1240, "dur": 38, "topic": "Closed Timelike Curves", "hook": "Wormhole Time Loops & Timelike Curves! 🔄 🌌"},
     {"vid": "Ft-ZkvWwfUo", "start": 1320, "dur": 38, "topic": "Future Higher Dimensions", "hook": "Your Future Already Happened Above 3D! 🔮 🌌"},
-    {"vid": "Ft-ZkvWwfUo", "start": 1400, "dur": 38, "topic": "Quantum Eraser Rewrites", "hook": "Quantum Eraser: Future Rewrites The Past! ✍️ 🌌"}
+    {"vid": "Ft-ZkvWwfUo", "start": 1400, "dur": 38, "topic": "Quantum Eraser Rewrites", "hook": "Quantum Eraser: Future Rewrites The Past! ✍️ 🌌"},
+    {"vid": "Ft-ZkvWwfUo", "start": 1480, "dur": 38, "topic": "Cosmic Expansion Faster Light", "hook": "The Edge of Universe Expands Faster Than Light! 🚀 🌌"},
+    {"vid": "Ft-ZkvWwfUo", "start": 1560, "dur": 38, "topic": "White Holes The Anti Black Hole", "hook": "White Holes: Time Reversed Portals! ⚪ 🌌"},
+    {"vid": "Ft-ZkvWwfUo", "start": 1640, "dur": 38, "topic": "Quantum Foam At Planck Scale", "hook": "Spacetime Is Boiling At Planck Length! 🫧 🌌"},
+    {"vid": "Ft-ZkvWwfUo", "start": 1720, "dur": 38, "topic": "Heat Death Final Universe", "hook": "The Cold Silence: End of The Universe! ❄️ 🌌"}
 ]
 
 
