@@ -12,9 +12,10 @@ class MetaInstagramPublisher:
     GRAPH_VERSION = "v20.0"
     BASE_URL = f"https://graph.facebook.com/{GRAPH_VERSION}"
 
-    def __init__(self, access_token: Optional[str] = None, ig_user_id: Optional[str] = None):
+    def __init__(self, access_token: Optional[str] = None, ig_user_id: Optional[str] = None, fb_page_id: Optional[str] = None):
         self.access_token = access_token or os.getenv("META_INSTAGRAM_ACCESS_TOKEN")
         self.ig_user_id = ig_user_id or os.getenv("META_INSTAGRAM_USER_ID")
+        self.fb_page_id = fb_page_id or os.getenv("FACEBOOK_PAGE_ID")
 
     @property
     def is_configured(self) -> bool:
@@ -176,6 +177,160 @@ class MetaInstagramPublisher:
 
         return "TIMEOUT"
 
+    def post_first_comment(self, media_id: str, comment_text: str) -> Dict[str, Any]:
+        """
+        Posts an instant first / pinned engagement comment on newly uploaded Instagram Reels.
+        """
+        if not self.access_token:
+            return {"status": "error", "message": "Missing access token"}
+        try:
+            url = f"{self.BASE_URL}/{media_id}/comments"
+            res = requests.post(url, data={"message": comment_text, "access_token": self.access_token}, timeout=20)
+            data = res.json()
+            if "id" in data:
+                print(f"💬 [META AUTO-COMMENT] First comment posted on Instagram! Comment ID: {data['id']}")
+                return {"status": "success", "comment_id": data["id"]}
+            else:
+                return {"status": "failed", "error": data}
+        except Exception as e:
+            return {"status": "error", "message": str(e)}
+
+    def get_reel_insights(self, media_id: str) -> Dict[str, Any]:
+        """
+        Pulls real-time analytics: Reach, Views, Likes, Comments, Shares, Saves, Total Interactions.
+        """
+        if not self.access_token:
+            return {"status": "error", "message": "Missing access token"}
+        try:
+            url = f"{self.BASE_URL}/{media_id}/insights"
+            metrics = "reach,saved,likes,comments,shares,total_interactions,views"
+            res = requests.get(url, params={"metric": metrics, "access_token": self.access_token}, timeout=20)
+            data = res.json()
+            if "data" in data:
+                insights_map = {}
+                for item in data["data"]:
+                    val = item["values"][0]["value"] if item.get("values") else 0
+                    insights_map[item["name"]] = val
+                return {"status": "success", "insights": insights_map}
+            return {"status": "failed", "error": data}
+        except Exception as e:
+            return {"status": "error", "message": str(e)}
+
+    def get_account_overview(self) -> Dict[str, Any]:
+        """
+        Fetches live profile stats: username, followers, follows, media_count.
+        """
+        if not self.is_configured:
+            return {"status": "error", "message": "Not configured"}
+        try:
+            url = f"{self.BASE_URL}/{self.ig_user_id}"
+            fields = "id,name,username,followers_count,follows_count,media_count,profile_picture_url"
+            res = requests.get(url, params={"fields": fields, "access_token": self.access_token}, timeout=20)
+            return {"status": "success", "data": res.json()}
+        except Exception as e:
+            return {"status": "error", "message": str(e)}
+
+    def get_recent_media(self, limit: int = 10) -> Dict[str, Any]:
+        """
+        Fetches recently posted media and reels with permalinks, views, and likes.
+        """
+        if not self.is_configured:
+            return {"status": "error", "message": "Not configured"}
+        try:
+            url = f"{self.BASE_URL}/{self.ig_user_id}/media"
+            fields = "id,caption,media_type,like_count,comments_count,timestamp,permalink"
+            res = requests.get(url, params={"fields": fields, "limit": limit, "access_token": self.access_token}, timeout=20)
+            return {"status": "success", "data": res.json().get("data", [])}
+        except Exception as e:
+            return {"status": "error", "message": str(e)}
+
+    def publish_facebook_reel(self, video_source: Any, description: str) -> Dict[str, Any]:
+        """
+        Publishes a Reel directly to the Facebook Page (Amazing VIBES) using Meta Graph API.
+        """
+        if not self.fb_page_id or not self.access_token:
+            return {"status": "error", "message": "Missing FB Page ID or access token"}
+        try:
+            video_path = Path(str(video_source))
+            if not video_path.is_file():
+                return {"status": "error", "message": f"Local video file not found: {video_path}"}
+
+            file_size = os.path.getsize(video_path)
+            print(f"📘 [META FB REEL] Initiating Facebook Page Reel upload ({file_size / (1024*1024):.2f} MB)...")
+
+            # Phase 1: Start
+            start_url = f"{self.BASE_URL}/{self.fb_page_id}/video_reels"
+            start_res = requests.post(start_url, data={"upload_phase": "start", "access_token": self.access_token}, timeout=30)
+            start_data = start_res.json()
+            if "video_id" not in start_data or "upload_url" not in start_data:
+                return {"status": "failed", "error": start_data}
+
+            video_id = start_data["video_id"]
+            upload_url = start_data["upload_url"]
+
+            # Phase 2: Binary Upload
+            headers = {
+                "Authorization": f"OAuth {self.access_token}",
+                "offset": "0",
+                "file_size": str(file_size)
+            }
+            with open(video_path, "rb") as f:
+                up_res = requests.post(upload_url, headers=headers, data=f, timeout=120)
+
+            if up_res.status_code not in [200, 201]:
+                return {"status": "failed", "error": f"Upload failed: {up_res.text}"}
+
+            # Phase 3: Finish / Publish
+            finish_data = {
+                "upload_phase": "finish",
+                "video_id": video_id,
+                "video_state": "PUBLISHED",
+                "description": description,
+                "access_token": self.access_token
+            }
+            fin_res = requests.post(start_url, data=finish_data, timeout=30)
+            fin_json = fin_res.json()
+
+            if fin_json.get("success"):
+                print(f"🎉 [META FB REEL SUCCESS] Reel LIVE on Facebook Page! Video ID: {video_id}")
+                return {"status": "success", "video_id": video_id}
+            else:
+                return {"status": "failed", "error": fin_json}
+        except Exception as e:
+            return {"status": "error", "message": str(e)}
+
+    def publish_omni_reel(self, video_source: Any, ig_caption: str, fb_description: Optional[str] = None, first_comment: Optional[str] = None) -> Dict[str, Any]:
+        """
+        OMNI PUBLISHER:
+        1. Publishes Reel to Instagram (@gaming143vibes)
+        2. Drops first engagement comment on Instagram
+        3. Cross-posts Reel to Facebook Page (Amazing VIBES)
+        All in one atomic call!
+        """
+        results = {}
+
+        # 1. Instagram Reel
+        print(f"🚀 [OMNI PUBLISH] 1/3 Dispatching to Instagram Reels...")
+        ig_res = self.publish_reel(video_source, ig_caption)
+        results["instagram"] = ig_res
+
+        # 2. Instagram First Comment
+        if ig_res.get("status") == "success" and first_comment:
+            media_id = ig_res.get("media_id")
+            print(f"🚀 [OMNI PUBLISH] 2/3 Adding First Engagement Comment...")
+            comment_res = self.post_first_comment(media_id, first_comment)
+            results["first_comment"] = comment_res
+
+        # 3. Facebook Page Reel
+        if self.fb_page_id:
+            print(f"🚀 [OMNI PUBLISH] 3/3 Cross-posting to Facebook Page Reels...")
+            fb_text = fb_description or ig_caption
+            fb_res = self.publish_facebook_reel(video_source, fb_text)
+            results["facebook_page"] = fb_res
+
+        return results
+
 
 # Singleton Helper Instance
 meta_ig_publisher = MetaInstagramPublisher()
+
