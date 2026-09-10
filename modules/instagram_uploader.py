@@ -26,6 +26,24 @@ class InstagramUploader:
         return False
 
     def upload_reel(self, video_path: Path, caption: str) -> dict:
+        # Priority 1: Meta Official Zero-Strike Graph API
+        try:
+            from modules.meta_instagram_publisher import meta_ig_publisher
+            if meta_ig_publisher.is_configured:
+                print(f"🛡️ [OFFICIAL META GRAPH API] Publishing Cosmic Reel via Meta Graph API...")
+                res = meta_ig_publisher.publish_reel(video_path, caption)
+                if res.get("status") == "success":
+                    return {
+                        "status": "success",
+                        "media_id": res.get("media_id"),
+                        "media_pk": res.get("media_id")
+                    }
+                else:
+                    print(f"[!] Meta API error: {res.get('error')}. Falling back to instagrapi...")
+        except Exception as meta_err:
+            print(f"[!] Meta publisher check error: {meta_err}. Falling back to instagrapi...")
+
+        # Fallback 2: Instagrapi
         if not self.authenticated:
             return {"status": "skipped", "message": "Instagram not authenticated (instagram_session.json missing)"}
 
