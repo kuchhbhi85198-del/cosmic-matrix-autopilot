@@ -55,6 +55,10 @@ jobs:
           META_INSTAGRAM_USER_ID: ${{ secrets.META_INSTAGRAM_USER_ID }}
           FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
           FACEBOOK_ACCESS_TOKEN: ${{ secrets.FACEBOOK_ACCESS_TOKEN }}
+          GAMING_META_INSTAGRAM_ACCESS_TOKEN: ${{ secrets.GAMING_META_INSTAGRAM_ACCESS_TOKEN }}
+          GAMING_META_INSTAGRAM_USER_ID: ${{ secrets.GAMING_META_INSTAGRAM_USER_ID }}
+          GAMING_FACEBOOK_PAGE_ID: ${{ secrets.GAMING_FACEBOOK_PAGE_ID }}
+          GAMING_FACEBOOK_ACCESS_TOKEN: ${{ secrets.GAMING_FACEBOOK_ACCESS_TOKEN }}
         run: |
           mkdir -p logs assets/output assets/clips gaming_bot/logs gaming_bot/assets/output
           
@@ -89,17 +93,17 @@ jobs:
           echo "LINKEDIN_ACCESS_TOKEN=$LINKEDIN_ACCESS_TOKEN" >> .env
           echo "LINKEDIN_PERSON_URN=$LINKEDIN_PERSON_URN" >> .env
 
-          # Restore Meta Official Zero-Strike Graph API Secrets
+          # Restore Cosmic Meta Official Zero-Strike Graph API Secrets
           echo "META_INSTAGRAM_ACCESS_TOKEN=$META_INSTAGRAM_ACCESS_TOKEN" >> .env
           echo "META_INSTAGRAM_USER_ID=$META_INSTAGRAM_USER_ID" >> .env
           echo "FACEBOOK_PAGE_ID=$FACEBOOK_PAGE_ID" >> .env
           echo "FACEBOOK_ACCESS_TOKEN=$FACEBOOK_ACCESS_TOKEN" >> .env
 
-          # Mirror to gaming_bot/.env
-          echo "META_INSTAGRAM_ACCESS_TOKEN=$META_INSTAGRAM_ACCESS_TOKEN" >> gaming_bot/.env
-          echo "META_INSTAGRAM_USER_ID=$META_INSTAGRAM_USER_ID" >> gaming_bot/.env
-          echo "FACEBOOK_PAGE_ID=$FACEBOOK_PAGE_ID" >> gaming_bot/.env
-          echo "FACEBOOK_ACCESS_TOKEN=$FACEBOOK_ACCESS_TOKEN" >> gaming_bot/.env
+          # Restore Gaming Meta Official Zero-Strike Graph API Secrets to gaming_bot/.env
+          echo "META_INSTAGRAM_ACCESS_TOKEN=$GAMING_META_INSTAGRAM_ACCESS_TOKEN" >> gaming_bot/.env
+          echo "META_INSTAGRAM_USER_ID=$GAMING_META_INSTAGRAM_USER_ID" >> gaming_bot/.env
+          echo "FACEBOOK_PAGE_ID=$GAMING_FACEBOOK_PAGE_ID" >> gaming_bot/.env
+          echo "FACEBOOK_ACCESS_TOKEN=$GAMING_FACEBOOK_ACCESS_TOKEN" >> gaming_bot/.env
 
       - name: 🚀 Run Unified 24/7 Master Autopilot (Cosmic + Gaming)
         continue-on-error: true
