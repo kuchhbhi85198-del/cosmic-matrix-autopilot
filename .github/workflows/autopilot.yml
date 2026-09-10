@@ -51,6 +51,10 @@ jobs:
           GAMING_INSTAGRAM_SESSION: ${{ secrets.GAMING_INSTAGRAM_SESSION }}
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
           LINKEDIN_PERSON_URN: ${{ secrets.LINKEDIN_PERSON_URN }}
+          META_INSTAGRAM_ACCESS_TOKEN: ${{ secrets.META_INSTAGRAM_ACCESS_TOKEN }}
+          META_INSTAGRAM_USER_ID: ${{ secrets.META_INSTAGRAM_USER_ID }}
+          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+          FACEBOOK_ACCESS_TOKEN: ${{ secrets.FACEBOOK_ACCESS_TOKEN }}
         run: |
           mkdir -p logs assets/output assets/clips gaming_bot/logs gaming_bot/assets/output
           
@@ -84,6 +88,18 @@ jobs:
           # Restore LinkedIn Environment Variables
           echo "LINKEDIN_ACCESS_TOKEN=$LINKEDIN_ACCESS_TOKEN" >> .env
           echo "LINKEDIN_PERSON_URN=$LINKEDIN_PERSON_URN" >> .env
+
+          # Restore Meta Official Zero-Strike Graph API Secrets
+          echo "META_INSTAGRAM_ACCESS_TOKEN=$META_INSTAGRAM_ACCESS_TOKEN" >> .env
+          echo "META_INSTAGRAM_USER_ID=$META_INSTAGRAM_USER_ID" >> .env
+          echo "FACEBOOK_PAGE_ID=$FACEBOOK_PAGE_ID" >> .env
+          echo "FACEBOOK_ACCESS_TOKEN=$FACEBOOK_ACCESS_TOKEN" >> .env
+
+          # Mirror to gaming_bot/.env
+          echo "META_INSTAGRAM_ACCESS_TOKEN=$META_INSTAGRAM_ACCESS_TOKEN" >> gaming_bot/.env
+          echo "META_INSTAGRAM_USER_ID=$META_INSTAGRAM_USER_ID" >> gaming_bot/.env
+          echo "FACEBOOK_PAGE_ID=$FACEBOOK_PAGE_ID" >> gaming_bot/.env
+          echo "FACEBOOK_ACCESS_TOKEN=$FACEBOOK_ACCESS_TOKEN" >> gaming_bot/.env
 
       - name: 🚀 Run Unified 24/7 Master Autopilot (Cosmic + Gaming)
         continue-on-error: true
